@@ -22,9 +22,9 @@ import { useWorkspaceDraftSubmissionStore } from "@/stores/workspace-draft-submi
 import { encodeImages } from "@/utils/encode-images";
 import type { OpenFileDisposition } from "@/utils/workspace-file-open";
 import { shouldAutoFocusWorkspaceDraftComposer } from "@/screens/workspace/workspace-draft-pane-focus";
-import type { AgentCapabilityFlags } from "@server/server/agent/agent-sdk-types";
-import type { AgentSnapshotPayload } from "@server/shared/messages";
-import type { DaemonClient } from "@server/client/daemon-client";
+import type { AgentCapabilityFlags } from "@getpaseo/protocol/agent-types";
+import type { AgentSnapshotPayload } from "@getpaseo/protocol/messages";
+import type { DaemonClient } from "@getpaseo/client/internal/daemon-client";
 import type { WorkspaceComposerAttachment } from "@/attachments/types";
 import {
   useWorkspaceAttachments,

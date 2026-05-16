@@ -1,4 +1,4 @@
-import type { TerminalCell, TerminalState } from "@server/shared/messages";
+import type { TerminalCell, TerminalState } from "@getpaseo/protocol/messages";
 
 interface TerminalStyle {
   fg: number | undefined;

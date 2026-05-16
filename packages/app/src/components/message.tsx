@@ -64,8 +64,8 @@ import { createMarkdownStyles } from "@/styles/markdown-styles";
 import { Fonts } from "@/constants/theme";
 import * as Clipboard from "expo-clipboard";
 import type { TodoEntry, UserMessageImageAttachment } from "@/types/stream";
-import type { AgentAttachment } from "@server/shared/messages";
-import type { ToolCallDetail } from "@server/server/agent/agent-sdk-types";
+import type { AgentAttachment } from "@getpaseo/protocol/messages";
+import type { ToolCallDetail } from "@getpaseo/protocol/agent-types";
 import { buildToolCallPresentation } from "@/tool-calls/presentation";
 import { resolveToolCallIcon } from "@/utils/tool-call-icon";
 import { parseInlinePathToken, type InlinePathTarget } from "@/utils/inline-path";
@@ -100,7 +100,7 @@ import {
 import { getCompactionMarkerLabel } from "./message-compaction-label";
 import { useAttachmentPreviewUrl } from "@/attachments/use-attachment-preview-url";
 import { persistAttachmentFromBytes, persistAttachmentFromDataUrl } from "@/attachments/service";
-import type { DaemonClient } from "@server/client/daemon-client";
+import type { DaemonClient } from "@getpaseo/client/internal/daemon-client";
 import { isWeb, isNative } from "@/constants/platform";
 export type { InlinePathTarget } from "@/utils/inline-path";
 

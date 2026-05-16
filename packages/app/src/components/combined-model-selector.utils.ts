@@ -1,5 +1,5 @@
-import type { AgentModelDefinition } from "@server/server/agent/agent-sdk-types";
-import type { AgentProviderDefinition } from "@server/server/agent/provider-manifest";
+import type { AgentModelDefinition } from "@getpaseo/protocol/agent-types";
+import type { AgentProviderDefinition } from "@getpaseo/protocol/provider-manifest";
 import { buildFavoriteModelKey, type FavoriteModelRow } from "@/hooks/use-form-preferences";
 
 export type SelectorModelRow = FavoriteModelRow;

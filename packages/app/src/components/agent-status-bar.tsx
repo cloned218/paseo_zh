@@ -55,9 +55,9 @@ import type {
   AgentMode,
   AgentModelDefinition,
   AgentProvider,
-} from "@server/server/agent/agent-sdk-types";
-import type { AgentProviderDefinition } from "@server/server/agent/provider-manifest";
-import { getModeVisuals, type AgentModeColorTier } from "@server/server/agent/provider-manifest";
+} from "@getpaseo/protocol/agent-types";
+import type { AgentProviderDefinition } from "@getpaseo/protocol/provider-manifest";
+import { getModeVisuals, type AgentModeColorTier } from "@getpaseo/protocol/provider-manifest";
 import type { Theme } from "@/styles/theme";
 import {
   getFeatureHighlightColor,

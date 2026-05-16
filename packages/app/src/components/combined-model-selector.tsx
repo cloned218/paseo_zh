@@ -14,8 +14,8 @@ import { StyleSheet, useUnistyles } from "react-native-unistyles";
 import { useIsCompactFormFactor } from "@/constants/layout";
 import { isNative, isWeb as platformIsWeb } from "@/constants/platform";
 import { ArrowLeft, ChevronDown, ChevronRight, Search, Star } from "lucide-react-native";
-import type { AgentModelDefinition, AgentProvider } from "@server/server/agent/agent-sdk-types";
-import type { AgentProviderDefinition } from "@server/server/agent/provider-manifest";
+import type { AgentModelDefinition, AgentProvider } from "@getpaseo/protocol/agent-types";
+import type { AgentProviderDefinition } from "@getpaseo/protocol/provider-manifest";
 const IS_WEB = platformIsWeb;
 
 import { Combobox, ComboboxItem, type ComboboxOption } from "@/components/ui/combobox";

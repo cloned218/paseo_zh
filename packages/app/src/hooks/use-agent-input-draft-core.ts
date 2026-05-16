@@ -2,7 +2,7 @@ import type { UserComposerAttachment } from "@/attachments/types";
 import type { DraftAgentStatusBarProps } from "@/components/agent-status-bar";
 import type { DraftCommandConfig } from "@/hooks/use-agent-commands-query";
 import type { UseAgentFormStateResult } from "@/hooks/use-agent-form-state";
-import type { AgentModelDefinition, AgentProvider } from "@server/server/agent/agent-sdk-types";
+import type { AgentModelDefinition, AgentProvider } from "@getpaseo/protocol/agent-types";
 
 export interface DraftKeyContext {
   selectedServerId: string | null;

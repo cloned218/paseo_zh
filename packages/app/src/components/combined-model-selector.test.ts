@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { AgentModelDefinition } from "@server/server/agent/agent-sdk-types";
+import type { AgentModelDefinition } from "@getpaseo/protocol/agent-types";
 import {
   buildModelRows,
   buildSelectedTriggerLabel,

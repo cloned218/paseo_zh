@@ -19,7 +19,7 @@ import {
   encodeTerminalSnapshotPayload,
   encodeTerminalStreamFrame,
   type TerminalStreamFrame,
-} from "../shared/binary-frames/index.js";
+} from "@getpaseo/protocol/binary-frames/index";
 import { TerminalOutputCoalescer } from "./terminal-output-coalescer.js";
 import type { TerminalSession } from "./terminal.js";
 import type { TerminalManager, TerminalsChangedEvent } from "./terminal-manager.js";

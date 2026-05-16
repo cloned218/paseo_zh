@@ -1,4 +1,4 @@
-import { CLIENT_CAPS } from "../../server/src/shared/client-capabilities.js";
+import { CLIENT_CAPS } from "@getpaseo/protocol/client-capabilities";
 import {
   AgentCreateFailedStatusPayloadSchema,
   AgentCreatedStatusPayloadSchema,
@@ -10,7 +10,7 @@ import {
   SessionInboundMessageSchema,
   type ServerInfoStatusPayload,
   WSOutboundMessageSchema,
-} from "../../server/src/shared/messages.js";
+} from "@getpaseo/protocol/messages";
 import type {
   AgentStreamEventPayload,
   AgentSnapshotPayload,
@@ -72,19 +72,16 @@ import type {
   EditorTargetId,
   PaseoConfigRaw,
   PaseoConfigRevision,
-} from "../../server/src/shared/messages.js";
+} from "@getpaseo/protocol/messages";
 import type {
   AgentPermissionRequest,
   AgentPermissionResponse,
   AgentPersistenceHandle,
   AgentProvider,
   AgentSessionConfig,
-} from "../../server/src/server/agent/agent-sdk-types.js";
-import type {
-  MutableDaemonConfig,
-  MutableDaemonConfigPatch,
-} from "../../server/src/shared/messages.js";
-import { isRelayClientWebSocketUrl } from "../../server/src/shared/daemon-endpoints.js";
+} from "@getpaseo/protocol/agent-types";
+import type { MutableDaemonConfig, MutableDaemonConfigPatch } from "@getpaseo/protocol/messages";
+import { isRelayClientWebSocketUrl } from "@getpaseo/protocol/daemon-endpoints";
 import {
   asUint8Array,
   decodeFileTransferFrame,
@@ -92,7 +89,7 @@ import {
   FileTransferOpcode,
   TerminalStreamOpcode,
   type FileTransferFrame,
-} from "../../server/src/shared/binary-frames/index.js";
+} from "@getpaseo/protocol/binary-frames/index";
 import {
   createRelayE2eeTransportFactory,
   createWebSocketTransportFactory,

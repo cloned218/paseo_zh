@@ -1,5 +1,5 @@
 import { useMemo, useRef } from "react";
-import type { DaemonClient } from "@server/client/daemon-client";
+import type { DaemonClient } from "@getpaseo/client/internal/daemon-client";
 import type { ToastApi } from "@/components/toast-host";
 import {
   createAssistantFileLinkResolver,
