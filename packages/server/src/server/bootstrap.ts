@@ -835,6 +835,7 @@ export async function createPaseoDaemon(
 
   const speechService = createSpeechService({
     logger,
+    paseoHome: config.paseoHome,
     openaiConfig: config.openai,
     speechConfig: config.speech,
   });
