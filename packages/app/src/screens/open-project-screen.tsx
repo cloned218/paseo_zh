@@ -51,10 +51,10 @@ export function OpenProjectScreen({ serverId }: { serverId: string }) {
           <PaseoLogo size={56} />
         </View>
         <View style={styles.headingGroup}>
-          <Text style={styles.heading}>What shall we build today?</Text>
+          <Text style={styles.heading}>今天想构建什么？</Text>
           {hasHydrated && !hasProjects ? (
             <Text style={styles.subtitle}>
-              Add a project folder to start running agents on your codebase
+              添加一个项目文件夹，即可在你的代码库上开始运行 Agent
             </Text>
           ) : null}
         </View>
@@ -65,7 +65,7 @@ export function OpenProjectScreen({ serverId }: { serverId: string }) {
             onPress={handleOpenPicker}
             testID="open-project-submit"
           >
-            Add a project
+            添加项目
           </Button>
           {isLocalDaemon ? (
             <Button
@@ -74,7 +74,7 @@ export function OpenProjectScreen({ serverId }: { serverId: string }) {
               onPress={handleOpenPairDevice}
               testID="open-project-pair-device"
             >
-              Pair device
+              配对设备
             </Button>
           ) : null}
         </View>

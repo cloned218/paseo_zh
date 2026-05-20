@@ -29,7 +29,7 @@ export default function ProjectsScreen({ view }: ProjectsScreenProps) {
   if (projects.length === 0) {
     return (
       <View style={styles.centered} testID="projects-list">
-        <Text style={styles.emptyText}>No projects yet</Text>
+        <Text style={styles.emptyText}>还没有项目</Text>
       </View>
     );
   }
@@ -56,7 +56,7 @@ function HostErrorsBanner({ errors }: { errors: ProjectHostError[] }) {
     <View style={styles.errorsBanner} testID="projects-host-errors">
       {errors.map((error) => (
         <Text key={error.serverId} style={styles.errorsBannerText}>
-          {`Couldn't load projects from host ${error.serverName}: ${error.message}`}
+          {`无法从主机 ${error.serverName} 加载项目：${error.message}`}
         </Text>
       ))}
     </View>
@@ -95,7 +95,7 @@ function ProjectRow({ project, isFirst, isSelected }: ProjectRowProps) {
       style={rowStyle}
       onPress={handleNavigate}
       accessibilityRole="button"
-      accessibilityLabel={`Edit ${projectName}`}
+      accessibilityLabel={`编辑 ${projectName}`}
       testID={`project-row-${projectKey}`}
       data-selected={isSelected ? "true" : "false"}
     >
