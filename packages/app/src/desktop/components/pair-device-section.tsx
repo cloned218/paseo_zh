@@ -24,15 +24,14 @@ function resolvePairingViewState(args: {
 }): PairingViewState {
   if (args.isPending) return { tag: "loading" };
   if (args.isError) {
-    const message =
-      args.error instanceof Error ? args.error.message : "Failed to load pairing offer.";
+    const message = args.error instanceof Error ? args.error.message : "加载配对信息失败。";
     return { tag: "error", message };
   }
   if (!args.data?.url) {
     const message =
       args.data?.relayEnabled === false
-        ? "Relay is not enabled. Enable relay to pair a device."
-        : "Pairing offer unavailable.";
+        ? "中继未启用。请先启用中继再配对设备。"
+        : "配对信息不可用。";
     return { tag: "unavailable", message };
   }
   return { tag: "ready", url: args.data.url };
@@ -154,7 +153,7 @@ function PairDeviceBody(props: PairDeviceBodyProps) {
     return (
       <View style={styles.centered}>
         <ActivityIndicator size="small" />
-        <Text style={styles.hint}>Loading pairing offer…</Text>
+        <Text style={styles.hint}>正在加载配对信息…</Text>
       </View>
     );
   }
@@ -164,7 +163,7 @@ function PairDeviceBody(props: PairDeviceBodyProps) {
       <View style={styles.centered}>
         <Text style={styles.hint}>{viewState.message}</Text>
         <Button variant="outline" size="sm" leftIcon={retryIcon} onPress={handleRefetch}>
-          Retry
+          重试
         </Button>
       </View>
     );
@@ -172,9 +171,7 @@ function PairDeviceBody(props: PairDeviceBodyProps) {
 
   return (
     <View style={styles.content}>
-      <Text style={styles.hint}>
-        Scan this QR code with Paseo on your phone, or copy the link below.
-      </Text>
+      <Text style={styles.hint}>使用手机上的 Paseo 扫描此二维码，或复制下方链接。</Text>
       <View style={styles.qrContainer}>
         <PairDeviceQrContent qrImageSource={qrImageSource} qrQuery={qrQuery} />
       </View>
@@ -189,7 +186,7 @@ function PairDeviceBody(props: PairDeviceBodyProps) {
           />
         </View>
         <Button variant="outline" size="sm" leftIcon={copyButtonIcon} onPress={handleCopyPress}>
-          {copied ? "Copied" : "Copy"}
+          {copied ? "已复制" : "复制"}
         </Button>
       </View>
     </View>
@@ -204,7 +201,7 @@ function PairDeviceQrContent(props: {
     return <Image source={props.qrImageSource} style={styles.qrImage} resizeMode="contain" />;
   }
   if (props.qrQuery.isError) {
-    return <Text style={styles.hint}>QR code unavailable.</Text>;
+    return <Text style={styles.hint}>二维码不可用。</Text>;
   }
   return <ActivityIndicator size="small" />;
 }

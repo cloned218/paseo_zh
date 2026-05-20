@@ -91,7 +91,7 @@ export function BranchSwitcher({
         onPress={handleOpen}
         style={triggerStyle}
         accessibilityRole="button"
-        accessibilityLabel={`Current branch: ${currentBranchName}. Press to switch branch.`}
+        accessibilityLabel={`当前分支：${currentBranchName}。点按以切换分支。`}
       >
         {titleContent}
         {!isCompact ? <ChevronDown size={12} color={theme.colors.foregroundMuted} /> : null}
@@ -101,10 +101,10 @@ export function BranchSwitcher({
         value={currentBranchName}
         onSelect={handleBranchSelect}
         searchable
-        placeholder="Switch branch..."
-        searchPlaceholder="Filter branches..."
-        emptyText="No branches found."
-        title="Switch branch"
+        placeholder="切换分支..."
+        searchPlaceholder="筛选分支..."
+        emptyText="未找到分支。"
+        title="切换分支"
         open={isOpen}
         onOpenChange={setIsOpen}
         anchorRef={anchorRef}

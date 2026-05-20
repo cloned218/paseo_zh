@@ -29,14 +29,14 @@ import { confirmDialog } from "@/utils/confirm-dialog";
 import { formatConnectionStatus, getConnectionStatusTone } from "@/utils/daemons";
 
 const RESTART_CONFIRMATION_MESSAGE =
-  "This will restart the daemon. Agents running on it will keep going; the app will reconnect automatically.";
+  "这会重启守护进程。其上的智能体会继续运行；应用会自动重新连接。";
 
 function formatHostConnectionLabel(connection: HostConnection): string {
   if (connection.type === "relay") {
-    return `Relay (${connection.relayEndpoint})`;
+    return `中继 (${connection.relayEndpoint})`;
   }
   if (connection.type === "directSocket" || connection.type === "directPipe") {
-    return `Local (${connection.path})`;
+    return `本地 (${connection.path})`;
   }
   return `TCP (${connection.endpoint})`;
 }
@@ -49,13 +49,13 @@ function formatActiveConnectionBadge(
   if (activeConnection.type === "relay") {
     return {
       icon: <Globe size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />,
-      text: "Relay",
+      text: "中继",
     };
   }
   if (activeConnection.type === "directSocket" || activeConnection.type === "directPipe") {
     return {
       icon: <Monitor size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />,
-      text: "Local",
+      text: "本地",
     };
   }
   return {
@@ -70,8 +70,8 @@ function formatDaemonVersionBadge(version: string | null): string | null {
   return trimmed.startsWith("v") ? trimmed : `v${trimmed}`;
 }
 
-const REMOVE_CONNECTION_HEADER: SheetHeader = { title: "Remove connection" };
-const REMOVE_HOST_HEADER: SheetHeader = { title: "Remove host" };
+const REMOVE_CONNECTION_HEADER: SheetHeader = { title: "移除连接" };
+const REMOVE_HOST_HEADER: SheetHeader = { title: "移除主机" };
 
 export interface HostPageProps {
   serverId: string;
@@ -133,7 +133,7 @@ export function HostPage({ serverId, onHostRemoved }: HostPageProps) {
     return (
       <View testID={`settings-host-page-${serverId}`}>
         <View style={EMPTY_CARD_STYLE}>
-          <Text style={styles.emptyText}>Host not found</Text>
+          <Text style={styles.emptyText}>未找到主机</Text>
         </View>
       </View>
     );
@@ -199,7 +199,7 @@ export function HostRenameButton({ host }: { host: HostProfile }) {
         hitSlop={8}
         style={styles.identityEditButton}
         accessibilityRole="button"
-        accessibilityLabel="Edit label"
+        accessibilityLabel="编辑标签"
         testID="host-page-label-edit-button"
       >
         <Pencil size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />
@@ -207,10 +207,10 @@ export function HostRenameButton({ host }: { host: HostProfile }) {
 
       <AdaptiveRenameModal
         visible={isEditing}
-        title="Rename host"
+        title="重命名主机"
         initialValue={host.label}
-        placeholder="My Host"
-        submitLabel="Save"
+        placeholder="我的主机"
+        submitLabel="保存"
         onClose={closeEditor}
         onSubmit={handleSubmit}
         testID="host-page-rename-modal"
@@ -253,13 +253,13 @@ function ConnectionsSection({ host }: { host: HostProfile }) {
       .then(() => setPendingRemoveConnection(null))
       .catch((error) => {
         console.error("[HostPage] Failed to remove connection", error);
-        Alert.alert("Error", "Unable to remove connection");
+        Alert.alert("错误", "无法移除连接");
       })
       .finally(() => setIsRemovingConnection(false));
   }, [pendingRemoveConnection, removeConnection, host.serverId]);
 
   return (
-    <SettingsSection title="Connections">
+    <SettingsSection title="连接">
       <View style={settingsStyles.card} testID="host-page-connections-card">
         {host.connections.map((conn, index) => {
           const probe = probeByConnectionId.get(conn.id);
@@ -285,7 +285,7 @@ function ConnectionsSection({ host }: { host: HostProfile }) {
           testID="remove-connection-confirm-modal"
         >
           <Text style={styles.confirmText}>
-            Remove {pendingRemoveConnection.title}? This cannot be undone.
+            移除 {pendingRemoveConnection.title}？此操作不可撤销。
           </Text>
           <View style={styles.confirmActions}>
             <Button
@@ -295,7 +295,7 @@ function ConnectionsSection({ host }: { host: HostProfile }) {
               onPress={handleCancelConfirm}
               disabled={isRemovingConnection}
             >
-              Cancel
+              取消
             </Button>
             <Button
               variant="destructive"
@@ -305,7 +305,7 @@ function ConnectionsSection({ host }: { host: HostProfile }) {
               disabled={isRemovingConnection}
               testID="remove-connection-confirm"
             >
-              Remove
+              移除
             </Button>
           </View>
         </AdaptiveModalSheet>
@@ -334,7 +334,7 @@ function ConnectionRow({
 
   const latencyText = (() => {
     if (latencyLoading) return "...";
-    if (latencyError) return "Timeout";
+    if (latencyError) return "超时";
     if (latencyMs != null) return `${latencyMs}ms`;
     return "\u2014";
   })();
@@ -371,7 +371,7 @@ function ConnectionRow({
         textStyle={destructiveTextStyle}
         onPress={handlePressRemove}
       >
-        Remove
+        移除
       </Button>
     </View>
   );
@@ -380,12 +380,12 @@ function ConnectionRow({
 function DaemonSection({ host, isLocalDaemon }: { host: HostProfile; isLocalDaemon: boolean }) {
   return (
     <>
-      <SettingsSection title="Daemon settings">
+      <SettingsSection title="守护进程设置">
         <InjectPaseoToolsCard serverId={host.serverId} />
         <AppendSystemPromptCard serverId={host.serverId} />
       </SettingsSection>
       {isLocalDaemon ? (
-        <SettingsSection title="Pair devices">
+        <SettingsSection title="配对设备">
           <PairDeviceRow />
         </SettingsSection>
       ) : null}
@@ -441,35 +441,26 @@ function RestartDaemonCard({ host }: { host: HostProfile }) {
     if (isMountedRef.current) {
       setIsRestarting(false);
       if (!reconnected) {
-        Alert.alert(
-          "Unable to reconnect",
-          `${host.label} did not come back online. Please verify it restarted.`,
-        );
+        Alert.alert("无法重新连接", `${host.label} 未重新上线，请确认它已经重启。`);
       }
     }
   }, [host.label, isHostConnected, waitForCondition]);
 
   const handleRestart = useCallback(() => {
     if (!daemonClient) {
-      Alert.alert(
-        "Host unavailable",
-        "This host is not connected. Wait for it to come online before restarting.",
-      );
+      Alert.alert("主机不可用", "该主机当前未连接。请等待其恢复在线后再重启。");
       return;
     }
     if (!isHostConnected()) {
-      Alert.alert(
-        "Host offline",
-        "This host is offline. Paseo reconnects automatically—wait until it's back online before restarting.",
-      );
+      Alert.alert("主机离线", "该主机当前离线。Paseo 会自动重连——请等它恢复在线后再重启。");
       return;
     }
 
     void confirmDialog({
-      title: `Restart ${host.label}`,
+      title: `重启 ${host.label}`,
       message: RESTART_CONFIRMATION_MESSAGE,
-      confirmLabel: "Restart",
-      cancelLabel: "Cancel",
+      confirmLabel: "重启",
+      cancelLabel: "取消",
       destructive: true,
     })
       .then((confirmed) => {
@@ -481,17 +472,14 @@ function RestartDaemonCard({ host }: { host: HostProfile }) {
             console.error(`[HostPage] Failed to restart daemon ${host.label}`, error);
             if (!isMountedRef.current) return;
             setIsRestarting(false);
-            Alert.alert(
-              "Error",
-              "Failed to send the restart request. Paseo reconnects automatically—try again once the host shows as online.",
-            );
+            Alert.alert("错误", "发送重启请求失败。Paseo 会自动重连——等主机显示在线后再试。");
           });
         void waitForDaemonRestart();
         return;
       })
       .catch((error) => {
         console.error(`[HostPage] Failed to open restart confirmation for ${host.label}`, error);
-        Alert.alert("Error", "Unable to open the restart confirmation dialog.");
+        Alert.alert("错误", "无法打开重启确认对话框。");
       });
   }, [daemonClient, host.label, host.serverId, isHostConnected, waitForDaemonRestart]);
 
@@ -504,10 +492,8 @@ function RestartDaemonCard({ host }: { host: HostProfile }) {
     <View style={settingsStyles.card} testID="host-page-restart-card">
       <View style={settingsStyles.row}>
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>Restart daemon</Text>
-          <Text style={settingsStyles.rowHint}>
-            Restarts the daemon process. The app will reconnect automatically
-          </Text>
+          <Text style={settingsStyles.rowTitle}>重启守护进程</Text>
+          <Text style={settingsStyles.rowHint}>重启守护进程。应用会自动重新连接。</Text>
         </View>
         <Button
           variant="outline"
@@ -517,7 +503,7 @@ function RestartDaemonCard({ host }: { host: HostProfile }) {
           disabled={isRestarting || !daemonClient || !isConnected}
           testID="host-page-restart-button"
         >
-          {isRestarting ? "Restarting..." : "Restart"}
+          {isRestarting ? "重启中..." : "重启"}
         </Button>
       </View>
     </View>
@@ -545,15 +531,13 @@ function InjectPaseoToolsCard({ serverId }: { serverId: string }) {
     <View style={settingsStyles.card} testID="host-page-inject-mcp-card">
       <View style={settingsStyles.row}>
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>Enable Paseo tools</Text>
-          <Text style={settingsStyles.rowHint}>
-            Agents will be able to manage worktrees, agents and schedules
-          </Text>
+          <Text style={settingsStyles.rowTitle}>启用 Paseo 工具</Text>
+          <Text style={settingsStyles.rowHint}>智能体将可以管理工作树、智能体和计划任务</Text>
         </View>
         <Switch
           value={config?.mcp.injectIntoAgents !== false}
           onValueChange={handleValueChange}
-          accessibilityLabel="Inject Paseo tools"
+          accessibilityLabel="注入 Paseo 工具"
         />
       </View>
     </View>
@@ -567,7 +551,7 @@ function AppendSystemPromptCard({ serverId }: { serverId: string }) {
   const [draft, setDraft] = useState(persistedPrompt);
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const header = useMemo<SheetHeader>(() => ({ title: "Append system prompt" }), []);
+  const header = useMemo<SheetHeader>(() => ({ title: "追加系统提示词" }), []);
 
   useEffect(() => {
     setDraft(persistedPrompt);
@@ -610,8 +594,8 @@ function AppendSystemPromptCard({ serverId }: { serverId: string }) {
       <View style={settingsStyles.card} testID="host-page-append-system-prompt-card">
         <View style={settingsStyles.row}>
           <View style={settingsStyles.rowContent}>
-            <Text style={settingsStyles.rowTitle}>System prompt</Text>
-            <Text style={settingsStyles.rowHint}>Added a system prompt to all agents</Text>
+            <Text style={settingsStyles.rowTitle}>系统提示词</Text>
+            <Text style={settingsStyles.rowHint}>为所有智能体添加系统提示词</Text>
           </View>
           <Button
             variant="outline"
@@ -619,7 +603,7 @@ function AppendSystemPromptCard({ serverId }: { serverId: string }) {
             onPress={handleOpen}
             testID="host-page-append-system-prompt-edit"
           >
-            Edit
+            编辑
           </Button>
         </View>
       </View>
@@ -634,10 +618,10 @@ function AppendSystemPromptCard({ serverId }: { serverId: string }) {
         >
           <SettingsTextAreaCard
             testID="host-page-append-system-prompt-input"
-            accessibilityLabel="Append system prompt"
+            accessibilityLabel="追加系统提示词"
             value={draft}
             onChangeText={setDraft}
-            placeholder="Always keep replies concise."
+            placeholder="始终保持回复简洁。"
           />
           <View style={styles.appendPromptActions}>
             <Button
@@ -647,7 +631,7 @@ function AppendSystemPromptCard({ serverId }: { serverId: string }) {
               disabled={!hasChanges || isSaving}
               testID="host-page-append-system-prompt-reset"
             >
-              Reset
+              重置
             </Button>
             <Button
               variant="default"
@@ -656,7 +640,7 @@ function AppendSystemPromptCard({ serverId }: { serverId: string }) {
               disabled={!hasChanges || isSaving}
               testID="host-page-append-system-prompt-save"
             >
-              {isSaving ? "Saving..." : "Save"}
+              {isSaving ? "保存中..." : "保存"}
             </Button>
           </View>
         </AdaptiveModalSheet>
@@ -681,10 +665,8 @@ function PairDeviceRow() {
         testID="host-page-pair-device-row"
       >
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>Pair a device</Text>
-          <Text style={settingsStyles.rowHint}>
-            Scan a QR code or copy a link to connect your phone to this host
-          </Text>
+          <Text style={settingsStyles.rowTitle}>配对设备</Text>
+          <Text style={settingsStyles.rowHint}>扫描二维码或复制链接，把手机连接到这台主机</Text>
         </View>
         <ChevronRight size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />
       </Pressable>
@@ -725,7 +707,7 @@ function RemoveHostSection({ host, onRemoved }: { host: HostProfile; onRemoved?:
       })
       .catch((error) => {
         console.error("[HostPage] Failed to remove host", error);
-        Alert.alert("Error", "Unable to remove host");
+        Alert.alert("错误", "无法移除主机");
       })
       .finally(() => setIsRemoving(false));
   }, [host.serverId, onRemoved, removeHost]);
@@ -736,16 +718,14 @@ function RemoveHostSection({ host, onRemoved }: { host: HostProfile; onRemoved?:
   );
 
   return (
-    <SettingsSection title="Danger zone" testID="host-page-remove-host-card">
+    <SettingsSection title="危险区域" testID="host-page-remove-host-card">
       <RestartDaemonCard host={host} />
 
       <View style={settingsStyles.card}>
         <View style={settingsStyles.row}>
           <View style={settingsStyles.rowContent}>
-            <Text style={settingsStyles.rowTitle}>Remove host</Text>
-            <Text style={settingsStyles.rowHint}>
-              Removes this host and its saved connections from this device
-            </Text>
+            <Text style={settingsStyles.rowTitle}>移除主机</Text>
+            <Text style={settingsStyles.rowHint}>从此设备中移除这台主机及其保存的连接</Text>
           </View>
           <Button
             variant="outline"
@@ -755,7 +735,7 @@ function RemoveHostSection({ host, onRemoved }: { host: HostProfile; onRemoved?:
             onPress={handleOpenConfirm}
             testID="host-page-remove-host-button"
           >
-            Remove
+            移除
           </Button>
         </View>
       </View>
@@ -767,9 +747,7 @@ function RemoveHostSection({ host, onRemoved }: { host: HostProfile; onRemoved?:
           onClose={handleCloseConfirm}
           testID="remove-host-confirm-modal"
         >
-          <Text style={styles.confirmText}>
-            Remove {host.label}? This will delete its saved connections.
-          </Text>
+          <Text style={styles.confirmText}>移除 {host.label}？这会删除它保存的连接。</Text>
           <View style={styles.confirmActions}>
             <Button
               variant="secondary"
@@ -778,7 +756,7 @@ function RemoveHostSection({ host, onRemoved }: { host: HostProfile; onRemoved?:
               onPress={handleCancel}
               disabled={isRemoving}
             >
-              Cancel
+              取消
             </Button>
             <Button
               variant="destructive"
@@ -788,7 +766,7 @@ function RemoveHostSection({ host, onRemoved }: { host: HostProfile; onRemoved?:
               disabled={isRemoving}
               testID="remove-host-confirm"
             >
-              Remove
+              移除
             </Button>
           </View>
         </AdaptiveModalSheet>

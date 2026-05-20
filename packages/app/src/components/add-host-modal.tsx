@@ -15,7 +15,7 @@ import { AdaptiveModalSheet, AdaptiveTextInput, type SheetHeader } from "./adapt
 import { Button } from "@/components/ui/button";
 
 const FLEX_ONE_STYLE = { flex: 1 } as const;
-const DIRECT_CONNECTION_HEADER: SheetHeader = { title: "Direct connection" };
+const DIRECT_CONNECTION_HEADER: SheetHeader = { title: "直接连接" };
 
 interface DirectConnectionDraft {
   host: string;
@@ -132,10 +132,10 @@ function buildConnectionUriFromDraft(draft: DirectConnectionDraft): string {
   const host = draft.host.trim();
   const port = Number(draft.port.trim());
   if (!host) {
-    throw new Error("Host is required");
+    throw new Error("请输入主机地址");
   }
   if (!Number.isInteger(port) || port < 1 || port > 65535) {
-    throw new Error("Port must be between 1 and 65535");
+    throw new Error("端口必须在 1 到 65535 之间");
   }
 
   return serializeConnectionUriForStorage({
@@ -197,7 +197,9 @@ function formatTechnicalTransportDetails(details: (string | null)[]): string | n
   });
 
   if (allGeneric) {
-    return `${unique[0]} (no additional details provided)`;
+    return unique[0] === "transport closed"
+      ? "传输已关闭（未提供更多详细信息）"
+      : "传输错误（未提供更多详细信息）";
   }
 
   return unique.join(" — ");
@@ -207,7 +209,7 @@ function buildConnectionFailureCopy(
   endpoint: string,
   error: unknown,
 ): { title: string; detail: string | null; raw: string | null } {
-  const title = `We failed to connect to ${endpoint}.`;
+  const title = `无法连接到 ${endpoint}。`;
 
   const raw = (() => {
     if (error instanceof DaemonConnectionTestError) {
@@ -226,28 +228,27 @@ function buildConnectionFailureCopy(
   let detail: string | null = null;
 
   if (raw === "Incorrect password" || raw === "Password required") {
-    detail = raw;
+    detail = raw === "Incorrect password" ? "密码错误" : "需要密码";
   } else if (rawLower.includes("timed out")) {
-    detail = "Connection timed out. Check the host/port and your network.";
+    detail = "连接超时。请检查主机、端口和网络。";
   } else if (
     rawLower.includes("econnrefused") ||
     rawLower.includes("connection refused") ||
     rawLower.includes("err_connection_refused")
   ) {
-    detail = "Connection refused. Is the server running at this address?";
+    detail = "连接被拒绝。请确认该地址上的服务是否正在运行。";
   } else if (rawLower.includes("enotfound") || rawLower.includes("not found")) {
-    detail = "Host not found. Check the hostname and try again.";
+    detail = "未找到主机。请检查主机名后重试。";
   } else if (rawLower.includes("ehostunreach") || rawLower.includes("host is unreachable")) {
-    detail = "Host is unreachable. Check your network and firewall.";
+    detail = "主机不可达。请检查网络和防火墙。";
   } else if (
     rawLower.includes("certificate") ||
     rawLower.includes("tls") ||
     rawLower.includes("ssl")
   ) {
-    detail =
-      "TLS error. Direct connections use SSL only when a TLS terminator is in front of the daemon.";
+    detail = "TLS 错误。只有在守护进程前面有 TLS 终止代理时，直连才应启用 SSL。";
   } else {
-    detail = "Unable to connect. Check the host/port and that the daemon is reachable.";
+    detail = "无法连接。请检查主机、端口，并确认守护进程可访问。";
   }
 
   return { title, detail, raw };
@@ -273,23 +274,23 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
 
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [host, setHost] = useState("");
-  const [port, setPort] = useState("6767");
+  const [host, set主机] = useState("");
+  const [port, set端口] = useState("6767");
   const [useTls, setUseTls] = useState(false);
-  const [password, setPassword] = useState("");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
-  const [advancedUri, setAdvancedUri] = useState("");
+  const [password, set密码] = useState("");
+  const [is密码Visible, setIs密码Visible] = useState(false);
+  const [is高级选项Open, setIs高级选项Open] = useState(false);
+  const [advancedUri, set高级选项Uri] = useState("");
   const [inputResetKey, bumpInputResetKey] = useReducer((key: number) => key + 1, 0);
 
   const clearInput = useCallback(() => {
-    setHost("");
-    setPort("6767");
+    set主机("");
+    set端口("6767");
     setUseTls(false);
-    setPassword("");
-    setIsPasswordVisible(false);
-    setIsAdvancedOpen(false);
-    setAdvancedUri("");
+    set密码("");
+    setIs密码Visible(false);
+    setIs高级选项Open(false);
+    set高级选项Uri("");
     bumpInputResetKey();
   }, []);
 
@@ -330,7 +331,7 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
     try {
       connection = prepareDirectConnection({ host, port, useTls, password });
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Invalid connection";
+      const message = error instanceof Error ? error.message : "无效的连接";
       setErrorMessage(message);
       return;
     }
@@ -352,7 +353,7 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
       const { title, detail, raw: rawDetail } = buildConnectionFailureCopy(connection.uri, error);
       let combined: string;
       if (rawDetail && detail && rawDetail !== detail) {
-        combined = `${title}\n${detail}\nDetails: ${rawDetail}`;
+        combined = `${title}\n${detail}\n详细信息：${rawDetail}`;
       } else if (detail) {
         combined = `${title}\n${detail}`;
       } else {
@@ -360,7 +361,7 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
       }
       setErrorMessage(combined);
       if (!isMobile) {
-        Alert.alert("Connection failed", combined);
+        Alert.alert("连接失败", combined);
       }
     } finally {
       setIsSaving(false);
@@ -391,38 +392,38 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
     setUseTls((current) => !current);
   }, [isSaving]);
 
-  const handleTogglePasswordVisibility = useCallback(() => {
-    setIsPasswordVisible((current) => !current);
+  const handleToggle密码Visibility = useCallback(() => {
+    setIs密码Visible((current) => !current);
   }, []);
 
-  const handleToggleAdvanced = useCallback(() => {
-    if (!isAdvancedOpen) {
+  const handleToggle高级选项 = useCallback(() => {
+    if (!is高级选项Open) {
       try {
-        setAdvancedUri(buildConnectionUriFromDraft({ host, port, useTls, password }));
+        set高级选项Uri(buildConnectionUriFromDraft({ host, port, useTls, password }));
       } catch {
-        setAdvancedUri("");
+        set高级选项Uri("");
       }
       setErrorMessage("");
-      setIsAdvancedOpen(true);
+      setIs高级选项Open(true);
       return;
     }
 
     try {
       const next = draftFromConnectionUri(advancedUri);
-      setHost(next.host);
-      setPort(next.port);
+      set主机(next.host);
+      set端口(next.port);
       setUseTls(next.useTls);
-      setPassword(next.password);
+      set密码(next.password);
       setErrorMessage("");
       bumpInputResetKey();
     } catch {
       setErrorMessage("");
     }
-    setIsAdvancedOpen(false);
-  }, [advancedUri, host, isAdvancedOpen, password, port, useTls]);
+    setIs高级选项Open(false);
+  }, [advancedUri, host, is高级选项Open, password, port, useTls]);
 
-  const AdvancedIcon = isAdvancedOpen ? ChevronDown : ChevronRight;
-  const PasswordIcon = isPasswordVisible ? EyeOff : Eye;
+  const 高级选项Icon = is高级选项Open ? ChevronDown : ChevronRight;
+  const 密码Icon = is密码Visible ? EyeOff : Eye;
 
   return (
     <AdaptiveModalSheet
@@ -431,19 +432,19 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
       onClose={handleClose}
       testID="add-host-modal"
     >
-      <Text style={styles.helper}>Enter the address of a Paseo server.</Text>
+      <Text style={styles.helper}>请输入 Paseo 服务器地址。</Text>
 
       <View style={styles.portRow}>
         <View style={hostFieldStyle}>
-          <Text style={styles.label}>Host</Text>
+          <Text style={styles.label}>主机</Text>
           <AdaptiveTextInput
             testID="direct-host-input"
             nativeID="direct-host-input"
-            accessibilityLabel="Host"
+            accessibilityLabel="主机"
             initialValue={host}
             resetKey={`direct-host-${inputResetKey}`}
             value={host}
-            onChangeText={setHost}
+            onChangeText={set主机}
             placeholder="localhost"
             placeholderTextColor={theme.colors.foregroundMuted}
             style={styles.input}
@@ -455,15 +456,15 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
           />
         </View>
         <View style={portFieldStyle}>
-          <Text style={styles.label}>Port</Text>
+          <Text style={styles.label}>端口</Text>
           <AdaptiveTextInput
             testID="direct-port-input"
             nativeID="direct-port-input"
-            accessibilityLabel="Port"
+            accessibilityLabel="端口"
             initialValue={port}
             resetKey={`direct-port-${inputResetKey}`}
             value={port}
-            onChangeText={setPort}
+            onChangeText={set端口}
             placeholder="6767"
             placeholderTextColor={theme.colors.foregroundMuted}
             style={styles.input}
@@ -482,7 +483,7 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
         onPress={handleToggleUseTls}
         disabled={isSaving}
         accessibilityRole="checkbox"
-        accessibilityLabel="Use SSL"
+        accessibilityLabel="使用 SSL"
         accessibilityState={useTlsAccessibilityState}
         testID="direct-ssl-toggle"
       >
@@ -493,39 +494,39 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
             </View>
           ) : null}
         </View>
-        <Text style={styles.label}>Use SSL</Text>
+        <Text style={styles.label}>使用 SSL</Text>
       </Pressable>
 
       <View style={styles.field}>
-        <Text style={styles.label}>Password</Text>
+        <Text style={styles.label}>密码</Text>
         <View style={styles.passwordRow}>
           <AdaptiveTextInput
             testID="direct-password-input"
             nativeID="direct-password-input"
-            accessibilityLabel="Password"
+            accessibilityLabel="密码"
             initialValue={password}
             resetKey={`direct-password-${inputResetKey}`}
             value={password}
-            onChangeText={setPassword}
-            placeholder="Optional"
+            onChangeText={set密码}
+            placeholder="可选"
             placeholderTextColor={theme.colors.foregroundMuted}
             style={passwordInputStyle}
             autoCapitalize="none"
             autoCorrect={false}
-            secureTextEntry={!isPasswordVisible}
+            secureTextEntry={!is密码Visible}
             editable={!isSaving}
             returnKeyType="done"
             onSubmitEditing={handleSubmitEditing}
           />
           <Pressable
             style={styles.iconButton}
-            onPress={handleTogglePasswordVisibility}
+            onPress={handleToggle密码Visibility}
             disabled={isSaving}
             accessibilityRole="button"
-            accessibilityLabel={isPasswordVisible ? "Hide password" : "Show password"}
+            accessibilityLabel={is密码Visible ? "隐藏密码" : "显示密码"}
             testID="direct-password-visibility-toggle"
           >
-            <PasswordIcon size={18} color={theme.colors.foregroundMuted} />
+            <密码Icon size={18} color={theme.colors.foregroundMuted} />
           </Pressable>
         </View>
       </View>
@@ -533,24 +534,24 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
       <View style={styles.field}>
         <Pressable
           style={styles.advancedToggle}
-          onPress={handleToggleAdvanced}
+          onPress={handleToggle高级选项}
           disabled={isSaving}
           accessibilityRole="button"
-          accessibilityLabel={isAdvancedOpen ? "Hide advanced" : "Show advanced"}
+          accessibilityLabel={is高级选项Open ? "收起高级选项" : "显示高级选项"}
           testID="direct-host-advanced-toggle"
         >
-          <AdvancedIcon size={16} color={theme.colors.foregroundMuted} />
-          <Text style={styles.advancedText}>Advanced</Text>
+          <高级选项Icon size={16} color={theme.colors.foregroundMuted} />
+          <Text style={styles.advancedText}>高级选项</Text>
         </Pressable>
-        {isAdvancedOpen ? (
+        {is高级选项Open ? (
           <AdaptiveTextInput
             testID="direct-host-uri-input"
             nativeID="direct-host-uri-input"
-            accessibilityLabel="Connection URI"
+            accessibilityLabel="连接 URI"
             initialValue={advancedUri}
             resetKey={`direct-host-uri-${inputResetKey}`}
             value={advancedUri}
-            onChangeText={setAdvancedUri}
+            onChangeText={set高级选项Uri}
             placeholder="tcp://localhost:6767?ssl=true"
             placeholderTextColor={theme.colors.foregroundMuted}
             style={styles.input}
@@ -559,7 +560,7 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
             keyboardType="url"
             editable={!isSaving}
             returnKeyType="done"
-            onSubmitEditing={handleToggleAdvanced}
+            onSubmitEditing={handleToggle高级选项}
           />
         ) : null}
         {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
@@ -572,7 +573,7 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
           onPress={handleCancel}
           disabled={isSaving}
         >
-          Cancel
+          取消
         </Button>
         <Button
           style={FLEX_ONE_STYLE}
@@ -582,7 +583,7 @@ export function AddHostModal({ visible, onClose, onCancel, onSaved }: AddHostMod
           leftIcon={connectIcon}
           testID="direct-host-submit"
         >
-          {isSaving ? "Connecting..." : "Connect"}
+          {isSaving ? "连接中..." : "连接"}
         </Button>
       </View>
     </AdaptiveModalSheet>

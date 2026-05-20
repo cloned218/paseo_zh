@@ -193,9 +193,9 @@ function resolveDisplayModel(
   selectedModelId: string | undefined,
 ) {
   if (isModelLoading && (!modelOptions || modelOptions.length === 0)) {
-    return "Loading models...";
+    return "加载模型中...";
   }
-  return findOptionLabel(modelOptions, selectedModelId, "Select model");
+  return findOptionLabel(modelOptions, selectedModelId, "选择模型");
 }
 
 // Mobile status bar only — strip namespace prefix so providers like OpenCode
@@ -907,7 +907,7 @@ function DesktopStatusBarContent(props: DesktopStatusBarContentProps) {
             onPress={handleProviderPress}
             style={providerPressableStyle}
             accessibilityRole="button"
-            accessibilityLabel="Select agent provider"
+            accessibilityLabel="选择 Provider"
             testID="agent-provider-selector"
           >
             <Text style={styles.modeBadgeText}>{displayProvider}</Text>
@@ -966,7 +966,7 @@ function DesktopStatusBarContent(props: DesktopStatusBarContentProps) {
                 onPress={handleThinkingPress}
                 style={thinkingPressableStyle}
                 accessibilityRole="button"
-                accessibilityLabel={`Select thinking option (${displayThinking})`}
+                accessibilityLabel={`选择思考选项 (${displayThinking})`}
                 testID="agent-thinking-selector"
               >
                 <Brain size={theme.iconSize.md} color={theme.colors.foregroundMuted} />
@@ -1223,7 +1223,7 @@ function SheetStatusBarContent(props: SheetStatusBarContentProps) {
           disabled={disabled || !canSelectThinking}
           style={thinkingButtonStyle}
           accessibilityRole="button"
-          accessibilityLabel="Select thinking option"
+          accessibilityLabel="选择思考选项"
           testID="agent-status-bar-thinking"
         >
           <Brain size={theme.iconSize.md} color={theme.colors.foregroundMuted} />
@@ -1254,7 +1254,7 @@ function SheetStatusBarContent(props: SheetStatusBarContentProps) {
           disabled={disabled}
           style={featuresButtonStyle}
           accessibilityRole="button"
-          accessibilityLabel="Open agent features"
+          accessibilityLabel="打开 Agent 功能"
           testID="agent-status-bar-features"
         >
           <Settings2 size={theme.iconSize.md} color={theme.colors.foregroundMuted} />

@@ -83,7 +83,7 @@ function CustomModelRow(props: {
         hitSlop={8}
         style={deleteButtonStyle}
         accessibilityRole="button"
-        accessibilityLabel={`Remove ${model.id}`}
+        accessibilityLabel={`移除 ${model.id}`}
       >
         <Trash2 size={theme.iconSize.sm} color={theme.colors.destructive} />
       </Pressable>
@@ -147,7 +147,7 @@ function CustomModelsSection(props: {
         return undefined;
       })
       .catch((err) => {
-        setError(err instanceof Error ? err.message : "Failed to save model");
+        setError(err instanceof Error ? err.message : "保存模型失败");
       })
       .finally(() => setSaving(false));
   }, [additionalModels, canAdd, patchAdditionalModels, trimmedInput]);
@@ -158,7 +158,7 @@ function CustomModelsSection(props: {
       setDeletingModelId(modelId);
       void patchAdditionalModels(additionalModels.filter((model) => model.id !== modelId))
         .catch((err) => {
-          setError(err instanceof Error ? err.message : "Failed to delete model");
+          setError(err instanceof Error ? err.message : "删除模型失败");
         })
         .finally(() => {
           setDeletingModelId((current) => (current === modelId ? null : current));
@@ -168,7 +168,7 @@ function CustomModelsSection(props: {
   );
 
   return (
-    <SettingsSection title="Custom models">
+    <SettingsSection title="自定义模型">
       <View style={settingsStyles.card}>
         <View style={INLINE_ROW_STYLE}>
           <AdaptiveTextInput
@@ -177,7 +177,7 @@ function CustomModelsSection(props: {
             value={input}
             onChangeText={setInput}
             onSubmitEditing={handleAdd}
-            placeholder="Model ID"
+            placeholder="模型 ID"
             placeholderTextColor={theme.colors.foregroundMuted}
             autoCapitalize="none"
             autoCorrect={false}
@@ -190,9 +190,9 @@ function CustomModelsSection(props: {
             size="sm"
             onPress={handleAdd}
             disabled={!canAdd || saving}
-            accessibilityLabel="Add model"
+            accessibilityLabel="添加模型"
           >
-            {saving ? "Adding…" : "Add"}
+            {saving ? "添加中…" : "添加"}
           </Button>
         </View>
         {additionalModels.map((model) => (
@@ -218,7 +218,7 @@ function DiagnosticCodeBlock(props: {
     return (
       <View style={sheetStyles.codeBlockLoading}>
         <ActivityIndicator size="small" color={props.foregroundMutedColor} />
-        <Text style={sheetStyles.mutedText}>Running diagnostic…</Text>
+        <Text style={sheetStyles.mutedText}>正在运行诊断…</Text>
       </View>
     );
   }
@@ -239,7 +239,7 @@ function DiagnosticCodeBlock(props: {
   }
   return (
     <View style={sheetStyles.codeBlockLoading}>
-      <Text style={sheetStyles.mutedText}>No diagnostic available</Text>
+      <Text style={sheetStyles.mutedText}>没有可用的诊断信息</Text>
     </View>
   );
 }
@@ -266,7 +266,7 @@ export function ProviderDiagnosticSheet({
   const models = providerEntry?.models ?? [];
   const providerSnapshotRefreshing = providerEntry?.status === "loading";
   const providerErrorMessage =
-    providerEntry?.status === "error" ? (providerEntry.error ?? "Unknown error") : null;
+    providerEntry?.status === "error" ? (providerEntry.error ?? "未知错误") : null;
   const refreshInFlight = isRefreshing || providerSnapshotRefreshing || loading;
 
   const [clockTick, setClockTick] = useState(0);
@@ -299,7 +299,7 @@ export function ProviderDiagnosticSheet({
         const result = await client.getProviderDiagnostic(provider);
         setDiagnostic(result.diagnostic);
       } catch (err) {
-        setDiagnostic(err instanceof Error ? err.message : "Failed to fetch diagnostic");
+        setDiagnostic(err instanceof Error ? err.message : "获取诊断信息失败");
       } finally {
         setLoading(false);
       }
@@ -321,7 +321,7 @@ export function ProviderDiagnosticSheet({
       return;
     }
     void Promise.all([refresh([provider]), fetchDiagnostic()]).catch((err) => {
-      setDiagnostic(err instanceof Error ? err.message : "Failed to refresh provider");
+      setDiagnostic(err instanceof Error ? err.message : "刷新提供方失败");
     });
   }, [fetchDiagnostic, provider, refresh]);
 
@@ -333,9 +333,7 @@ export function ProviderDiagnosticSheet({
         hitSlop={8}
         style={refreshButtonStyle}
         accessibilityRole="button"
-        accessibilityLabel={
-          refreshInFlight ? `Refreshing ${providerLabel}` : `Refresh ${providerLabel}`
-        }
+        accessibilityLabel={refreshInFlight ? `${providerLabel} 刷新中` : `刷新 ${providerLabel}`}
       >
         {refreshInFlight ? (
           <LoadingSpinner size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />
@@ -375,7 +373,7 @@ export function ProviderDiagnosticSheet({
           <Text style={settingsStyles.sectionHeaderTitle}>·</Text>
         ) : null}
         {fetchedAtLabel ? (
-          <Text style={settingsStyles.sectionHeaderTitle}>Updated {fetchedAtLabel}</Text>
+          <Text style={settingsStyles.sectionHeaderTitle}>更新于 {fetchedAtLabel}</Text>
         ) : null}
       </View>
     );
@@ -386,7 +384,7 @@ export function ProviderDiagnosticSheet({
       return (
         <View style={sheetStyles.emptyRow}>
           <ActivityIndicator size="small" color={theme.colors.foregroundMuted} />
-          <Text style={sheetStyles.mutedText}>Loading models…</Text>
+          <Text style={sheetStyles.mutedText}>正在加载模型…</Text>
         </View>
       );
     }
@@ -401,7 +399,7 @@ export function ProviderDiagnosticSheet({
     if (models.length === 0) {
       return (
         <View style={sheetStyles.emptyRow}>
-          <Text style={sheetStyles.mutedText}>No models detected</Text>
+          <Text style={sheetStyles.mutedText}>未检测到模型</Text>
         </View>
       );
     }
@@ -409,7 +407,7 @@ export function ProviderDiagnosticSheet({
       return (
         <View style={sheetStyles.emptyRow}>
           <Search size={theme.iconSize.md} color={theme.colors.foregroundMuted} />
-          <Text style={sheetStyles.mutedText}>No models match your search</Text>
+          <Text style={sheetStyles.mutedText}>没有模型符合你的搜索</Text>
         </View>
       );
     }
@@ -430,7 +428,7 @@ export function ProviderDiagnosticSheet({
       onClose={onClose}
       snapPoints={DIAGNOSTIC_SHEET_SNAP_POINTS}
     >
-      <SettingsSection title="Diagnostic">
+      <SettingsSection title="诊断">
         <View style={settingsStyles.card}>
           <DiagnosticCodeBlock
             loading={loading}
@@ -444,7 +442,7 @@ export function ProviderDiagnosticSheet({
 
       <View>
         <View style={sheetStyles.modelsHeader}>
-          <Text style={settingsStyles.sectionHeaderTitle}>Models</Text>
+          <Text style={settingsStyles.sectionHeaderTitle}>模型</Text>
           {modelsTrailing}
         </View>
         <View style={settingsStyles.card}>
@@ -455,7 +453,7 @@ export function ProviderDiagnosticSheet({
               resetKey={`provider-model-search-${queryResetKey}`}
               value={query}
               onChangeText={setQuery}
-              placeholder="Search models"
+              placeholder="搜索模型"
               placeholderTextColor={theme.colors.foregroundMuted}
               autoCapitalize="none"
               autoCorrect={false}

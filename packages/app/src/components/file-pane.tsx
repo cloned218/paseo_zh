@@ -404,7 +404,7 @@ export function FilePane({
     enabled: Boolean(client && normalizedWorkspaceRoot && normalizedFilePath),
     queryFn: async () => {
       if (!client || !normalizedWorkspaceRoot || !normalizedFilePath) {
-        return { file: null as ExplorerFile | null, error: "Host is not connected" };
+        return { file: null as ExplorerFile | null, error: "Host 未连接" };
       }
       try {
         const file = await client.readFile(normalizedWorkspaceRoot, normalizedFilePath);
@@ -418,7 +418,7 @@ export function FilePane({
         return {
           file: null,
           imageAttachment: null,
-          error: error instanceof Error ? error.message : "Failed to load file",
+          error: error instanceof Error ? error.message : "加载文件失败",
         };
       }
     },

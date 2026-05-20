@@ -64,7 +64,7 @@ export function setupApplicationMenu(): void {
         ]
       : []),
     {
-      label: "Edit",
+      label: "编辑",
       submenu: [
         { role: "undo" },
         { role: "redo" },
@@ -76,24 +76,24 @@ export function setupApplicationMenu(): void {
       ],
     },
     {
-      label: "View",
+      label: "视图",
       submenu: [
         {
-          label: "Zoom In",
+          label: "放大",
           accelerator: "CmdOrCtrl+=",
           click: withBrowserWindow((win) => {
             win.webContents.setZoomLevel(win.webContents.getZoomLevel() + 0.5);
           }),
         },
         {
-          label: "Zoom Out",
+          label: "缩小",
           accelerator: "CmdOrCtrl+-",
           click: withBrowserWindow((win) => {
             win.webContents.setZoomLevel(win.webContents.getZoomLevel() - 0.5);
           }),
         },
         {
-          label: "Actual Size",
+          label: "实际大小",
           accelerator: "CmdOrCtrl+0",
           click: withBrowserWindow((win) => {
             win.webContents.setZoomLevel(0);
@@ -101,14 +101,14 @@ export function setupApplicationMenu(): void {
         },
         { type: "separator" },
         {
-          label: "Reload",
+          label: "重新加载",
           accelerator: "CmdOrCtrl+R",
           click: withBrowserWindow((win) => {
             reloadFocusedContentsOrWindow(win);
           }),
         },
         {
-          label: "Force Reload",
+          label: "强制重新加载",
           accelerator: "CmdOrCtrl+Shift+R",
           click: withBrowserWindow((win) => {
             reloadFocusedContentsOrWindow(win, { ignoreCache: true });
@@ -120,7 +120,7 @@ export function setupApplicationMenu(): void {
       ],
     },
     {
-      label: "Window",
+      label: "窗口",
       submenu: [
         { role: "minimize" },
         { role: "zoom" },
@@ -146,19 +146,19 @@ export function setupApplicationMenu(): void {
 
     const contextMenu = Menu.buildFromTemplate([
       {
-        label: "Copy",
+        label: "复制",
         role: "copy",
         enabled: input.hasSelection === true,
       },
       {
-        label: "Paste",
+        label: "粘贴",
         role: "paste",
       },
       {
         type: "separator",
       },
       {
-        label: "Select All",
+        label: "全选",
         role: "selectAll",
       },
     ]);

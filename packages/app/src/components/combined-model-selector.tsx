@@ -151,7 +151,7 @@ function ModelRow({
           hitSlop={8}
           style={favoriteButtonStyle}
           accessibilityRole="button"
-          accessibilityLabel={isFavorite ? "Unfavorite model" : "Favorite model"}
+          accessibilityLabel={isFavorite ? "取消收藏模型" : "收藏模型"}
           testID={`favorite-model-${row.provider}-${row.modelId}`}
         >
           {({ hovered }) => {
@@ -250,7 +250,7 @@ function FavoritesSection({
   return (
     <View style={styles.favoritesContainer}>
       <View style={styles.sectionHeading}>
-        <Text style={styles.sectionHeadingText}>Favorites</Text>
+        <Text style={styles.sectionHeadingText}>收藏</Text>
       </View>
       {favoriteRows.map((row) => (
         <SelectableModelRow
@@ -298,9 +298,7 @@ function GroupProviderButton({
       <ProvIcon size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />
       <Text style={styles.drillDownText}>{providerLabel}</Text>
       <View style={styles.drillDownTrailing}>
-        <Text style={styles.drillDownCount}>
-          {defaultLabel ?? `${rowCount} ${rowCount === 1 ? "model" : "models"}`}
-        </Text>
+        <Text style={styles.drillDownCount}>{defaultLabel ?? `${rowCount} 个模型`}</Text>
         {defaultLabel ? null : (
           <ChevronRight size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />
         )}
@@ -362,7 +360,7 @@ function DefaultProviderRow({
 
   return (
     <ComboboxItem
-      label="Default"
+      label="默认"
       selected={isSelected}
       onPress={handlePress}
       leadingSlot={leadingSlot}
@@ -471,7 +469,7 @@ function SelectorContent({
   const emptyState = (
     <View style={styles.emptyState}>
       <Search size={theme.iconSize.md} color={theme.colors.foregroundMuted} />
-      <Text style={styles.emptyStateText}>No models match your search</Text>
+      <Text style={styles.emptyStateText}>没有模型符合你的搜索</Text>
     </View>
   );
 
@@ -620,7 +618,7 @@ export function CombinedModelSelector({
   }, [providers, view]);
 
   const triggerLabel = useMemo(() => {
-    if (selectedModelLabel === "Loading..." || selectedModelLabel === "Select model") {
+    if (selectedModelLabel === "加载中..." || selectedModelLabel === "选择模型") {
       return selectedModelLabel;
     }
 
@@ -675,7 +673,7 @@ export function CombinedModelSelector({
 
   const sheetHeader = useMemo<SheetHeader>(() => {
     if (view.kind === "all") {
-      return { title: "Select provider" };
+      return { title: "选择提供方" };
     }
     const ProviderIconForView = getProviderIcon(view.providerId);
     return {
@@ -689,7 +687,7 @@ export function CombinedModelSelector({
         onChange: handleSearchQueryChange,
         initialValue: searchQuery,
         resetKey: `${view.providerId}:${searchResetKey}`,
-        placeholder: "Search models...",
+        placeholder: "搜索模型...",
         autoFocus: platformIsWeb,
         testID: "model-search-input",
       },
@@ -714,7 +712,7 @@ export function CombinedModelSelector({
         onPress={handleTriggerPress}
         style={triggerStyle}
         accessibilityRole="button"
-        accessibilityLabel={`Select model (${selectedModelLabel})`}
+        accessibilityLabel={`选择模型 (${selectedModelLabel})`}
         testID="combined-model-selector"
       >
         {renderTrigger ? (
@@ -764,7 +762,7 @@ export function CombinedModelSelector({
         ) : (
           <View style={styles.sheetLoadingState}>
             <ActivityIndicator size="small" color={theme.colors.foregroundMuted} />
-            <Text style={styles.sheetLoadingText}>Loading model selector…</Text>
+            <Text style={styles.sheetLoadingText}>正在加载模型选择器…</Text>
           </View>
         )}
       </Combobox>

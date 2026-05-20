@@ -195,8 +195,8 @@ function MultiProviderSection() {
 
   return (
     <FeatureSection
-      title="Use the best agent for the job"
-      description="Run multiple providers from a single interface. Paseo runs the native agent harness as you'd normally run it, with your skills, config and MCP servers intact."
+      title="为不同任务使用最合适的 Agent"
+      description="在一个界面中运行多个 Provider。Paseo 以你平时的方式运行原生 Agent，保留你的 skills、配置和 MCP 服务器。"
     >
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {providers.slice(0, 3).map((p) => (
@@ -223,7 +223,7 @@ function MultiProviderSection() {
           href="/agents"
           className="flex items-center justify-center gap-3 rounded-xl border border-dashed border-white/10 bg-white/[0.01] px-5 py-4 text-white/50 hover:text-white/80 hover:border-white/20 hover:bg-white/[0.03] transition-colors"
         >
-          <span className="font-medium">+{ADDITIONAL_AGENT_COUNT} more</span>
+          <span className="font-medium">+{ADDITIONAL_AGENT_COUNT} 更多</span>
         </a>
       </div>
     </FeatureSection>
@@ -233,7 +233,7 @@ function MultiProviderSection() {
 function SelfHostedDiagram() {
   const clients = [
     {
-      name: "Desktop",
+      name: "桌面端",
       icon: (
         <svg
           width="28"
@@ -269,7 +269,7 @@ function SelfHostedDiagram() {
       ),
     },
     {
-      name: "Mobile",
+      name: "移动端",
       icon: (
         <svg
           width="28"
@@ -305,7 +305,7 @@ function SelfHostedDiagram() {
       ),
     },
   ];
-  const hosts = ["MacBook Pro", "Hetzner VM", "Dev server"];
+  const hosts = ["MacBook Pro", "Hetzner 云主机", "开发服务器"];
   const containerRef = React.useRef<HTMLDivElement>(null);
   const clientRefs = React.useRef<(HTMLDivElement | null)[]>([]);
   const hostRefs = React.useRef<(HTMLDivElement | null)[]>([]);
@@ -368,7 +368,7 @@ function SelfHostedDiagram() {
 
   return (
     <>
-      {/* Mobile: vertical stack */}
+      {/* 移动端: vertical stack */}
       <div className="md:hidden flex flex-col items-center gap-4 py-4">
         <div className="space-y-2 w-full">
           {clients.map((c) => (
@@ -383,9 +383,9 @@ function SelfHostedDiagram() {
         </div>
         <div className="w-px h-6 border-l border-dashed border-white/25" />
         <div className="rounded-xl border border-white/10 bg-white/[0.03] px-6 py-5 text-center space-y-1">
-          <p className="text-xs font-medium text-white/50">E2E Encrypted Relay</p>
+          <p className="text-xs font-medium text-white/50">端到端加密中继</p>
           <p className="text-[10px] text-white/25">or</p>
-          <p className="text-xs font-medium text-white/50">Direct Connection</p>
+          <p className="text-xs font-medium text-white/50">直接连接</p>
         </div>
         <div className="w-px h-6 border-l border-dashed border-white/25" />
         <div className="space-y-2 w-full">
@@ -417,7 +417,7 @@ function SelfHostedDiagram() {
         </div>
       </div>
 
-      {/* Desktop: horizontal with bezier curves */}
+      {/* 桌面端: horizontal with bezier curves */}
       <div ref={containerRef} className="relative hidden md:flex items-center py-4 gap-0">
         {/* SVG curves */}
         <svg
@@ -461,9 +461,9 @@ function SelfHostedDiagram() {
           ref={centerRef}
           className="flex-shrink-0 rounded-xl border border-white/10 bg-white/[0.03] px-8 py-6 text-center space-y-1.5 relative z-10 backdrop-blur-sm"
         >
-          <p className="text-sm font-medium text-white/50">E2E Encrypted Relay</p>
+          <p className="text-sm font-medium text-white/50">端到端加密中继</p>
           <p className="text-xs text-white/25">or</p>
-          <p className="text-sm font-medium text-white/50">Direct Connection</p>
+          <p className="text-sm font-medium text-white/50">直接连接</p>
         </div>
 
         {/* Spacer */}
@@ -506,8 +506,8 @@ function SelfHostedDiagram() {
 function SelfHostedSection() {
   return (
     <FeatureSection
-      title="Your agents, every surface"
-      description="Run agents on your laptop, a VM, or a dev server. Control them from any device with a direct connection or an E2E encrypted relay."
+      title="你的 Agent，随处可用"
+      description="运行 Agent on your laptop, a VM, or a dev server. Control them from any device with a direct connection or an E2E encrypted relay."
     >
       <SelfHostedDiagram />
     </FeatureSection>
@@ -523,8 +523,8 @@ function ServiceProxySection() {
 
   return (
     <FeatureSection
-      title="Forget about ports"
-      description="When agents work in parallel, they all run dev servers. Paseo gives each one a URL based on the branch name, no port conflicts, no guessing."
+      title="不用再操心端口"
+      description="当多个 Agent 并行工作时，它们都会运行开发服务。Paseo 会基于分支名为每一个分配 URL，无端口冲突，也不用猜。"
     >
       <div className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
         <div className="px-5 py-4 space-y-3">
@@ -568,11 +568,11 @@ function ServiceProxySection() {
 function ShortcutsSection() {
   const shortcuts = [
     { keys: ["⌘", "1-9"], action: "Switch panels" },
-    { keys: ["⌘", "D"], action: "Split vertical" },
-    { keys: ["⌘", "Shift", "D"], action: "Split horizontal" },
-    { keys: ["⌘", "W"], action: "Close panel" },
-    { keys: ["⌘", "N"], action: "New agent" },
-    { keys: ["⌘", "K"], action: "Command palette" },
+    { keys: ["⌘", "D"], action: "垂直拆分" },
+    { keys: ["⌘", "Shift", "D"], action: "水平拆分" },
+    { keys: ["⌘", "W"], action: "关闭面板" },
+    { keys: ["⌘", "N"], action: "新建 Agent" },
+    { keys: ["⌘", "K"], action: "命令面板" },
   ];
 
   return (
@@ -802,8 +802,8 @@ function LocalVoiceSection() {
 
   return (
     <FeatureSection
-      title="Local voice"
-      description="Fully local voice stack. Speech-to-text and text-to-speech run entirely on your machine, nothing leaves your network."
+      title="本地语音"
+      description="完整本地语音栈。语音转文字和文字转语音都完全在你的机器上运行，数据不会离开你的网络。"
     >
       <div className="relative w-full rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
         <div className="px-6 pt-8 pb-6 space-y-3">
@@ -902,7 +902,7 @@ function GetStarted() {
           href="/agents"
           className="text-xs text-muted-foreground hover:text-foreground transition-colors"
         >
-          +{ADDITIONAL_AGENT_COUNT} more
+          +{ADDITIONAL_AGENT_COUNT} 更多
         </a>
       </div>
     </div>
@@ -945,7 +945,7 @@ function ServerInstallButton() {
   return (
     <CommandDialog
       trigger={SERVER_INSTALL_TRIGGER}
-      title="Run agents on a remote machine"
+      title="在远程机器上运行 Agent"
       description="For headless machines you want to connect to from the Paseo apps. The desktop app already includes a built-in daemon."
       command="npm install -g @getpaseo/cli && paseo"
       footnote={SERVER_INSTALL_FOOTNOTE}
@@ -1182,7 +1182,7 @@ function CLICodeBlock({ children }: { children: string }) {
         type="button"
         onClick={handleCopy}
         className="absolute top-3 right-3 text-white/30 hover:text-white/70 transition-colors p-1"
-        title="Copy to clipboard"
+        title="复制到剪贴板"
       >
         {copied ? (
           <svg
@@ -1221,7 +1221,7 @@ interface CLIExample {
 
 const cliExamples: CLIExample[] = [
   {
-    title: "Run agents",
+    title: "运行 Agent",
     description:
       "Launch agents locally or on any remote host. The --worktree flag spins up an isolated git branch so you can run multiple agents on the same repo without conflicts.",
     code: `paseo run "implement user authentication"
@@ -1230,12 +1230,12 @@ paseo run --host devbox:6767 "run the full test suite"
 
 paseo ls                           # list running agents
 paseo attach abc123                # stream live output
-paseo send abc123 "also add tests" # follow-up task`,
+paseo send abc123 "同时补上测试" # follow-up task`,
   },
   {
     title: "Loops",
     description:
-      "Have one agent do the work, another verify the result, and loop until it passes. Built-in, no shell scripting needed.",
+      "让一个 Agent 干活，另一个 Agent 验证结果，并循环直到通过。内置支持，无需写 shell 脚本。",
     code: `# Worker-verifier loop: fix tests until they pass
 paseo loop run "make all tests pass" \\
   --verify "verify tests pass and the code is production-ready" \\
@@ -1248,7 +1248,7 @@ paseo loop logs abc123               # stream loop output`,
   {
     title: "Schedules",
     description:
-      "Run agents on a cron schedule. Automate recurring tasks like dependency updates, security audits, or report generation.",
+      "运行 Agent on a cron schedule. Automate recurring tasks like dependency updates, security audits, or report generation.",
     code: `# Run a security audit every Monday at 9am
 paseo schedule create --cron "0 9 * * 1" \\
   "audit the codebase for security issues and open PRs for fixes"
@@ -1419,7 +1419,7 @@ function CLISection() {
 
   return (
     <FeatureSection
-      title="Fully scriptable"
+      title="完全可脚本化"
       description="Everything you can do in the app, you can do from the terminal."
     >
       <div className="flex flex-wrap gap-2">
@@ -1472,12 +1472,12 @@ function FAQ() {
     >
       <h2 className="text-3xl font-medium">FAQ</h2>
       <div className="space-y-6">
-        <FAQItem question="Is this free?">
+        <FAQItem question="这是免费的吗？">
           Yes. Paseo is free and open source. You need Claude Code, Codex, Copilot, OpenCode, or Pi
           installed with your own credentials. Voice is local-first by default and can optionally
           use OpenAI speech providers if you configure them.
         </FAQItem>
-        <FAQItem question="Does my code leave my machine?">
+        <FAQItem question="我的代码会离开我的机器吗？">
           Paseo doesn&apos;t send your code anywhere. Agents run locally and talk to their own APIs
           as they normally would. For remote access, you can use the optional{" "}
           <a href="/docs/security" className="underline hover:text-white/80">
@@ -1485,11 +1485,11 @@ function FAQ() {
           </a>
           , connect directly over your local network, or use your own tunnel.
         </FAQItem>
-        <FAQItem question="What agents does it support?">
+        <FAQItem question="支持哪些 Agent？">
           Claude Code, Codex, Copilot, OpenCode, and Pi. Each agent runs as its own process using
           its own CLI or local integration. Paseo doesn&apos;t modify or wrap their behavior.
         </FAQItem>
-        <FAQItem question="Do I need the desktop app?">
+        <FAQItem question="我一定需要桌面应用吗？">
           No. You can run the daemon headless with{" "}
           <code className="font-mono text-muted-foreground">
             npm install -g @getpaseo/cli && paseo
@@ -1497,7 +1497,7 @@ function FAQ() {
           and use the CLI, web app, or mobile app to connect. The desktop app just bundles the
           daemon with a UI.
         </FAQItem>
-        <FAQItem question="How does voice work?">
+        <FAQItem question="语音是如何工作的？">
           Voice runs locally on your device by default. You talk, the app transcribes and sends it
           to your agent as text. Optionally, you can configure OpenAI speech providers for
           higher-quality transcription and text-to-speech. See the{" "}
@@ -1519,7 +1519,7 @@ function FAQ() {
           No. Paseo works in any directory. Worktrees are optional and only relevant if you use git.
           You can run agents anywhere you&apos;d normally work.
         </FAQItem>
-        <FAQItem question="Can I get banned for using Paseo?">
+        <FAQItem question="使用 Paseo 会导致我被封禁吗？">
           <p>We can&apos;t make promises on behalf of providers.</p>
           <p>
             That said, Paseo launches each provider&apos;s local CLI or integration (Claude Code,
@@ -1529,7 +1529,7 @@ function FAQ() {
           </p>
           <p>I&apos;ve been using Paseo with all providers for months without issue.</p>
         </FAQItem>
-        <FAQItem question="How do worktrees work?">
+        <FAQItem question="worktree 是怎么工作的？">
           When you launch an agent with the worktree option (from the app, desktop, or CLI), Paseo
           creates a git worktree and runs the agent inside it. The agent works on an isolated branch
           without touching your main working directory. See the{" "}

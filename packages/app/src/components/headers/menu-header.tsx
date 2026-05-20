@@ -68,7 +68,7 @@ export function SidebarMenuToggle({
   return (
     <HeaderToggleButton
       onPress={handlePress}
-      tooltipLabel="Toggle sidebar"
+      tooltipLabel="切换侧边栏"
       tooltipKeys={toggleShortcutKeys}
       tooltipSide={tooltipSide}
       testID={testID}
@@ -76,7 +76,7 @@ export function SidebarMenuToggle({
       style={style}
       accessible
       accessibilityRole="button"
-      accessibilityLabel={isOpen ? "Close menu" : "Open menu"}
+      accessibilityLabel={isOpen ? "关闭菜单" : "打开菜单"}
       accessibilityState={accessibilityState}
     >
       {isMobile ? (

@@ -31,7 +31,7 @@ export function CodeBlock({ children, size = "md" }: CodeBlockProps) {
         type="button"
         onClick={handleCopy}
         className="text-muted-foreground hover:text-foreground transition-colors p-1"
-        title="Copy to clipboard"
+        title="复制到剪贴板"
       >
         {copied ? (
           <svg

@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native-unistyles";
 /**
  * Edge-to-edge separator line for sidebars. Must render outside any horizontally
  * padded container so the line runs the full sidebar width — matching the
- * separator beneath the workspace sidebar's "New agent" header.
+ * separator beneath the workspace sidebar's "新建 Agent" header.
  */
 export function SidebarSeparator() {
   return <View style={styles.line} />;

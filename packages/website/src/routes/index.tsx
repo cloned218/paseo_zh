@@ -5,8 +5,8 @@ import { pageMeta } from "~/meta";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: pageMeta(
-      "Paseo – Run Claude Code, Codex, Copilot, OpenCode, and Pi from everywhere",
-      "A self-hosted daemon for Claude Code, Codex, Copilot, OpenCode, and Pi. Agents run on your machine with your full dev environment. Connect from phone, desktop, or web.",
+      "Paseo – 随时随地运行 Claude Code、Codex、Copilot、OpenCode 和 Pi",
+      "面向 Claude Code、Codex、Copilot、OpenCode 和 Pi 的自托管守护进程。Agent 在你的机器上运行，拥有完整开发环境。可从手机、桌面端或 Web 连接。",
     ),
   }),
   component: Home,
@@ -17,12 +17,12 @@ function Home() {
     <LandingPage
       title={
         <>
-          Orchestrate coding agents
+          编排你的编码 Agent
           <br />
-          from your desk and your phone
+          无论在桌前还是手机上
         </>
       }
-      subtitle="Run any coding agent from your phone, desktop, or terminal. Self-hosted, multi-provider, open source."
+      subtitle="可从手机、桌面端或终端运行任意编码 Agent。自托管、多 Provider、开源。"
     />
   );
 }

@@ -66,7 +66,7 @@ function DocsLayout() {
           <button
             type="button"
             onClick={toggleMobileNav}
-            aria-label={mobileNavOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileNavOpen ? "关闭菜单" : "打开菜单"}
             aria-expanded={mobileNavOpen}
             className="-mr-2 p-2 text-muted-foreground hover:text-foreground transition-colors"
           >

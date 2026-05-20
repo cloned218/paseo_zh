@@ -131,7 +131,7 @@ function RefPickerTrigger({
           disabled={disabled}
           style={badgePressableStyle}
           accessibilityRole="button"
-          accessibilityLabel="Starting ref"
+          accessibilityLabel="起始引用"
         >
           <RefPickerBadgeContent
             selectedItem={selectedItem}
@@ -142,7 +142,7 @@ function RefPickerTrigger({
         </Pressable>
       </TooltipTrigger>
       <TooltipContent side="top" align="center" offset={8}>
-        <Text style={styles.tooltipText}>Choose where to start from</Text>
+        <Text style={styles.tooltipText}>选择从哪里开始</Text>
       </TooltipContent>
     </Tooltip>
   );
@@ -164,14 +164,14 @@ function CheckoutHintBadge({
   return (
     <View style={styles.checkoutHintBadge}>
       <Text style={styles.badgeText} numberOfLines={1}>
-        Check out PR #{prNumber}?
+        检出 PR #{prNumber}？
       </Text>
       <Pressable
         testID="new-workspace-checkout-hint-accept"
         onPress={onAccept}
         style={styles.checkoutHintAction}
         accessibilityRole="button"
-        accessibilityLabel={`Check out PR #${prNumber}`}
+        accessibilityLabel={`检出 PR #${prNumber}`}
       >
         <Check size={iconSize} color={iconColor} />
       </Pressable>
@@ -180,7 +180,7 @@ function CheckoutHintBadge({
         onPress={onDismiss}
         style={styles.checkoutHintAction}
         accessibilityRole="button"
-        accessibilityLabel={`Dismiss PR #${prNumber} checkout hint`}
+        accessibilityLabel={`忽略 PR #${prNumber} 的检出提示`}
       >
         <X size={iconSize} color={iconColor} />
       </Pressable>
@@ -325,7 +325,7 @@ async function createAndMergeWorkspace(input: {
 }): Promise<ReturnType<typeof normalizeWorkspaceDescriptor>> {
   const payload = await input.client.createPaseoWorktree(input.createInput);
   if (payload.error || !payload.workspace) {
-    throw new Error(payload.error ?? "Failed to create worktree");
+    throw new Error(payload.error ?? "创建 worktree 失败");
   }
   const normalizedWorkspace = normalizeWorkspaceDescriptor(payload.workspace);
   input.mergeWorkspaces(input.serverId, [normalizedWorkspace]);
@@ -348,11 +348,11 @@ async function runCreateChatAgent(input: CreateChatAgentInput): Promise<void> {
   const { payload, composerState, ensureWorkspace, serverId, draftKey } = input;
   const { text, attachments, cwd } = payload;
   if (!composerState) {
-    throw new Error("Composer state is required");
+    throw new Error("需要 Composer 状态");
   }
   const provider = composerState.selectedProvider;
   if (!provider) {
-    throw new Error("Select a model");
+    throw new Error("选择模型");
   }
   const { attachments: reviewAttachments } = splitComposerAttachmentsForSubmit(attachments);
   const ensuredWorkspace = await ensureWorkspace({
@@ -548,7 +548,7 @@ export function NewWorkspaceScreen({
 
   const withConnectedClient = useCallback(() => {
     if (!client || !isConnected) {
-      throw new Error("Host is not connected");
+      throw new Error("Host 未连接");
     }
     return client;
   }, [client, isConnected]);
@@ -810,7 +810,7 @@ export function NewWorkspaceScreen({
         : `new-workspace-ref-picker-pr-${item.item.number}`;
 
       const description =
-        !isBranch && item.item.baseRefName ? `into ${item.item.baseRefName}` : undefined;
+        !isBranch && item.item.baseRefName ? `合并到 ${item.item.baseRefName}` : undefined;
 
       return (
         <PickerOptionItem
@@ -857,8 +857,8 @@ export function NewWorkspaceScreen({
 
   const pickerEmptyText =
     branchSuggestionsQuery.isFetching || githubPrSearchQuery.isFetching
-      ? "Searching..."
-      : "No matching refs.";
+      ? "搜索中..."
+      : "没有匹配的引用。";
 
   return (
     <FileDropZone onFilesDropped={handleFilesDropped}>
@@ -869,7 +869,7 @@ export function NewWorkspaceScreen({
               <SidebarMenuToggle />
               <View style={styles.headerTitleContainer}>
                 <Text style={styles.headerTitle} numberOfLines={1}>
-                  New workspace
+                  新建工作区
                 </Text>
                 <Text style={styles.headerProjectTitle} numberOfLines={1}>
                   {workspaceTitle}
@@ -889,7 +889,7 @@ export function NewWorkspaceScreen({
               isPaneFocused={true}
               onSubmitMessage={handleSubmitNewWorkspace}
               allowEmptySubmit={true}
-              submitButtonAccessibilityLabel="Create"
+              submitButtonAccessibilityLabel="创建"
               submitIcon="return"
               isSubmitLoading={pendingAction !== null}
               submitBehavior="preserve-and-lock"
@@ -922,8 +922,8 @@ export function NewWorkspaceScreen({
                   value={selectedOptionId}
                   onSelect={handleSelectOption}
                   searchable
-                  searchPlaceholder="Search branches and PRs"
-                  title="Start from"
+                  searchPlaceholder="搜索分支和 PR"
+                  title="开始于"
                   open={pickerOpen}
                   onOpenChange={handlePickerOpenChange}
                   onSearchQueryChange={setPickerSearchQuery}

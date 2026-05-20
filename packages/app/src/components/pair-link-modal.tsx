@@ -12,7 +12,7 @@ import { AdaptiveModalSheet, AdaptiveTextInput, type SheetHeader } from "./adapt
 import { Button } from "@/components/ui/button";
 
 const FLEX_ONE_STYLE = { flex: 1 } as const;
-const PAIR_LINK_HEADER: SheetHeader = { title: "Paste pairing link" };
+const PAIR_LINK_HEADER: SheetHeader = { title: "粘贴配对链接" };
 
 const styles = StyleSheet.create((theme) => ({
   helper: {
@@ -98,11 +98,11 @@ export function PairLinkModal({ visible, onClose, onCancel, onSaved }: PairLinkM
     if (isSaving) return;
     const raw = offerUrlRef.current.trim();
     if (!raw) {
-      setErrorMessage("Paste a pairing link (…/#offer=...)");
+      setErrorMessage("请粘贴配对链接（…/#offer=...）");
       return;
     }
     if (!raw.includes("#offer=")) {
-      setErrorMessage("Link must include #offer=...");
+      setErrorMessage("链接必须包含 #offer=...");
       return;
     }
 
@@ -111,15 +111,15 @@ export function PairLinkModal({ visible, onClose, onCancel, onSaved }: PairLinkM
         const idx = raw.indexOf("#offer=");
         const encoded = raw.slice(idx + "#offer=".length).trim();
         if (!encoded) {
-          throw new Error("Offer payload is empty");
+          throw new Error("配对载荷为空");
         }
         const payload = decodeOfferFragmentPayload(encoded);
         return ConnectionOfferSchema.parse(payload);
       } catch (error) {
-        const message = error instanceof Error ? error.message : "Invalid pairing link";
+        const message = error instanceof Error ? error.message : "无效的配对链接";
         setErrorMessage(message);
         if (!isMobile) {
-          Alert.alert("Pairing failed", message);
+          Alert.alert("配对失败", message);
         }
         return null;
       }
@@ -150,10 +150,10 @@ export function PairLinkModal({ visible, onClose, onCancel, onSaved }: PairLinkM
       onSaved?.({ profile, serverId: parsedOffer.serverId, hostname, isNewHost });
       handleClose();
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Unable to pair host";
+      const message = error instanceof Error ? error.message : "无法配对主机";
       setErrorMessage(message);
       if (!isMobile) {
-        Alert.alert("Pairing failed", message);
+        Alert.alert("配对失败", message);
       }
     } finally {
       setIsSaving(false);
@@ -175,10 +175,10 @@ export function PairLinkModal({ visible, onClose, onCancel, onSaved }: PairLinkM
       onClose={handleClose}
       testID="pair-link-modal"
     >
-      <Text style={styles.helper}>Paste the pairing link from your server.</Text>
+      <Text style={styles.helper}>请粘贴来自服务器的配对链接。</Text>
 
       <View style={styles.field}>
-        <Text style={styles.label}>Pairing link</Text>
+        <Text style={styles.label}>配对链接</Text>
         <AdaptiveTextInput
           ref={inputRef}
           testID="pair-link-input"
@@ -204,9 +204,9 @@ export function PairLinkModal({ visible, onClose, onCancel, onSaved }: PairLinkM
           disabled={isSaving}
           testID="pair-link-cancel"
           accessibilityRole="button"
-          accessibilityLabel="Cancel"
+          accessibilityLabel="取消"
         >
-          Cancel
+          取消
         </Button>
         <Button
           style={FLEX_ONE_STYLE}
@@ -215,10 +215,10 @@ export function PairLinkModal({ visible, onClose, onCancel, onSaved }: PairLinkM
           disabled={isSaving}
           testID="pair-link-submit"
           accessibilityRole="button"
-          accessibilityLabel="Pair"
+          accessibilityLabel="配对"
           leftIcon={pairIcon}
         >
-          {isSaving ? "Pairing..." : "Pair"}
+          {isSaving ? "配对中..." : "配对"}
         </Button>
       </View>
     </AdaptiveModalSheet>

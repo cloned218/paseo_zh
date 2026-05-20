@@ -27,7 +27,7 @@ export function AdaptiveRenameModal({
   title,
   initialValue,
   placeholder,
-  submitLabel = "Rename",
+  submitLabel = "重命名",
   onClose,
   onSubmit,
   validate,
@@ -64,7 +64,7 @@ export function AdaptiveRenameModal({
 
   const computeError = useCallback(
     (value: string): string | null => {
-      if (!value.trim()) return "Name is required";
+      if (!value.trim()) return "请输入名称";
       return validate ? validate(value) : null;
     },
     [validate],
@@ -91,7 +91,7 @@ export function AdaptiveRenameModal({
       onClose();
     } catch (err) {
       setIsPending(false);
-      const message = err instanceof Error && err.message ? err.message : "Unable to save";
+      const message = err instanceof Error && err.message ? err.message : "无法保存";
       setError(message);
     }
   }, [isPending, draft, initialValue, computeError, onSubmit, onClose]);
@@ -147,7 +147,7 @@ export function AdaptiveRenameModal({
             disabled={isPending}
             testID={cancelTestID}
           >
-            Cancel
+            取消
           </Button>
           <Button
             variant="default"
@@ -157,7 +157,7 @@ export function AdaptiveRenameModal({
             disabled={submitDisabled}
             testID={submitTestID}
           >
-            {isPending ? "Saving..." : submitLabel}
+            {isPending ? "保存中..." : submitLabel}
           </Button>
         </View>
       </View>

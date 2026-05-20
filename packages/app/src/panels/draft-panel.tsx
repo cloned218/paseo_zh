@@ -9,8 +9,8 @@ import { normalizeAgentSnapshot } from "@/utils/agent-snapshots";
 
 function useDraftPanelDescriptor() {
   return {
-    label: "New Agent",
-    subtitle: "New Agent",
+    label: "新建 Agent",
+    subtitle: "新建 Agent",
     titleState: "ready" as const,
     icon: SquarePen,
     statusBucket: null,

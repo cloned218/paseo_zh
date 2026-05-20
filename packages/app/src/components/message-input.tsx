@@ -227,7 +227,7 @@ function AttachmentDropdown({
         <TooltipTrigger asChild>
           <DropdownMenuTrigger
             disabled={!isConnected || disabled}
-            accessibilityLabel="Add attachment"
+            accessibilityLabel="添加附件"
             accessibilityRole="button"
             testID="message-input-attach-button"
             style={attachButtonStyle}
@@ -236,7 +236,7 @@ function AttachmentDropdown({
           </DropdownMenuTrigger>
         </TooltipTrigger>
         <TooltipContent side="top" align="center" offset={8}>
-          <Text style={styles.tooltipText}>Add attachment</Text>
+          <Text style={styles.tooltipText}>添加附件</Text>
         </TooltipContent>
       </Tooltip>
       <DropdownMenuContent
@@ -330,10 +330,10 @@ function resolveSubmitAccessibilityLabel(input: {
   isAgentRunning: boolean;
 }): string {
   if (input.submitButtonAccessibilityLabel) return input.submitButtonAccessibilityLabel;
-  if (input.canPressLoadingButton) return "Interrupt agent";
-  if (input.defaultActionQueues) return "Queue message";
-  if (input.isAgentRunning) return "Send and interrupt";
-  return "Send message";
+  if (input.canPressLoadingButton) return "中断 Agent";
+  if (input.defaultActionQueues) return "排队发送消息";
+  if (input.isAgentRunning) return "发送并中断";
+  return "发送消息";
 }
 
 function resolveVoiceAccessibilityLabel(input: {
@@ -342,10 +342,10 @@ function resolveVoiceAccessibilityLabel(input: {
   isDictating: boolean;
 }): string {
   if (input.isRealtimeVoiceForCurrentAgent) {
-    return input.isMuted ? "Unmute Voice mode" : "Mute Voice mode";
+    return input.isMuted ? "取消静音语音模式" : "静音语音模式";
   }
-  if (input.isDictating) return "Stop dictation";
-  return "Start dictation";
+  if (input.isDictating) return "停止听写";
+  return "开始听写";
 }
 
 function resolveVoiceTooltipText(input: {
@@ -353,9 +353,9 @@ function resolveVoiceTooltipText(input: {
   isMuted: boolean;
 }): string {
   if (input.isRealtimeVoiceForCurrentAgent) {
-    return input.isMuted ? "Unmute voice" : "Mute voice";
+    return input.isMuted ? "取消静音语音" : "静音语音";
   }
-  return "Dictation";
+  return "听写";
 }
 
 function resolveSendTooltipLabel(input: {
@@ -363,7 +363,7 @@ function resolveSendTooltipLabel(input: {
   defaultActionQueues: boolean;
 }): string {
   if (input.submitButtonAccessibilityLabel) return input.submitButtonAccessibilityLabel;
-  return input.defaultActionQueues ? "Queue" : "Send";
+  return input.defaultActionQueues ? "队列" : "发送";
 }
 
 interface DesktopKeyPressContext {
@@ -814,7 +814,7 @@ function toggleRealtimeVoiceImpl(ctx: ToggleRealtimeVoiceContext): void {
     return;
   }
   if (ctx.isAgentRunning) {
-    ctx.toast.error("Interrupt the agent before starting voice mode");
+    ctx.toast.error("开启语音模式前请先中断 Agent");
     return;
   }
   void ctx.voice.startVoice(ctx.voiceServerId, ctx.voiceAgentId).catch((error) => {
@@ -1133,7 +1133,7 @@ function resolveMessageInputProps(props: MessageInputProps): ResolvedMessageInpu
     onAddImages: props.onAddImages,
     client: props.client,
     isReadyForDictation: props.isReadyForDictation,
-    placeholder: props.placeholder ?? "Message...",
+    placeholder: props.placeholder ?? "消息...",
     autoFocus: props.autoFocus ?? false,
     autoFocusKey: props.autoFocusKey,
     disabled: props.disabled ?? false,
@@ -1750,7 +1750,7 @@ export const MessageInput = forwardRef<MessageInputRef, MessageInputProps>(
               onChangeText={handleInputChange}
               placeholder={placeholder}
               uniProps={textInputPlaceholderColorMapping}
-              accessibilityLabel="Message agent..."
+              accessibilityLabel="给 Agent 发消息..."
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
               style={textInputStyle}

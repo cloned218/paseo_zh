@@ -92,29 +92,29 @@ export function formatAge(createdAtMs: number, nowMs = Date.now()): string {
   const elapsedSeconds = Math.floor(elapsedMs / 1000);
 
   if (elapsedSeconds < 60) {
-    return "just now";
+    return "刚刚";
   }
 
   const elapsedMinutes = Math.floor(elapsedSeconds / 60);
   if (elapsedMinutes < 60) {
-    return `${elapsedMinutes}m ago`;
+    return `${elapsedMinutes} 分钟前`;
   }
 
   const elapsedHours = Math.floor(elapsedMinutes / 60);
   if (elapsedHours < 24) {
-    return `${elapsedHours}h ago`;
+    return `${elapsedHours} 小时前`;
   }
 
   const elapsedDays = Math.floor(elapsedHours / 24);
   if (elapsedDays < 30) {
-    return `${elapsedDays}d ago`;
+    return `${elapsedDays} 天前`;
   }
 
   if (elapsedDays < 365) {
-    return `${Math.floor(elapsedDays / 30)}mo ago`;
+    return `${Math.floor(elapsedDays / 30)} 个月前`;
   }
 
-  return `${Math.floor(elapsedDays / 365)}y ago`;
+  return `${Math.floor(elapsedDays / 365)} 年前`;
 }
 
 function derivePrState(status: NonNullable<CheckoutPrStatus>): PrState {
@@ -227,15 +227,15 @@ function hashLogin(login: string): number {
 }
 
 export function getStateLabel(state: PrState): string {
-  if (state === "draft") return "Draft";
-  if (state === "merged") return "Merged";
-  if (state === "closed") return "Closed";
-  return "Open";
+  if (state === "draft") return "草稿";
+  if (state === "merged") return "已合并";
+  if (state === "closed") return "已关闭";
+  return "开启";
 }
 
 export function getActivityVerb(item: Pick<PrPaneActivity, "kind" | "reviewState">): string {
-  if (item.kind === "comment") return "Commented";
-  if (item.reviewState === "approved") return "Approved";
-  if (item.reviewState === "changes_requested") return "Requested changes";
-  return "Reviewed";
+  if (item.kind === "comment") return "已评论";
+  if (item.reviewState === "approved") return "已批准";
+  if (item.reviewState === "changes_requested") return "请求修改";
+  return "已审查";
 }

@@ -43,7 +43,7 @@ export const docsRehypePlugins: PluggableList = [
     rehypeAutolinkHeadings,
     {
       behavior: "prepend",
-      properties: { className: "heading-anchor", ariaLabel: "Link to this section" },
+      properties: { className: "heading-anchor", ariaLabel: "链接到此章节" },
       content: {
         type: "element",
         tagName: "span",

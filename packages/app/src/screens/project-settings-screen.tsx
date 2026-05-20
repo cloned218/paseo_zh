@@ -56,44 +56,41 @@ interface MetadataPromptField {
 
 const METADATA_PROMPT_FIELDS: Record<MetadataPromptKey, MetadataPromptField> = {
   agentTitle: {
-    title: "Agent titles",
-    placeholder: "Keep titles imperative and under 40 characters",
+    title: "Agent 标题",
+    placeholder: "保持标题为祈使句，并控制在 40 个字符以内",
     sectionTestID: "metadata-prompt-agent-title-section",
     inputTestID: "metadata-prompt-agent-title-input",
   },
   branchName: {
-    title: "Branch names",
-    placeholder: "Prefix branches with feat/ or fix/, mb/ for personal branches",
+    title: "分支名",
+    placeholder: "分支建议以前缀 feat/ 或 fix/ 开头，个人分支可用 mb/",
     sectionTestID: "metadata-prompt-branch-name-section",
     inputTestID: "metadata-prompt-branch-name-input",
   },
   commitMessage: {
-    title: "Commit messages",
-    placeholder: "Use Conventional Commits with a scope",
+    title: "提交信息",
+    placeholder: "使用带 scope 的 Conventional Commits",
     sectionTestID: "metadata-prompt-commit-message-section",
     inputTestID: "metadata-prompt-commit-message-input",
   },
   pullRequest: {
-    title: "Pull requests",
-    placeholder: "Lead with a one-paragraph summary, include a Test plan section",
+    title: "Pull Request",
+    placeholder: "先写一段摘要，并包含 Test plan 小节",
     sectionTestID: "metadata-prompt-pull-request-section",
     inputTestID: "metadata-prompt-pull-request-input",
   },
 };
 
-const WORKTREE_GROUP_INFO =
-  "Commands that run when a worktree is created or torn down for this project";
+const WORKTREE_GROUP_INFO = "此项目在创建或销毁 worktree 时执行的命令";
 const WORKTREE_DOCS_URL = "https://paseo.sh/docs/worktrees";
-const WORKTREE_DOCS_TOOLTIP =
-  "See docs for more details and the environment variables available to these commands";
-const SCRIPTS_GROUP_INFO =
-  "Long-running services and one-off commands you can launch from any agent in this project";
+const WORKTREE_DOCS_TOOLTIP = "更多细节和可用环境变量请查看文档";
+const SCRIPTS_GROUP_INFO = "你可以在此项目中从任意 Agent 启动的长驻服务和一次性命令";
 const METADATA_GROUP_INFO =
-  "Project-specific instructions injected into the AI prompts Paseo uses to generate metadata — use them to enforce your team's conventions like branch naming, commit style, or PR format";
+  "这些是注入到 Paseo 元数据生成提示词中的项目级说明，可用于强制团队规范，如分支命名、提交风格或 PR 格式";
 
-const NO_TARGET_MESSAGE = "We don't have an editable copy of this project on any connected host.";
+const NO_TARGET_MESSAGE = "当前没有任何已连接的 Host 拥有这个项目的可编辑副本。";
 
-const HOST_SWITCHER_LABEL = "Switch host";
+const HOST_SWITCHER_LABEL = "切换 Host";
 
 type ReadProjectConfigData = Awaited<ReturnType<DaemonClient["readProjectConfig"]>>;
 
@@ -167,7 +164,7 @@ function NoEditableTarget() {
         variant="secondary"
         size="md"
       >
-        Back to projects
+        返回项目列表
       </Button>
     </View>
   );
@@ -177,14 +174,14 @@ function BackToProjectsButton() {
   return (
     <Button
       testID="project-settings-back-link"
-      accessibilityLabel="Back to projects"
+      accessibilityLabel="返回项目列表"
       onPress={navigateBackToProjects}
       variant="ghost"
       size="sm"
       leftIcon={ArrowLeft}
       style={styles.backButton}
     >
-      Back to projects
+      返回项目列表
     </Button>
   );
 }
@@ -370,31 +367,31 @@ function resolveReadFailureCopy(input: {
   if (input.kind === "invalid_project_config") {
     return {
       testID: "invalid-callout",
-      title: "paseo.json couldn't be parsed",
-      description: "Fix the file on disk, then reload.",
+      title: "无法解析 paseo.json",
+      description: "请先修复磁盘上的文件，然后重新加载。",
     };
   }
   if (input.kind === "project_not_found") {
     return {
       testID: "project-not-found-callout",
-      title: "This host doesn't have this project",
+      title: "此主机上没有这个项目",
       description: input.hasMultipleHosts
-        ? "Switch to another host above, or reload."
-        : "The selected host has no record of this project.",
+        ? "请切换到上方其他 Host，或重新加载。"
+        : "当前选中的 Host 没有这个项目的记录。",
     };
   }
   if (input.kind === "transport") {
     const detail = errorToDetail(input.error);
     return {
       testID: "read-transport-callout",
-      title: "Couldn't load paseo.json",
-      description: detail ?? "The host didn't respond.",
+      title: "无法加载 paseo.json",
+      description: detail ?? "主机没有响应。",
     };
   }
   return {
     testID: "read-failed-callout",
-    title: "Couldn't load paseo.json",
-    description: "Reload to try again.",
+    title: "无法加载 paseo.json",
+    description: "重新加载后再试。",
   };
 }
 
@@ -450,7 +447,7 @@ function ProjectConfigForm({
         });
         setWriteError(null);
         queryClient.invalidateQueries({ queryKey: ["projects"] });
-        toast.show("Project saved", { variant: "success" });
+        toast.show("项目已保存", { variant: "success" });
       } else {
         setWriteError(result.error);
       }
@@ -493,10 +490,10 @@ function ProjectConfigForm({
   const handleRemoveScript = useCallback(
     async (script: ProjectScriptDraft) => {
       const ok = await confirmDialog({
-        title: "Remove script?",
-        message: `Remove ${script.name || "this script"}?`,
-        confirmLabel: "Remove",
-        cancelLabel: "Cancel",
+        title: "移除脚本？",
+        message: `Remove ${script.name || "该脚本"}?`,
+        confirmLabel: "移除",
+        cancelLabel: "取消",
         destructive: true,
       });
       if (!ok) return;
@@ -578,7 +575,7 @@ function ProjectConfigForm({
         hitSlop={8}
         style={settingsStyles.sectionHeaderLink}
         accessibilityRole="button"
-        accessibilityLabel="Add script"
+        accessibilityLabel="添加脚本"
         testID="scripts-add-button"
       >
         <Plus size={ICON_SIZE} color={styles.iconColor.color} />
@@ -591,7 +588,7 @@ function ProjectConfigForm({
     () => (
       <ExternalLink
         href={WORKTREE_DOCS_URL}
-        label="Docs"
+        label="文档"
         tooltip={WORKTREE_DOCS_TOOLTIP}
         testID="worktree-setup-docs-link"
       />
@@ -602,7 +599,7 @@ function ProjectConfigForm({
     () => (
       <ExternalLink
         href={WORKTREE_DOCS_URL}
-        label="Docs"
+        label="文档"
         tooltip={WORKTREE_DOCS_TOOLTIP}
         testID="worktree-teardown-docs-link"
       />
@@ -616,15 +613,11 @@ function ProjectConfigForm({
 
   return (
     <View>
-      <SettingsGroup
-        title="Worktree lifecycle hooks"
-        info={WORKTREE_GROUP_INFO}
-        testID="worktree-group"
-      >
-        <SettingsSection title="Setup" testID="worktree-setup-section" trailing={setupDocsLink}>
+      <SettingsGroup title="工作树生命周期钩子" info={WORKTREE_GROUP_INFO} testID="worktree-group">
+        <SettingsSection title="准备" testID="worktree-setup-section" trailing={setupDocsLink}>
           <SettingsTextAreaCard
             testID="worktree-setup-input"
-            accessibilityLabel="Worktree setup commands"
+            accessibilityLabel="工作树准备命令"
             value={draft.setupText}
             onChangeText={handleSetupChange}
             placeholder="npm install"
@@ -632,14 +625,14 @@ function ProjectConfigForm({
         </SettingsSection>
 
         <SettingsSection
-          title="Teardown"
+          title="清理"
           testID="worktree-teardown-section"
           trailing={teardownDocsLink}
           flush
         >
           <SettingsTextAreaCard
             testID="worktree-teardown-input"
-            accessibilityLabel="Worktree teardown commands"
+            accessibilityLabel="工作树清理命令"
             value={draft.teardownText}
             onChangeText={handleTeardownChange}
             placeholder="docker compose down"
@@ -648,7 +641,7 @@ function ProjectConfigForm({
       </SettingsGroup>
 
       <SettingsGroup
-        title="Scripts"
+        title="脚本"
         info={SCRIPTS_GROUP_INFO}
         trailing={scriptsTrailing}
         testID="scripts-group"
@@ -656,7 +649,7 @@ function ProjectConfigForm({
         <View style={settingsStyles.card} testID="scripts-list">
           {draft.scripts.length === 0 ? (
             <View style={settingsStyles.row}>
-              <Text style={styles.emptyScripts}>No scripts yet.</Text>
+              <Text style={styles.emptyScripts}>还没有脚本。</Text>
             </View>
           ) : (
             draft.scripts.map((script, index) => (
@@ -672,7 +665,7 @@ function ProjectConfigForm({
         </View>
       </SettingsGroup>
 
-      <SettingsGroup title="Metadata generation" info={METADATA_GROUP_INFO} testID="metadata-group">
+      <SettingsGroup title="元数据生成" info={METADATA_GROUP_INFO} testID="metadata-group">
         {METADATA_PROMPT_KEYS.map((key, index) => (
           <MetadataPromptSection
             key={key}
@@ -689,8 +682,8 @@ function ProjectConfigForm({
           <Alert
             testID="stale-callout"
             variant="error"
-            title="Config changed on disk"
-            description="Reload to fetch the latest paseo.json before saving."
+            title="磁盘上的配置已变更"
+            description="请先重新加载，获取最新的 paseo.json 后再保存。"
           >
             <Button
               testID="stale-callout-action-0"
@@ -698,7 +691,7 @@ function ProjectConfigForm({
               variant="outline"
               size="sm"
             >
-              Reload
+              重新加载
             </Button>
           </Alert>
         </View>
@@ -709,8 +702,8 @@ function ProjectConfigForm({
           <Alert
             testID="write-failed-callout"
             variant="error"
-            title="Couldn't save paseo.json"
-            description="Try again, or reload the latest version from disk."
+            title="无法保存 paseo.json"
+            description="请重试，或从磁盘重新加载最新版本。"
           >
             <Button
               testID="write-failed-callout-action-0"
@@ -718,7 +711,7 @@ function ProjectConfigForm({
               variant="outline"
               size="sm"
             >
-              Try again
+              重试
             </Button>
             <Button
               testID="write-failed-callout-action-1"
@@ -726,7 +719,7 @@ function ProjectConfigForm({
               variant="outline"
               size="sm"
             >
-              Reload
+              重新加载
             </Button>
           </Alert>
         </View>
@@ -735,7 +728,7 @@ function ProjectConfigForm({
       <View style={styles.footer}>
         <Button
           testID="save-button"
-          accessibilityLabel="Save project config"
+          accessibilityLabel="保存项目配置"
           variant="default"
           size="md"
           disabled={saveDisabled}

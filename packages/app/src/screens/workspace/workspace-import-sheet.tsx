@@ -13,7 +13,7 @@ import { formatTimeAgo } from "@/utils/time";
 import { useProvidersSnapshot } from "@/hooks/use-providers-snapshot";
 
 const IMPORTABLE_PROVIDER_IDS: Set<string> = new Set(IMPORTABLE_PROVIDERS);
-const IMPORT_SESSION_HEADER: SheetHeader = { title: "Import session" };
+const IMPORT_SESSION_HEADER: SheetHeader = { title: "导入会话" };
 const PER_PROVIDER_LIMIT = 15;
 const IMPORT_SHEET_SNAP_POINTS = ["70%", "92%"];
 const DISABLED_ACCESSIBILITY_STATE = { disabled: true };
@@ -56,7 +56,7 @@ function resolveProvidersToFetch(
 ): AgentProvider[] | null {
   // COMPAT(providersSnapshot): the import-recent-sessions feature ships alongside
   // providersSnapshot (v0.1.48, 2026-04-05). Daemons older than that lack both —
-  // we render an "update host" empty state instead of degrading. Drop this gate
+  // we render an "更新 Host" empty state instead of degrading. Drop this gate
   // when the supported daemon floor is >= v0.1.48 (target: 2026-10-05).
   if (!supportsSnapshot) return null;
   if (!snapshotEntries) return null;
@@ -93,7 +93,7 @@ function buildSessionsQueriesConfig(args: {
     enabled,
     queryFn: async () => {
       if (!client || !workspaceDirectory) {
-        throw new Error("Host is not connected");
+        throw new Error("Host 未连接");
       }
       return await client.fetchRecentProviderSessions({
         cwd: workspaceDirectory,
@@ -157,11 +157,11 @@ function getSessionTitle(entry: FetchRecentProviderSessionEntry): string {
   if (firstPromptPreview) {
     return firstPromptPreview;
   }
-  return "Untitled session";
+  return "未命名会话";
 }
 
 function getPromptPreview(entry: FetchRecentProviderSessionEntry): string {
-  return entry.lastPromptPreview?.trim() || entry.firstPromptPreview?.trim() || "No prompt preview";
+  return entry.lastPromptPreview?.trim() || entry.firstPromptPreview?.trim() || "没有提示预览";
 }
 
 interface SheetStatusMessagesProps {
@@ -218,9 +218,7 @@ function SheetStatusMessages({
       ) : null}
       {showEmptyState ? (
         <Text style={styles.statusText}>
-          {allAlreadyImported
-            ? "All recent sessions are already imported."
-            : "No recent sessions to import."}
+          {allAlreadyImported ? "最近会话已全部导入。" : "没有可导入的最近会话。"}
         </Text>
       ) : null}
     </>
@@ -380,7 +378,7 @@ export function WorkspaceImportSheet({
   const importMutation = useMutation({
     mutationFn: async (entry: FetchRecentProviderSessionEntry) => {
       if (!client || !workspaceDirectory) {
-        throw new Error("Host is not connected");
+        throw new Error("Host 未连接");
       }
       const agent = await client.importAgent({
         providerId: entry.providerId,

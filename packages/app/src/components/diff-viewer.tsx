@@ -82,7 +82,7 @@ function DiffSegment({
 export function DiffViewer({
   diffLines,
   maxHeight,
-  emptyLabel = "No changes to display",
+  emptyLabel = "没有可显示的变更",
   fillAvailableHeight = false,
 }: DiffViewerProps) {
   const [scrollViewWidth, setScrollViewWidth] = React.useState(0);

@@ -436,14 +436,14 @@ function getUserMessageAttachmentLabel(attachment: AgentAttachment): string {
   switch (attachment.type) {
     case "review": {
       const count = attachment.comments.length;
-      return count === 1 ? "Review · 1 comment" : `Review · ${count} comments`;
+      return count === 1 ? "评审 · 1 条评论" : `Review · ${count} comments`;
     }
     case "github_pr":
       return `PR #${attachment.number}`;
     case "github_issue":
       return `Issue #${attachment.number}`;
     case "text":
-      return attachment.title ?? "Text attachment";
+      return attachment.title ?? "文本附件";
     default:
       return "";
   }
@@ -552,7 +552,7 @@ export const UserMessage = memo(function UserMessage({
             <TurnCopyButton
               getContent={getMessageContent}
               containerStyle={userMessageStylesheet.copyButton}
-              accessibilityLabel="Copy message"
+              accessibilityLabel="复制消息"
             />
           </View>
         ) : null}
@@ -917,7 +917,7 @@ function AssistantMarkdownImage({
 
       const file = await client.readFile(resolution.cwd, resolution.path);
       if (file.kind !== "image") {
-        throw new Error("Image preview unavailable.");
+        throw new Error("图片预览不可用。");
       }
 
       return await persistAttachmentFromBytes({
@@ -1002,7 +1002,7 @@ function AssistantMarkdownImage({
 function resolveAssistantImageErrorText(fileError: unknown, dataError: unknown): string {
   if (fileError instanceof Error) return fileError.message;
   if (dataError instanceof Error) return dataError.message;
-  return "Unable to load image preview.";
+  return "无法加载图片预览。";
 }
 
 function getInlineCodeAutoLinkUrl(
@@ -1149,7 +1149,7 @@ export const TurnCopyButton = memo(function TurnCopyButton({
       style={pressableStyle}
       accessibilityRole="button"
       accessibilityLabel={
-        copied ? (copiedAccessibilityLabel ?? "Copied") : (accessibilityLabel ?? "Copy turn")
+        copied ? (copiedAccessibilityLabel ?? "Copied") : (accessibilityLabel ?? "复制本轮内容")
       }
     >
       {({ hovered }) => {
@@ -2415,7 +2415,7 @@ function ExpandableBadgeLabelRow({
           onHoverIn={onOpenFileHoverIn}
           onHoverOut={onOpenFileHoverOut}
           accessibilityRole="button"
-          accessibilityLabel="Open file"
+          accessibilityLabel="打开文件"
           testID="tool-call-open-file"
           style={expandableBadgeStylesheet.openFileButton}
           hitSlop={6}

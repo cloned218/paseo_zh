@@ -13,21 +13,21 @@ export interface CloudSignupInput {
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function asString(v: unknown, max: number): string {
-  if (typeof v !== "string") throw new Error("expected string");
+  if (typeof v !== "string") throw new Error("应为字符串");
   const trimmed = v.trim();
-  if (trimmed.length > max) throw new Error("field too long");
+  if (trimmed.length > max) throw new Error("字段过长");
   return trimmed;
 }
 
 function validate(raw: unknown): CloudSignupInput {
-  if (typeof raw !== "object" || raw === null) throw new Error("invalid input");
+  if (typeof raw !== "object" || raw === null) throw new Error("输入无效");
   const r = raw as Record<string, unknown>;
 
   const email = asString(r.email, 320);
-  if (!EMAIL_RE.test(email)) throw new Error("invalid email");
+  if (!EMAIL_RE.test(email)) throw new Error("邮箱无效");
 
   const message = asString(r.message, 4000);
-  if (message.length === 0) throw new Error("message required");
+  if (message.length === 0) throw new Error("留言为必填项");
 
   const name = r.name === undefined || r.name === "" ? undefined : asString(r.name, 200);
   const company =
@@ -58,7 +58,7 @@ function buildEmbed(input: CloudSignupInput) {
   fields.push({ name: "Message", value: truncate(input.message, 1024) });
 
   return {
-    title: "Paseo Cloud signup",
+    title: "Paseo Cloud 注册",
     color: 0x5865f2,
     fields,
     timestamp: new Date().toISOString(),
@@ -71,7 +71,7 @@ export const submitCloudSignup = createServerFn({ method: "POST" })
     if (data.honeypot) return { ok: true };
 
     const url = (env as { DISCORD_WEBHOOK_URL?: string }).DISCORD_WEBHOOK_URL;
-    if (!url) throw new Error("webhook not configured");
+    if (!url) throw new Error("webhook 未配置");
 
     const res = await fetch(url, {
       method: "POST",

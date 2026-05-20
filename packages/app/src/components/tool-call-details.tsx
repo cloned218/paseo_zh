@@ -240,7 +240,7 @@ function resolveSubAgentFallbackHeader(
   if (subAgentType && description) {
     return `${subAgentType}: ${description}`;
   }
-  return subAgentType ?? description ?? "Sub-agent activity";
+  return subAgentType ?? description ?? "子 Agent 活动";
 }
 
 interface SubAgentDetailProps {

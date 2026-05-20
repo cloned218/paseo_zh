@@ -602,7 +602,7 @@ function ProjectKebabMenu({
         hitSlop={8}
         style={projectKebabStyle}
         accessibilityRole={platformIsWeb ? undefined : "button"}
-        accessibilityLabel="Project actions"
+        accessibilityLabel="项目操作"
         testID={`sidebar-project-kebab-${projectKey}`}
       >
         {renderKebabTriggerIcon}
@@ -614,17 +614,17 @@ function ProjectKebabMenu({
             leading={settingsLeadingIcon}
             onSelect={handleOpenProjectSettings}
           >
-            Open project settings
+            打开项目设置
           </DropdownMenuItem>
         ) : null}
         <DropdownMenuItem
           testID={`sidebar-project-menu-remove-${projectKey}`}
           leading={trash2LeadingIcon}
           status={removeProjectStatus}
-          pendingLabel="Removing..."
+          pendingLabel="移除中..."
           onSelect={onRemoveProject}
         >
-          Remove project
+          移除项目
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -670,7 +670,7 @@ function WorkspaceRowRightGroup({
   return (
     <View style={styles.workspaceRowRight}>
       {showScriptsIcon ? (
-        <View testID="workspace-globe-icon" accessibilityLabel="Scripts available">
+        <View testID="workspace-globe-icon" accessibilityLabel="可用脚本">
           {hasRunningService ? (
             <ThemedGlobe size={12} uniProps={blueColorMapping} />
           ) : (
@@ -678,7 +678,7 @@ function WorkspaceRowRightGroup({
           )}
         </View>
       ) : null}
-      {isCreating ? <Text style={styles.workspaceCreatingText}>Creating...</Text> : null}
+      {isCreating ? <Text style={styles.workspaceCreatingText}>创建中...</Text> : null}
       {showKebab && onArchive ? (
         <WorkspaceKebabMenu
           workspaceKey={workspace.workspaceKey}
@@ -738,7 +738,7 @@ function WorkspaceKebabMenu({
         hitSlop={8}
         style={workspaceKebabStyle}
         accessibilityRole={platformIsWeb ? undefined : "button"}
-        accessibilityLabel="Workspace actions"
+        accessibilityLabel="工作区操作"
         testID={`sidebar-workspace-kebab-${workspaceKey}`}
       >
         {renderKebabTriggerIcon}
@@ -750,7 +750,7 @@ function WorkspaceKebabMenu({
             leading={copyLeadingIcon}
             onSelect={onCopyPath}
           >
-            Copy path
+            复制路径
           </DropdownMenuItem>
         ) : null}
         {onCopyBranchName ? (
@@ -759,7 +759,7 @@ function WorkspaceKebabMenu({
             leading={copyLeadingIcon}
             onSelect={onCopyBranchName}
           >
-            Copy branch name
+            复制分支名
           </DropdownMenuItem>
         ) : null}
         {onRename ? (
@@ -768,7 +768,7 @@ function WorkspaceKebabMenu({
             leading={renameLeadingIcon}
             onSelect={onRename}
           >
-            Rename workspace
+            重命名工作区
           </DropdownMenuItem>
         ) : null}
         <DropdownMenuItem
@@ -779,7 +779,7 @@ function WorkspaceKebabMenu({
           pendingLabel={archivePendingLabel}
           onSelect={onArchive}
         >
-          {archiveLabel ?? "Archive"}
+          {archiveLabel ?? "归档"}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -917,7 +917,7 @@ function NewWorktreeButton({
             onPress={handlePress}
             disabled={loading}
             accessibilityRole={platformIsWeb ? undefined : "button"}
-            accessibilityLabel={`Create a new workspace for ${displayName}`}
+            accessibilityLabel={`为 ${displayName} 创建新工作区`}
             testID={testID}
           >
             {({ hovered, pressed }) =>
@@ -936,7 +936,7 @@ function NewWorktreeButton({
         </TooltipTrigger>
         <TooltipContent side="bottom" align="center" offset={8}>
           <View style={styles.projectActionTooltipRow}>
-            <Text style={styles.projectActionTooltipText}>New workspace</Text>
+            <Text style={styles.projectActionTooltipText}>新建工作区</Text>
             {showShortcutHint && newWorktreeKeys ? (
               <Shortcut chord={newWorktreeKeys} style={styles.projectActionTooltipShortcut} />
             ) : null}
@@ -1539,12 +1539,12 @@ function WorkspaceRowWithMenu({
         workspaceDirectory: workspace.workspaceDirectory,
       });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Workspace path not available");
+      toast.error(error instanceof Error ? error.message : "工作区路径不可用");
       return;
     }
 
     if (!archiveDirectory) {
-      toast.error("Workspace path not available");
+      toast.error("工作区路径不可用");
       return;
     }
 
@@ -1555,7 +1555,7 @@ function WorkspaceRowWithMenu({
       cwd: archiveDirectory,
       worktreePath: archiveDirectory,
     }).catch((error) => {
-      const message = error instanceof Error ? error.message : "Failed to archive worktree";
+      const message = error instanceof Error ? error.message : "归档 worktree 失败";
       toast.error(message);
     });
   }, [archiveWorktree, isArchiving, redirectAfterArchive, toast, workspace]);
@@ -1570,10 +1570,10 @@ function WorkspaceRowWithMenu({
     }
 
     const confirmed = await confirmDialog({
-      title: "Hide workspace?",
-      message: `Hide "${workspace.name}" from the sidebar?\n\nFiles on disk will not be changed.`,
-      confirmLabel: "Hide",
-      cancelLabel: "Cancel",
+      title: "隐藏工作区？",
+      message: `要从侧边栏隐藏“${workspace.name}”吗？\n\n磁盘上的文件不会被更改。`,
+      confirmLabel: "隐藏",
+      cancelLabel: "取消",
       destructive: true,
     });
     if (!confirmed) {
@@ -1582,7 +1582,7 @@ function WorkspaceRowWithMenu({
 
     const client = getHostRuntimeStore().getClient(workspace.serverId);
     if (!client) {
-      toast.error("Host is not connected");
+      toast.error("Host 未连接");
       return;
     }
 
@@ -1594,7 +1594,7 @@ function WorkspaceRowWithMenu({
         afterHide: redirectAfterArchive,
       });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Failed to hide workspace");
+      toast.error(error instanceof Error ? error.message : "隐藏工作区失败");
     } finally {
       setIsArchivingWorkspace(false);
     }
@@ -1612,23 +1612,23 @@ function WorkspaceRowWithMenu({
         workspaceDirectory: workspace.workspaceDirectory,
       });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Workspace path not available");
+      toast.error(error instanceof Error ? error.message : "工作区路径不可用");
       return;
     }
     void Clipboard.setStringAsync(copyTargetDirectory);
-    toast.copied("Path copied");
+    toast.copied("路径已复制");
   }, [toast, workspace.workspaceDirectory, workspace.workspaceId]);
 
   const handleCopyBranchName = useCallback(() => {
     void Clipboard.setStringAsync(workspace.name);
-    toast.copied("Branch name copied");
+    toast.copied("分支名已复制");
   }, [toast, workspace.name]);
 
   const renameMutation = useMutation({
     mutationFn: async (branch: string) => {
       const client = getHostRuntimeStore().getClient(workspace.serverId);
       if (!client) {
-        throw new Error("Host is not connected");
+        throw new Error("Host 未连接");
       }
       const targetCwd = requireWorkspaceExecutionDirectory({
         workspaceId: workspace.workspaceId,
@@ -1636,7 +1636,7 @@ function WorkspaceRowWithMenu({
       });
       const payload = await client.renameBranch({ cwd: targetCwd, branch });
       if (!payload.success || payload.error) {
-        throw new Error(payload.error?.message ?? "Failed to rename branch");
+        throw new Error(payload.error?.message ?? "重命名分支失败");
       }
       return { targetCwd };
     },
@@ -1666,7 +1666,7 @@ function WorkspaceRowWithMenu({
   const validateRenameSlug = useCallback((value: string): string | null => {
     const result = validateBranchSlug(slugify(value));
     if (result.valid) return null;
-    return result.error ?? "Invalid branch name";
+    return result.error ?? "无效的分支名";
   }, []);
 
   const archiveShortcutKeys = useShortcutKeys("archive-worktree");
@@ -1700,9 +1700,9 @@ function WorkspaceRowWithMenu({
         isCreating={isCreating}
         dragHandleProps={dragHandleProps}
         menuController={null}
-        archiveLabel={isWorktree ? "Archive worktree" : "Hide from sidebar"}
+        archiveLabel={isWorktree ? "归档工作树" : "从侧边栏隐藏"}
         archiveStatus={getWorkspaceArchiveStatus(isWorktree, archiveStatus, isArchivingWorkspace)}
-        archivePendingLabel={isWorktree ? "Archiving..." : "Hiding..."}
+        archivePendingLabel={isWorktree ? "归档中..." : "隐藏中..."}
         onArchive={isWorktree ? handleArchiveWorktree : handleArchiveWorkspace}
         onCopyBranchName={canCopyBranchName ? handleCopyBranchName : undefined}
         onCopyPath={handleCopyPath}
@@ -1711,10 +1711,10 @@ function WorkspaceRowWithMenu({
       />
       <AdaptiveRenameModal
         visible={isRenameOpen}
-        title="Rename workspace"
+        title="重命名工作区"
         initialValue={workspace.name}
         placeholder="branch-name"
-        submitLabel="Rename"
+        submitLabel="重命名"
         validate={validateRenameSlug}
         maxLength={MAX_SLUG_LENGTH}
         onClose={handleCloseRename}
@@ -1769,10 +1769,10 @@ function NonGitProjectRowWithMenuContent({
 
     void (async () => {
       const confirmed = await confirmDialog({
-        title: "Hide workspace?",
-        message: `Hide "${workspace.name}" from the sidebar?\n\nFiles on disk will not be changed.`,
-        confirmLabel: "Hide",
-        cancelLabel: "Cancel",
+        title: "隐藏工作区？",
+        message: `要从侧边栏隐藏“${workspace.name}”吗？\n\n磁盘上的文件不会被更改。`,
+        confirmLabel: "隐藏",
+        cancelLabel: "取消",
         destructive: true,
       });
       if (!confirmed) {
@@ -1781,7 +1781,7 @@ function NonGitProjectRowWithMenuContent({
 
       const client = getHostRuntimeStore().getClient(workspace.serverId);
       if (!client) {
-        toast.error("Host is not connected");
+        toast.error("Host 未连接");
         return;
       }
 
@@ -1794,7 +1794,7 @@ function NonGitProjectRowWithMenuContent({
             afterHide: redirectAfterArchive,
           });
         } catch (error) {
-          toast.error(error instanceof Error ? error.message : "Failed to hide workspace");
+          toast.error(error instanceof Error ? error.message : "隐藏工作区失败");
         } finally {
           setIsArchivingWorkspace(false);
         }
@@ -1831,7 +1831,7 @@ function NonGitProjectRowWithMenuContent({
         <ContextMenuItem
           testID={`sidebar-workspace-context-${workspace.workspaceKey}-archive`}
           status={isArchivingWorkspace ? "pending" : "idle"}
-          pendingLabel="Hiding..."
+          pendingLabel="隐藏中..."
           destructive
           onSelect={handleArchiveWorkspace}
         >
@@ -2188,10 +2188,10 @@ function ProjectBlock({
 
     void (async () => {
       const confirmed = await confirmDialog({
-        title: "Remove project?",
-        message: `Remove "${displayName}" from the sidebar?\n\nFiles on disk will not be changed.`,
-        confirmLabel: "Remove",
-        cancelLabel: "Cancel",
+        title: "移除项目？",
+        message: `要从侧边栏移除“${displayName}”吗？\n\n磁盘上的文件不会被更改。`,
+        confirmLabel: "移除",
+        cancelLabel: "取消",
         destructive: true,
       });
       if (!confirmed) {
@@ -2200,7 +2200,7 @@ function ProjectBlock({
 
       const client = getHostRuntimeStore().getClient(serverId);
       if (!client) {
-        toast.error("Host is not connected");
+        toast.error("Host 未连接");
         return;
       }
 
@@ -2210,7 +2210,7 @@ function ProjectBlock({
         workspaces: project.workspaces,
       }).then((failures) => {
         if (failures.length > 0) {
-          toast.error("Failed to remove some workspaces");
+          toast.error("移除部分工作区失败");
         }
         setIsRemovingProject(false);
         return;
@@ -2573,8 +2573,8 @@ export function SidebarWorkspaceList({
     <>
       {projects.length === 0 ? (
         <View style={styles.emptyContainer}>
-          <Text style={styles.emptyTitle}>No projects yet</Text>
-          <Text style={styles.emptyText}>Add a project to get started</Text>
+          <Text style={styles.emptyTitle}>还没有项目</Text>
+          <Text style={styles.emptyText}>添加一个项目即可开始</Text>
           <Button variant="ghost" size="sm" leftIcon={Plus} onPress={onAddProject}>
             Add project
           </Button>

@@ -14,7 +14,7 @@ interface ExternalLinkProps {
 }
 
 /**
- * Inline "Docs ↗" affordance — muted text + arrow-top-right icon, opens the
+ * Inline "文档 ↗" affordance — muted text + arrow-top-right icon, opens the
  * URL via the platform's external opener. Wrap in a Tooltip when there's a
  * one-line hint worth surfacing on hover/tap.
  */

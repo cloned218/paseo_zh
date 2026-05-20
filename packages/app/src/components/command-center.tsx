@@ -191,7 +191,7 @@ function CommandCenterAgentRowContent({ agent }: CommandCenterAgentRowContentPro
         </View>
         <View style={styles.textContent}>
           <Text style={titleStyle} numberOfLines={1}>
-            {agent.title || "New agent"}
+            {agent.title || "新建智能体"}
           </Text>
           <Text style={subtitleStyle} numberOfLines={1}>
             {shortenPath(agent.cwd)} · {formatTimeAgo(agent.lastActivityAt)}
@@ -224,7 +224,7 @@ function AgentItemsSection({
   return (
     <>
       {actionItemsLength > 0 ? <View style={sectionDividerStyle} /> : null}
-      <Text style={sectionLabelStyle}>Agents</Text>
+      <Text style={sectionLabelStyle}>智能体</Text>
       {agentItems.map((item, index) => {
         const rowIndex = actionItemsLength + index;
         const agent = item.agent;
@@ -336,7 +336,7 @@ export function CommandCenter() {
               ref={inputRef}
               value={query}
               onChangeText={setQuery}
-              placeholder="Type a command or search agents..."
+              placeholder="输入命令或搜索智能体..."
               placeholderTextColor={theme.colors.foregroundMuted}
               style={inputStyle}
               autoCapitalize="none"
@@ -353,12 +353,12 @@ export function CommandCenter() {
             showsVerticalScrollIndicator={false}
           >
             {items.length === 0 ? (
-              <Text style={emptyTextStyle}>No matches</Text>
+              <Text style={emptyTextStyle}>没有匹配项</Text>
             ) : (
               <>
                 {actionItems.length > 0 ? (
                   <>
-                    <Text style={sectionLabelStyle}>Actions</Text>
+                    <Text style={sectionLabelStyle}>操作</Text>
                     {actionItems.map((item, index) => (
                       <CommandCenterActionRow
                         key={`action:${item.action.id}`}

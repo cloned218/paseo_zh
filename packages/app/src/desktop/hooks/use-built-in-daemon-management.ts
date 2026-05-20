@@ -41,11 +41,11 @@ export function useBuiltInDaemonManagement(
       executeDaemonManagementToggle(settings.manageBuiltInDaemon, daemonStatus, {
         confirm: () =>
           confirmDialog({
-            title: "Pause built-in daemon",
+            title: "暂停内置守护进程",
             message:
-              "This will stop the built-in daemon immediately. Running agents and terminals connected to the built-in daemon will be stopped.",
-            confirmLabel: "Pause and stop",
-            cancelLabel: "Cancel",
+              "这会立即停止内置守护进程。所有连接到该守护进程的运行中智能体和终端都会被停止。",
+            confirmLabel: "暂停并停止",
+            cancelLabel: "取消",
             destructive: true,
           }),
         persistSettings: (next) => updateSettings(next) as Promise<void>,
@@ -56,8 +56,8 @@ export function useBuiltInDaemonManagement(
       reportError({
         error,
         message: settings.manageBuiltInDaemon
-          ? "Built-in daemon management was paused, but Paseo could not stop the daemon."
-          : "Unable to update built-in daemon management.",
+          ? "已暂停内置守护进程管理，但 Paseo 无法停止该守护进程。"
+          : "无法更新内置守护进程管理设置。",
         logLabel: "[Settings] Failed to update built-in daemon management",
       });
     },

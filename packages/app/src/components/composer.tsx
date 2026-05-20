@@ -452,7 +452,7 @@ function QueuedMessageRow({ item, onEdit, onSendNow }: QueuedMessageRowProps) {
         <Pressable
           onPress={handleEdit}
           style={styles.queueActionButton}
-          accessibilityLabel="Edit queued message"
+          accessibilityLabel="编辑待发送消息"
           accessibilityRole="button"
         >
           <ThemedPencil size={ICON_SIZE.sm} uniProps={iconForegroundMapping} />
@@ -460,7 +460,7 @@ function QueuedMessageRow({ item, onEdit, onSendNow }: QueuedMessageRowProps) {
         <Pressable
           onPress={handleSendNow}
           style={QUEUE_SEND_BUTTON_STYLE}
-          accessibilityLabel="Send queued message now"
+          accessibilityLabel="立即发送待发送消息"
           accessibilityRole="button"
         >
           <ThemedArrowUp size={ICON_SIZE.sm} uniProps={iconAccentForegroundMapping} />
@@ -505,8 +505,8 @@ function ImageAttachmentPill({
       testID="composer-image-attachment-pill"
       onOpen={handleOpen}
       onRemove={handleRemove}
-      openAccessibilityLabel="Open image attachment"
-      removeAccessibilityLabel="Remove image attachment"
+      openAccessibilityLabel="打开图片附件"
+      removeAccessibilityLabel="移除图片附件"
       disabled={disabled}
     >
       <ImageAttachmentThumbnail image={attachment.metadata} />
@@ -649,8 +649,8 @@ interface ComposerProps {
 }
 
 const EMPTY_ARRAY: readonly QueuedMessage[] = [];
-const DESKTOP_MESSAGE_PLACEHOLDER = "Message the agent, tag @files, or use /commands and /skills";
-const MOBILE_MESSAGE_PLACEHOLDER = "Message, @files, /commands";
+const DESKTOP_MESSAGE_PLACEHOLDER = "给 Agent 发消息、@文件，或使用 /commands 和 /skills";
+const MOBILE_MESSAGE_PLACEHOLDER = "发送消息、@文件、/commands";
 const StableMessageInput = memo(MessageInput);
 
 function resolveContextWindowValues(
@@ -680,7 +680,7 @@ function ComposerCancelButton({
   isCancellingAgent,
   agentInterruptKeys,
 }: ComposerCancelButtonProps) {
-  const accessibilityLabel = isCancellingAgent ? "Canceling agent" : "Stop agent";
+  const accessibilityLabel = isCancellingAgent ? "正在取消 Agent" : "停止 Agent";
   const icon = isCancellingAgent ? (
     <ActivityIndicator size="small" color="white" />
   ) : (
@@ -700,7 +700,7 @@ function ComposerCancelButton({
       </TooltipTrigger>
       <TooltipContent side="top" align="center" offset={8}>
         <View style={styles.tooltipRow}>
-          <Text style={styles.tooltipText}>Interrupt</Text>
+          <Text style={styles.tooltipText}>中断</Text>
           {shortcutNode}
         </View>
       </TooltipContent>
@@ -792,7 +792,7 @@ function ComposerVoiceModeButton({
       <TooltipTrigger
         onPress={handleToggleRealtimeVoice}
         disabled={!isConnected || isVoiceSwitching}
-        accessibilityLabel="Enable Voice mode"
+        accessibilityLabel="开启语音模式"
         accessibilityRole="button"
         style={realtimeVoiceButtonStyle}
       >
@@ -800,7 +800,7 @@ function ComposerVoiceModeButton({
       </TooltipTrigger>
       <TooltipContent side="top" align="center" offset={8}>
         <View style={styles.tooltipRow}>
-          <Text style={styles.tooltipText}>Voice mode</Text>
+          <Text style={styles.tooltipText}>语音模式</Text>
           {shortcutNode}
         </View>
       </TooltipContent>
@@ -1021,7 +1021,7 @@ export function Composer({
         return;
       }
       if (!sendAgentMessageRef.current) {
-        throw new Error("Host is not connected");
+        throw new Error("Host 未连接");
       }
       await sendAgentMessageRef.current(agentIdRef.current, text, submitAttachments);
     },
@@ -1039,7 +1039,7 @@ export function Composer({
       sendAttachments: ComposerAttachment[],
     ) => {
       if (!client) {
-        throw new Error("Host is not connected");
+        throw new Error("Host 未连接");
       }
       const stream: AgentStreamWriter = {
         getHead: (id) => useSessionStore.getState().sessions[serverId]?.agentStreamHead?.get(id),
@@ -1467,7 +1467,7 @@ export function Composer({
     () => [
       {
         id: "image",
-        label: "Add image",
+        label: "添加图片",
         icon: <ThemedPaperclip size={ICON_SIZE.md} uniProps={iconForegroundMutedMapping} />,
         onSelect: () => {
           void handlePickImage();
@@ -1475,7 +1475,7 @@ export function Composer({
       },
       {
         id: "github",
-        label: "Add issue or PR",
+        label: "添加 Issue 或 PR",
         icon: <ThemedGithub size={ICON_SIZE.md} uniProps={iconForegroundMutedMapping} />,
         onSelect: () => {
           setIsGithubPickerOpen(true);
@@ -1601,9 +1601,7 @@ export function Composer({
     () => (sendError ? <Text style={styles.sendErrorText}>{sendError}</Text> : null),
     [sendError],
   );
-  const githubEmptyText = githubSearchResultsQuery.isFetching
-    ? "Searching..."
-    : "No results found.";
+  const githubEmptyText = githubSearchResultsQuery.isFetching ? "搜索中..." : "未找到结果。";
 
   return (
     <Animated.View style={composerContainerStyle}>
@@ -1663,8 +1661,8 @@ export function Composer({
               onSelect={noop}
               keepOpenOnSelect
               searchable
-              searchPlaceholder="Search issues and PRs..."
-              title="Attach issue or PR"
+              searchPlaceholder="搜索 Issue 和 PR..."
+              title="附加 Issue 或 PR"
               open={isGithubPickerOpen}
               onOpenChange={handleGithubPickerOpenChange}
               onSearchQueryChange={setGithubSearchQuery}

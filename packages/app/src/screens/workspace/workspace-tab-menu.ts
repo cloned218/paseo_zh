@@ -65,11 +65,11 @@ export interface WorkspaceDesktopTabActions {
 }
 
 function buildCloseBeforeLabel(surface: WorkspaceTabMenuSurface): string {
-  return surface === "mobile" ? "Close tabs above" : "Close to the left";
+  return surface === "mobile" ? "关闭上方标签页" : "关闭左侧标签页";
 }
 
 function buildCloseAfterLabel(surface: WorkspaceTabMenuSurface): string {
-  return surface === "mobile" ? "Close tabs below" : "Close to the right";
+  return surface === "mobile" ? "关闭下方标签页" : "关闭右侧标签页";
 }
 
 function buildCloseBeforeTestIDSuffix(surface: WorkspaceTabMenuSurface): string {
@@ -127,7 +127,7 @@ export function buildWorkspaceTabMenuEntries(
     entries.push({
       kind: "item",
       key: "copy-resume-command",
-      label: "Copy resume command",
+      label: "复制 resume 命令",
       icon: "copy",
       testID: `${menuTestIDBase}-copy-resume-command`,
       onSelect: () => {
@@ -137,7 +137,7 @@ export function buildWorkspaceTabMenuEntries(
     entries.push({
       kind: "item",
       key: "copy-agent-id",
-      label: "Copy agent id",
+      label: "复制 Agent ID",
       icon: "copy",
       hint: agentId.slice(0, 7),
       testID: `${menuTestIDBase}-copy-agent-id`,
@@ -151,7 +151,7 @@ export function buildWorkspaceTabMenuEntries(
     entries.push({
       kind: "item",
       key: "rename",
-      label: "Rename",
+      label: "重命名",
       icon: "pencil",
       testID: `${menuTestIDBase}-rename`,
       onSelect: () => {
@@ -189,7 +189,7 @@ export function buildWorkspaceTabMenuEntries(
   entries.push({
     kind: "item",
     key: "close-others",
-    label: "Close other tabs",
+    label: "关闭其他标签页",
     icon: "copy-x",
     disabled: isOnlyTab,
     testID: `${menuTestIDBase}-close-others`,
@@ -202,9 +202,9 @@ export function buildWorkspaceTabMenuEntries(
     entries.push({
       kind: "item",
       key: "reload-agent",
-      label: "Reload agent",
+      label: "重新加载 Agent",
       icon: "rotate-cw",
-      tooltip: "Reload agent to update skills, MCPs or login status.",
+      tooltip: "重新加载 Agent 以更新 skills、MCP 或登录状态。",
       testID: `${menuTestIDBase}-reload-agent`,
       onSelect: () => {
         void onReloadAgent(agentId);
@@ -214,7 +214,7 @@ export function buildWorkspaceTabMenuEntries(
   entries.push({
     kind: "item",
     key: "close",
-    label: "Close",
+    label: "关闭",
     icon: "x",
     testID: `${menuTestIDBase}-close`,
     onSelect: () => {

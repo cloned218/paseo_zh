@@ -46,24 +46,24 @@ export function classifyBulkClosableTabs(tabs: WorkspaceTabDescriptor[]): BulkCl
 export function buildBulkCloseConfirmationMessage(input: BulkClosableTabGroups): string {
   const { agentTabs, terminalTabs, otherTabs } = input;
   if (agentTabs.length > 0 && terminalTabs.length > 0 && otherTabs.length > 0) {
-    return `This will archive ${agentTabs.length} agent(s), close ${terminalTabs.length} terminal(s), and close ${otherTabs.length} tab(s). Any running process in a closed terminal will be stopped immediately.`;
+    return `这将归档 ${agentTabs.length} 个智能体、关闭 ${terminalTabs.length} 个终端，并关闭 ${otherTabs.length} 个标签页。已关闭终端中的任何运行中进程都会立即停止。`;
   }
   if (agentTabs.length > 0 && terminalTabs.length > 0) {
-    return `This will archive ${agentTabs.length} agent(s) and close ${terminalTabs.length} terminal(s). Any running process in a closed terminal will be stopped immediately.`;
+    return `这将归档 ${agentTabs.length} 个智能体并关闭 ${terminalTabs.length} 个终端。已关闭终端中的任何运行中进程都会立即停止。`;
   }
   if (terminalTabs.length > 0 && otherTabs.length > 0) {
-    return `This will close ${terminalTabs.length} terminal(s) and close ${otherTabs.length} tab(s). Any running process in a closed terminal will be stopped immediately.`;
+    return `这将关闭 ${terminalTabs.length} 个终端和 ${otherTabs.length} 个标签页。已关闭终端中的任何运行中进程都会立即停止。`;
   }
   if (agentTabs.length > 0 && otherTabs.length > 0) {
-    return `This will archive ${agentTabs.length} agent(s) and close ${otherTabs.length} tab(s).`;
+    return `这将归档 ${agentTabs.length} 个智能体并关闭 ${otherTabs.length} 个标签页。`;
   }
   if (terminalTabs.length > 0) {
-    return `This will close ${terminalTabs.length} terminal(s). Any running process in a closed terminal will be stopped immediately.`;
+    return `这将关闭 ${terminalTabs.length} 个终端。已关闭终端中的任何运行中进程都会立即停止。`;
   }
   if (otherTabs.length > 0) {
-    return `This will close ${otherTabs.length} tab(s).`;
+    return `这将关闭 ${otherTabs.length} 个标签页。`;
   }
-  return `This will archive ${agentTabs.length} agent(s).`;
+  return `这将归档 ${agentTabs.length} 个智能体。`;
 }
 
 export async function closeBulkWorkspaceTabs(input: CloseBulkWorkspaceTabsInput): Promise<void> {

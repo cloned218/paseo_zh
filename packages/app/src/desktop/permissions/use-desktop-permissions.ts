@@ -22,12 +22,12 @@ export interface UseDesktopPermissionsReturn {
 
 const EMPTY_NOTIFICATION_STATUS = {
   state: "unknown" as const,
-  detail: "Notification status has not been checked yet.",
+  detail: "尚未检查通知状态。",
 };
 
 const EMPTY_MICROPHONE_STATUS = {
   state: "unknown" as const,
-  detail: "Microphone status has not been checked yet.",
+  detail: "尚未检查麦克风状态。",
 };
 
 export function useDesktopPermissions(): UseDesktopPermissionsReturn {
@@ -124,16 +124,14 @@ export function useDesktopPermissions(): UseDesktopPermissionsReturn {
     setTestNotificationError(null);
     try {
       const sent = await sendOsNotification({
-        title: "Paseo notification test",
-        body: "If you can see this, desktop notifications work.",
+        title: "Paseo 通知测试",
+        body: "如果你能看到这条消息，说明桌面通知工作正常。",
       });
       if (!sent) {
-        setTestNotificationError(
-          "Notification was not delivered. Check System Settings > Notifications.",
-        );
+        setTestNotificationError("通知未送达。请检查“系统设置 > 通知”。");
       }
     } catch {
-      setTestNotificationError("Failed to send notification.");
+      setTestNotificationError("发送通知失败。");
     } finally {
       if (isMountedRef.current) {
         setIsSendingTestNotification(false);

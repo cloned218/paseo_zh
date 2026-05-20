@@ -6,11 +6,11 @@ export type FeatureHighlightColor = "blue" | "default" | "yellow";
 export function getStatusSelectorHint(selector: ExplainedStatusSelector): string {
   switch (selector) {
     case "thinking":
-      return "Thinking mode";
+      return "思考模式";
     case "model":
-      return "Change model";
+      return "更换模型";
     case "mode":
-      return "Change permission mode";
+      return "更改权限模式";
     default:
       throw new Error("unreachable");
   }
@@ -100,8 +100,7 @@ function resolveModelDisplay(
 ): { activeModelId: string | null; displayModel: string } {
   return {
     activeModelId: selectedModel?.id ?? preferredModelId ?? null,
-    displayModel:
-      selectedModel?.label ?? preferredModelId ?? fallbackModel?.label ?? "Unknown model",
+    displayModel: selectedModel?.label ?? preferredModelId ?? fallbackModel?.label ?? "未知模型",
   };
 }
 

@@ -16,10 +16,10 @@ function RosettaCalloutDescription() {
   return (
     <>
       <SidebarCalloutDescriptionText>
-        You&apos;re running the Intel build of Paseo under Rosetta on Apple Silicon.
+        你正在 Apple Silicon 设备上通过 Rosetta 运行 Paseo 的 Intel 版本。
       </SidebarCalloutDescriptionText>
       <SidebarCalloutDescriptionText>
-        This causes high CPU usage. Download the Apple Silicon build to fix it.
+        这会导致较高的 CPU 占用。下载 Apple Silicon 版本即可解决。
       </SidebarCalloutDescriptionText>
     </>
   );
@@ -67,13 +67,13 @@ export function RosettaCalloutSource() {
     return callouts.show({
       id: "desktop-rosetta-warning",
       priority: 300,
-      title: "Download the Apple Silicon build",
+      title: "下载 Apple Silicon 版本",
       description: <RosettaCalloutDescription />,
       variant: "error",
       dismissible: false,
       actions: [
         {
-          label: "Download",
+          label: "下载",
           onPress: openDownload,
           variant: "primary",
         },

@@ -9,8 +9,8 @@ import "~/styles.css";
 export const Route = createFileRoute("/agents")({
   head: () => ({
     meta: pageMeta(
-      "Supported agents – Every coding agent Paseo runs | Paseo",
-      "Run Claude Code, Codex, OpenCode, Cursor CLI, Gemini CLI, Hermes Agent, Qwen Code, Kimi Code, DeepSeek TUI, and 28 more coding agents from your phone. Self-hosted, your code stays on your machine.",
+      "支持的 Agent – Paseo 可运行的全部编码 Agent | Paseo",
+      "通过手机运行 Claude Code、Codex、OpenCode、Cursor CLI、Gemini CLI、Hermes Agent、Qwen Code、Kimi Code、DeepSeek TUI 等 28+ 编码 Agent。自托管，代码保留在你的机器上。",
     ),
   }),
   component: AgentsPage,
@@ -26,11 +26,11 @@ function AgentsPage() {
           </nav>
           <header className="space-y-4 max-w-2xl">
             <h1 className="text-3xl md:text-5xl font-medium tracking-tight">
-              Every agent Paseo supports
+              Paseo 支持的全部 Agent
             </h1>
             <p className="text-white/70 text-lg leading-relaxed">
-              Paseo runs the native CLI for {AGENT_PAGES.length} coding agents — your skills, your
-              config, your MCP servers, all intact. Drive any of them from your phone.
+              Paseo 直接运行原生 CLI，当前支持 {AGENT_PAGES.length} coding agents — your skills,
+              your config, your MCP servers, all intact. Drive any of them from your phone.
             </p>
           </header>
         </div>
@@ -50,9 +50,9 @@ function AgentsPage() {
           </div>
 
           <p className="mt-10 text-sm text-white/50">
-            Want to add another?{" "}
+            想再接入别的 Agent？{" "}
             <a href="/docs/custom-providers" className="underline hover:text-white/80">
-              Configure any ACP-compatible agent
+              配置任意兼容 ACP 的 Agent
             </a>{" "}
             in <code className="font-mono text-white/60">~/.paseo/config.json</code>.
           </p>

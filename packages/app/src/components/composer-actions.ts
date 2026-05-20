@@ -263,7 +263,7 @@ export async function sendQueuedComposerMessageNow(
     });
     return {
       status: "failed",
-      errorMessage: error instanceof Error ? error.message : "Failed to send message",
+      errorMessage: error instanceof Error ? error.message : "发送消息失败",
     };
   }
 }

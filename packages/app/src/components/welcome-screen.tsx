@@ -206,7 +206,7 @@ export function WelcomeScreen({ onHostAdded }: WelcomeScreenProps) {
     ? [
         {
           key: "direct-connection",
-          label: "Direct connection",
+          label: "直接连接",
           testID: "welcome-direct-connection",
           primary: true,
           icon: Link2,
@@ -214,7 +214,7 @@ export function WelcomeScreen({ onHostAdded }: WelcomeScreenProps) {
         },
         {
           key: "paste-pairing-link",
-          label: "Paste pairing link",
+          label: "粘贴配对链接",
           testID: "welcome-paste-pairing-link",
           primary: false,
           icon: ClipboardPaste,
@@ -224,7 +224,7 @@ export function WelcomeScreen({ onHostAdded }: WelcomeScreenProps) {
     : [
         {
           key: "scan-qr",
-          label: "Scan QR code",
+          label: "扫描二维码",
           testID: "welcome-scan-qr",
           primary: true,
           icon: QrCode,
@@ -232,7 +232,7 @@ export function WelcomeScreen({ onHostAdded }: WelcomeScreenProps) {
         },
         {
           key: "direct-connection",
-          label: "Direct connection",
+          label: "直接连接",
           testID: "welcome-direct-connection",
           primary: false,
           icon: Link2,
@@ -240,7 +240,7 @@ export function WelcomeScreen({ onHostAdded }: WelcomeScreenProps) {
         },
         {
           key: "paste-pairing-link",
-          label: "Paste pairing link",
+          label: "粘贴配对链接",
           testID: "welcome-paste-pairing-link",
           primary: false,
           icon: ClipboardPaste,
@@ -264,8 +264,8 @@ export function WelcomeScreen({ onHostAdded }: WelcomeScreenProps) {
         <View style={styles.content}>
           <PaseoLogo size={96} />
           <View style={styles.copyBlock}>
-            <Text style={styles.title}>Welcome to Paseo</Text>
-            <Text style={styles.subtitle}>Connect your computer to get started</Text>
+            <Text style={styles.title}>欢迎使用 Paseo</Text>
+            <Text style={styles.subtitle}>连接你的电脑以开始使用</Text>
             {isNative ? (
               <Pressable style={styles.setupLink} onPress={handleOpenPaseoSite}>
                 <Text style={styles.setupLinkText}>paseo.sh</Text>
@@ -288,7 +288,7 @@ export function WelcomeScreen({ onHostAdded }: WelcomeScreenProps) {
             style={styles.settingsButton}
             testID="welcome-open-settings"
           >
-            Settings
+            设置
           </Button>
         </View>
         <Text style={styles.versionLabel}>{appVersionText}</Text>

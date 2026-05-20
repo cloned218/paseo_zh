@@ -41,7 +41,7 @@ function ShortcutSequence({
   }, [chord, heldModifiers]);
 
   if ((!chord || chord.length === 0) && !heldModifiers) {
-    return <Text style={styles.capturingText}>Press shortcut...</Text>;
+    return <Text style={styles.capturingText}>请按下快捷键...</Text>;
   }
 
   return <Shortcut chord={displayChord} />;
@@ -138,17 +138,17 @@ function ShortcutRow({
           <>
             {isCapturing && capturedCombos.length > 0 ? (
               <Button variant="ghost" size="sm" onPress={onDone}>
-                Done
+                完成
               </Button>
             ) : null}
             <Button variant="ghost" size="sm" onPress={isCapturing ? onCancel : onRebind}>
-              {isCapturing ? "Cancel" : "Rebind"}
+              {isCapturing ? "取消" : "重新绑定"}
             </Button>
           </>
         )}
         {overrideCombo !== undefined && !isCapturing && (
           <Button variant="ghost" size="sm" onPress={onReset}>
-            <Text style={styles.resetText}>Reset</Text>
+            <Text style={styles.resetText}>重置</Text>
           </Button>
         )}
       </View>
@@ -244,9 +244,9 @@ export function KeyboardShortcutsSection() {
 
   if (isNative) {
     return (
-      <SettingsSection title="Shortcuts">
+      <SettingsSection title="快捷键">
         <View style={mobileCardStyle}>
-          <Text style={styles.mobileText}>Keyboard shortcuts are only available on desktop</Text>
+          <Text style={styles.mobileText}>键盘快捷键仅在桌面端可用</Text>
         </View>
       </SettingsSection>
     );
@@ -254,7 +254,7 @@ export function KeyboardShortcutsSection() {
 
   const resetAllButton = hasOverrides ? (
     <Button variant="ghost" size="sm" onPress={handleResetAll}>
-      Reset all
+      全部重置
     </Button>
   ) : undefined;
 

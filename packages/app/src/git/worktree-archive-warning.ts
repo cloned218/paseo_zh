@@ -21,10 +21,10 @@ function formatDiffStat(diffStat: WorktreeArchiveRisk["diffStat"]): string | nul
 
   const parts: string[] = [];
   if (diffStat.additions > 0) {
-    parts.push(`${diffStat.additions} added ${pluralize(diffStat.additions, "line")}`);
+    parts.push(`新增 ${diffStat.additions} ${pluralize(diffStat.additions, "行")}`);
   }
   if (diffStat.deletions > 0) {
-    parts.push(`${diffStat.deletions} deleted ${pluralize(diffStat.deletions, "line")}`);
+    parts.push(`删除 ${diffStat.deletions} ${pluralize(diffStat.deletions, "行")}`);
   }
 
   return parts.length > 0 ? parts.join(", ") : null;
@@ -39,12 +39,12 @@ export function buildWorktreeArchiveRiskReasons(input: WorktreeArchiveRisk): str
 
   if (hasUncommittedChanges) {
     const diffStatLabel = formatDiffStat(diffStat);
-    reasons.push(diffStatLabel ? `Uncommitted changes (${diffStatLabel})` : "Uncommitted changes");
+    reasons.push(diffStatLabel ? `有未提交的更改（${diffStatLabel}）` : "有未提交的更改");
   }
 
   if ((input.aheadOfOrigin ?? 0) > 0) {
     const aheadOfOrigin = input.aheadOfOrigin ?? 0;
-    reasons.push(`${aheadOfOrigin} unpushed ${pluralize(aheadOfOrigin, "commit")}`);
+    reasons.push(`${aheadOfOrigin} 个未推送${pluralize(aheadOfOrigin, "提交")}`);
   }
 
   return reasons;
@@ -70,10 +70,10 @@ export async function confirmRiskyWorktreeArchive(
   }
 
   return await confirmDialog({
-    title: `Archive "${input.worktreeName}"?`,
+    title: `归档“${input.worktreeName}”？`,
     message,
-    confirmLabel: "Archive",
-    cancelLabel: "Cancel",
+    confirmLabel: "归档",
+    cancelLabel: "取消",
     destructive: true,
   });
 }

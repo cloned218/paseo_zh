@@ -354,7 +354,7 @@ export function StartupSplashScreen({ bootstrapState }: StartupSplashScreenProps
 
   const logsText = useMemo(() => {
     if (isLoadingLogs) {
-      return "Loading daemon logs...";
+      return "正在加载守护进程日志...";
     }
     if (daemonLogs?.contents) {
       return daemonLogs.contents;
@@ -362,7 +362,7 @@ export function StartupSplashScreen({ bootstrapState }: StartupSplashScreenProps
     if (logsError) {
       return logsError;
     }
-    return "No daemon logs available.";
+    return "没有可用的守护进程日志。";
   }, [daemonLogs?.contents, isLoadingLogs, logsError]);
 
   const handleCopyLogs = useCallback(() => {

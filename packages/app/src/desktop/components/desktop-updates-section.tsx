@@ -51,7 +51,7 @@ function useDaemonCliStatusModal() {
       setIsCliStatusModalOpen(true);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      setCliStatusOutput(`Failed to fetch daemon status: ${message}`);
+      setCliStatusOutput(`获取守护进程状态失败：${message}`);
       setIsCliStatusModalOpen(true);
     } finally {
       setIsLoadingCliStatus(false);
@@ -64,7 +64,7 @@ function useDaemonCliStatusModal() {
     }
     void Clipboard.setStringAsync(cliStatusOutput)
       .then(() => {
-        Alert.alert("Copied", "Status copied to clipboard.");
+        Alert.alert("已复制", "状态已复制到剪贴板。");
         return;
       })
       .catch((error) => {
@@ -95,12 +95,12 @@ function useDaemonLogsModal(daemonLogs: { logPath?: string } | null) {
 
     void Clipboard.setStringAsync(logPath)
       .then(() => {
-        Alert.alert("Copied", "Log path copied.");
+        Alert.alert("已复制", "日志路径已复制。");
         return;
       })
       .catch((error) => {
         console.error("[Settings] Failed to copy log path", error);
-        Alert.alert("Error", "Unable to copy log path.");
+        Alert.alert("错误", "无法复制日志路径。");
       });
   }, [daemonLogs?.logPath]);
 
@@ -132,9 +132,9 @@ function DaemonLogsModal({ visible, onClose, daemonLogs }: DaemonLogsModalProps)
       snapPoints={LOGS_MODAL_SNAP_POINTS}
     >
       <View style={styles.modalBody}>
-        <Text style={settingsStyles.rowHint}>{daemonLogs?.logPath ?? "Log path unavailable"}</Text>
+        <Text style={settingsStyles.rowHint}>{daemonLogs?.logPath ?? "日志路径不可用"}</Text>
         <Text style={styles.logOutput} selectable>
-          {daemonLogs?.contents?.length ? daemonLogs.contents : "(log file is empty)"}
+          {daemonLogs?.contents?.length ? daemonLogs.contents : "（日志文件为空）"}
         </Text>
       </View>
     </AdaptiveModalSheet>
@@ -168,10 +168,10 @@ function DaemonCliStatusModal({
         </Text>
         <View style={styles.modalActions}>
           <Button variant="outline" size="sm" onPress={onClose}>
-            Close
+            关闭
           </Button>
           <Button size="sm" onPress={onCopy}>
-            Copy
+            复制
           </Button>
         </View>
       </View>
@@ -222,8 +222,8 @@ function DaemonInfoCard(props: DaemonInfoCardProps) {
     <View style={settingsStyles.card}>
       <View style={settingsStyles.row}>
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>Status</Text>
-          <Text style={settingsStyles.rowHint}>Only the built-in desktop daemon is shown here</Text>
+          <Text style={settingsStyles.rowTitle}>状态</Text>
+          <Text style={settingsStyles.rowHint}>这里只显示桌面内置守护进程</Text>
         </View>
         <View style={styles.statusValueGroup}>
           <Text style={styles.valueText}>{daemonStatusStateText}</Text>
@@ -232,39 +232,37 @@ function DaemonInfoCard(props: DaemonInfoCardProps) {
       </View>
       <View style={ROW_WITH_BORDER_STYLE}>
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>Manage built-in daemon</Text>
-          <Text style={settingsStyles.rowHint}>Let Paseo start and stop the built-in daemon</Text>
+          <Text style={settingsStyles.rowTitle}>管理内置守护进程</Text>
+          <Text style={settingsStyles.rowHint}>允许 Paseo 启动和停止内置守护进程</Text>
         </View>
         <Switch
           value={!isDaemonManagementPaused}
           onValueChange={handleToggleDaemonManagement}
           disabled={isUpdatingDaemonManagement}
-          accessibilityLabel="Manage built-in daemon"
+          accessibilityLabel="管理内置守护进程"
         />
       </View>
       <View style={ROW_WITH_BORDER_STYLE}>
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>Keep daemon running after quit</Text>
-          <Text style={settingsStyles.rowHint}>Daemon keeps running when you quit Paseo</Text>
+          <Text style={settingsStyles.rowTitle}>退出后保持守护进程运行</Text>
+          <Text style={settingsStyles.rowHint}>退出 Paseo 后守护进程仍会继续运行</Text>
         </View>
         <Switch
           value={keepRunningAfterQuit}
           onValueChange={handleToggleKeepRunningAfterQuit}
           disabled={isUpdatingKeepRunningAfterQuit}
-          accessibilityLabel="Keep daemon running after quit"
+          accessibilityLabel="退出后保持守护进程运行"
         />
       </View>
       <View style={ROW_WITH_BORDER_STYLE}>
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>Log file</Text>
-          <Text style={settingsStyles.rowHint}>
-            {daemonLogs?.logPath ?? "Log path unavailable"}
-          </Text>
+          <Text style={settingsStyles.rowTitle}>日志文件</Text>
+          <Text style={settingsStyles.rowHint}>{daemonLogs?.logPath ?? "日志路径不可用"}</Text>
         </View>
         <View style={styles.actionGroup}>
           {daemonLogs?.logPath ? (
             <Button variant="outline" size="sm" leftIcon={copyIcon} onPress={handleCopyLogPath}>
-              Copy path
+              复制路径
             </Button>
           ) : null}
           <Button
@@ -274,16 +272,14 @@ function DaemonInfoCard(props: DaemonInfoCardProps) {
             onPress={handleOpenLogs}
             disabled={!daemonLogs}
           >
-            Open logs
+            打开日志
           </Button>
         </View>
       </View>
       <View style={ROW_WITH_BORDER_STYLE}>
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>Full status</Text>
-          <Text style={settingsStyles.rowHint}>
-            Runs `paseo daemon status` and shows the output
-          </Text>
+          <Text style={settingsStyles.rowTitle}>完整状态</Text>
+          <Text style={settingsStyles.rowHint}>运行 `paseo daemon status` 并显示输出结果</Text>
         </View>
         <Button
           variant="outline"
@@ -292,7 +288,7 @@ function DaemonInfoCard(props: DaemonInfoCardProps) {
           onPress={handleRunCliStatus}
           disabled={isLoadingCliStatus}
         >
-          {isLoadingCliStatus ? "Loading..." : "View status"}
+          {isLoadingCliStatus ? "加载中..." : "查看状态"}
         </Button>
       </View>
     </View>
@@ -317,7 +313,7 @@ export function LocalDaemonSection() {
 
   const daemonVersionMismatch = isVersionMismatch(appVersion, daemonVersion);
   const daemonStatusStateText =
-    statusError ?? (daemonStatus?.status === "running" ? daemonStatus.status : "not running");
+    statusError ?? (daemonStatus?.status === "running" ? "运行中" : "未运行");
   const daemonStatusDetailText = `PID ${daemonStatus?.pid ? daemonStatus.pid : "—"}`;
   const isDaemonManagementPaused = !daemonSettings.manageBuiltInDaemon;
 
@@ -381,9 +377,9 @@ export function LocalDaemonSection() {
         textStyle={settingsStyles.sectionHeaderLinkText}
         style={settingsStyles.sectionHeaderLink}
         onPress={handleOpenAdvancedSettings}
-        accessibilityLabel="Open advanced daemon settings"
+        accessibilityLabel="打开高级守护进程设置"
       >
-        Advanced settings
+        高级设置
       </Button>
     ),
     [advancedSettingsIcon, handleOpenAdvancedSettings],
@@ -395,7 +391,7 @@ export function LocalDaemonSection() {
 
   return (
     <SettingsSection
-      title="Daemon"
+      title="守护进程"
       trailing={advancedSettingsButton}
       testID="host-page-daemon-lifecycle-card"
     >
@@ -427,9 +423,7 @@ export function LocalDaemonSection() {
           {daemonVersionMismatch ? (
             <View style={styles.warningCard}>
               <Text style={styles.warningText}>
-                {
-                  "App and daemon versions don't match. Update both to the same version for the best experience."
-                }
+                {"应用与守护进程版本不一致。建议将两者更新到相同版本以获得最佳体验。"}
               </Text>
             </View>
           ) : null}
@@ -512,5 +506,5 @@ const LOADING_CARD_STYLE = [settingsStyles.card, styles.loadingCard];
 const ROW_WITH_BORDER_STYLE = [settingsStyles.row, settingsStyles.rowBorder];
 const LOGS_MODAL_SNAP_POINTS = ["70%", "92%"];
 const CLI_STATUS_MODAL_SNAP_POINTS = ["60%", "85%"];
-const DAEMON_LOGS_HEADER: SheetHeader = { title: "Daemon logs" };
-const DAEMON_STATUS_HEADER: SheetHeader = { title: "Daemon status" };
+const DAEMON_LOGS_HEADER: SheetHeader = { title: "守护进程日志" };
+const DAEMON_STATUS_HEADER: SheetHeader = { title: "守护进程状态" };

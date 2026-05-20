@@ -190,8 +190,8 @@ export default function PairScanScreen() {
         navigateToPairedHost(profile.serverId);
       } catch (error) {
         lastScannedRef.current = null;
-        const message = error instanceof Error ? error.message : "Unable to pair host";
-        Alert.alert("Error", message);
+        const message = error instanceof Error ? error.message : "无法配对主机";
+        Alert.alert("错误", message);
       } finally {
         setIsPairing(false);
       }
@@ -216,15 +216,15 @@ export default function PairScanScreen() {
   if (isWeb) {
     return (
       <View style={styles.container}>
-        <BackHeader title="Scan QR" onBack={handleRouterBack} />
+        <BackHeader title="扫描二维码" onBack={handleRouterBack} />
         <View style={bodyStyle}>
           <View style={styles.permissionCard}>
-            <Text style={styles.permissionTitle}>Not available on web</Text>
+            <Text style={styles.permissionTitle}>Web 版暂不支持</Text>
             <Text style={styles.permissionBody}>
-              {`QR scanning isn't supported in the web build. Use "Paste link" instead.`}
+              {`Web 版暂不支持二维码扫描。请改用“粘贴链接”。`}
             </Text>
             <Pressable style={styles.permissionButton} onPress={closeToSource}>
-              <Text style={styles.permissionButtonText}>Back to Settings</Text>
+              <Text style={styles.permissionButtonText}>返回设置</Text>
             </Pressable>
           </View>
         </View>
@@ -236,17 +236,17 @@ export default function PairScanScreen() {
 
   return (
     <View style={styles.container}>
-      <BackHeader title="Scan QR" onBack={closeToSource} />
+      <BackHeader title="扫描二维码" onBack={closeToSource} />
 
       <View style={bodyStyle}>
         {!granted ? (
           <View style={styles.permissionCard}>
-            <Text style={styles.permissionTitle}>Camera permission</Text>
+            <Text style={styles.permissionTitle}>相机权限</Text>
             <Text style={styles.permissionBody}>
-              Allow camera access to scan the pairing QR code from your daemon.
+              请允许相机访问，以扫描守护进程展示的配对二维码。
             </Text>
             <Pressable style={styles.permissionButton} onPress={handleRequestPermission}>
-              <Text style={styles.permissionButtonText}>Grant permission</Text>
+              <Text style={styles.permissionButtonText}>授予权限</Text>
             </Pressable>
           </View>
         ) : (
@@ -264,7 +264,7 @@ export default function PairScanScreen() {
                 <View style={CORNER_BL_STYLE} />
                 <View style={CORNER_BR_STYLE} />
               </View>
-              {isPairing ? <Text style={helperTextStyle}>Pairing…</Text> : null}
+              {isPairing ? <Text style={helperTextStyle}>配对中…</Text> : null}
             </View>
           </View>
         )}

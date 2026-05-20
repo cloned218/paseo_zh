@@ -137,7 +137,7 @@ export const LeftSidebar = memo(function LeftSidebar({
   );
   const activeServerId = activeDaemon?.serverId ?? null;
   const activeHostLabel = useMemo(() => {
-    if (!activeDaemon) return "No host";
+    if (!activeDaemon) return "未选择 Host";
     const trimmed = activeDaemon.label?.trim();
     return trimmed && trimmed.length > 0 ? trimmed : activeDaemon.serverId;
   }, [activeDaemon]);
@@ -396,7 +396,7 @@ function AddProjectTooltipContent({
 }) {
   return (
     <View style={styles.tooltipRow}>
-      <Text style={styles.tooltipText}>Add project</Text>
+      <Text style={styles.tooltipText}>添加项目</Text>
       {newAgentKeys ? <Shortcut chord={newAgentKeys} /> : null}
     </View>
   );
@@ -447,7 +447,7 @@ function SidebarFooter({
             <FooterIconButton
               onPress={handleOpenProject}
               testID="sidebar-add-project"
-              accessibilityLabel="Add project"
+              accessibilityLabel="添加项目"
               icon={FolderPlus}
               theme={theme}
             />
@@ -459,7 +459,7 @@ function SidebarFooter({
         <FooterIconButton
           onPress={handleSettings}
           testID="sidebar-settings"
-          accessibilityLabel="Settings"
+          accessibilityLabel="设置"
           icon={Settings}
           theme={theme}
         />
@@ -470,8 +470,8 @@ function SidebarFooter({
         onSelect={handleHostSelect}
         renderOption={renderHostOption}
         searchable={false}
-        title="Switch host"
-        searchPlaceholder="Search hosts..."
+        title="切换 Host"
+        searchPlaceholder="搜索主机..."
         desktopMinWidth={280}
         open={isHostPickerOpen}
         onOpenChange={setIsHostPickerOpen}
@@ -675,7 +675,7 @@ function MobileSidebar({
           <View style={styles.sidebarContent} pointerEvents="auto">
             <SidebarHeaderRow
               icon={MessagesSquare}
-              label="Sessions"
+              label="会话"
               onPress={handleViewMore}
               isActive={isSessionsActive}
               testID="sidebar-sessions"
@@ -687,7 +687,7 @@ function MobileSidebar({
               nativeID="sidebar-close"
               accessible
               accessibilityRole="button"
-              accessibilityLabel="Close sidebar"
+              accessibilityLabel="关闭侧边栏"
               hitSlop={8}
             >
               {({ hovered, pressed }) => (
@@ -835,7 +835,7 @@ function DesktopSidebar({
           {padding.top > 0 ? <View style={paddingTopSpacerStyle} /> : null}
           <SidebarHeaderRow
             icon={MessagesSquare}
-            label="Sessions"
+            label="会话"
             onPress={handleViewMore}
             isActive={isSessionsActive}
             testID="sidebar-sessions"

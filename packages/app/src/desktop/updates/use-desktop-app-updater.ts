@@ -51,37 +51,37 @@ function formatStatusText(input: {
   const { status, availableUpdate, installMessage } = input;
 
   if (status === "checking") {
-    return "Checking for app updates...";
+    return "正在检查应用更新...";
   }
 
   if (status === "installing") {
-    return "Installing app update...";
+    return "正在安装应用更新...";
   }
 
   if (status === "up-to-date") {
-    return "App is up to date.";
+    return "应用已是最新版本。";
   }
 
   if (status === "pending") {
-    return "We'll let you know when the update is ready.";
+    return "更新准备就绪后我们会通知你。";
   }
 
   if (status === "available") {
     if (availableUpdate?.latestVersion) {
-      return `Update ready: ${formatVersionWithPrefix(availableUpdate.latestVersion)}`;
+      return `更新已就绪：${formatVersionWithPrefix(availableUpdate.latestVersion)}`;
     }
-    return "An app update is ready to install.";
+    return "应用更新已可安装。";
   }
 
   if (status === "installed") {
-    return installMessage ?? "App update installed. Restart required.";
+    return installMessage ?? "应用更新已安装，需要重启。";
   }
 
   if (status === "error") {
-    return "Failed to update app.";
+    return "更新应用失败。";
   }
 
-  return "Update status has not been checked yet.";
+  return "尚未检查更新状态。";
 }
 
 export function useDesktopAppUpdater(): UseDesktopAppUpdaterReturn {
@@ -103,7 +103,7 @@ export function useDesktopAppUpdater(): UseDesktopAppUpdaterReturn {
     onError: (error) => {
       reportError({
         error,
-        message: "Unable to install the desktop app update.",
+        message: "无法安装桌面应用更新。",
         logLabel: "[DesktopUpdater] Failed to install app update",
       });
     },

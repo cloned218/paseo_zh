@@ -63,7 +63,7 @@ export function AttachmentLightbox({ metadata, onClose }: AttachmentLightboxProp
         <Pressable
           testID="attachment-lightbox-backdrop"
           accessibilityRole="button"
-          accessibilityLabel="Dismiss image"
+          accessibilityLabel="收起图片"
           onPress={onClose}
           style={styles.backdrop}
         />
@@ -86,7 +86,7 @@ export function AttachmentLightbox({ metadata, onClose }: AttachmentLightboxProp
           <Pressable
             testID="attachment-lightbox-close"
             accessibilityRole="button"
-            accessibilityLabel="Close image"
+            accessibilityLabel="关闭图片"
             hitSlop={8}
             onPress={onClose}
             style={closeButtonStyle}

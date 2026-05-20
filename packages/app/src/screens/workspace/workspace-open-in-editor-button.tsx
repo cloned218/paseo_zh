@@ -129,7 +129,7 @@ export function WorkspaceOpenInEditorButton({
         requiresLocalDaemon: true,
         onOpen: async () => {
           if (!client) {
-            throw new Error("Host is not connected");
+            throw new Error("Host 未连接");
           }
           const payload = await client.openInEditor(cwd, editor.id);
           if (payload.error) {
@@ -181,7 +181,7 @@ export function WorkspaceOpenInEditorButton({
   const openMutation = useMutation({
     mutationFn: (target: OpenTarget) => Promise.resolve(target.onOpen()),
     onError: (error: unknown) => {
-      toast.error(error instanceof Error ? error.message : "Failed to open workspace");
+      toast.error(error instanceof Error ? error.message : "打开工作区失败");
     },
   });
 
@@ -229,7 +229,7 @@ export function WorkspaceOpenInEditorButton({
           onPress={handlePrimaryPress}
           disabled={openMutation.isPending}
           accessibilityRole="button"
-          accessibilityLabel={`Open workspace in ${primaryOption.label}`}
+          accessibilityLabel={`在 ${primaryOption.label} 中打开工作区`}
         >
           {openMutation.isPending ? (
             <ThemedActivityIndicator
@@ -240,7 +240,7 @@ export function WorkspaceOpenInEditorButton({
           ) : (
             <View style={styles.splitButtonContent}>
               {primaryOption.icon}
-              {!hideLabels && <Text style={styles.splitButtonText}>Open</Text>}
+              {!hideLabels && <Text style={styles.splitButtonText}>打开</Text>}
             </View>
           )}
         </Pressable>
@@ -250,7 +250,7 @@ export function WorkspaceOpenInEditorButton({
               testID="workspace-open-in-editor-caret"
               style={caretTriggerStyle}
               accessibilityRole="button"
-              accessibilityLabel="Choose editor"
+              accessibilityLabel="选择编辑器"
             >
               <ThemedChevronDown size={16} uniProps={mutedColorMapping} />
             </DropdownMenuTrigger>

@@ -100,11 +100,11 @@ export interface ChordState {
 // --- Constants ---
 
 const SHORTCUT_HELP_SECTION_TITLES: Record<ShortcutSectionId, string> = {
-  navigation: "Navigation",
-  "tabs-panes": "Tabs & Panes",
-  projects: "Projects",
-  panels: "Panels",
-  "agent-input": "Agent Input",
+  navigation: "导航",
+  "tabs-panes": "标签页与窗格",
+  projects: "项目",
+  panels: "面板",
+  "agent-input": "Agent 输入",
 };
 
 // --- Binding definitions ---
@@ -119,7 +119,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "new-agent",
       section: "projects",
-      label: "Open project",
+      label: "打开项目",
       keys: ["mod", "shift", "O"],
     },
   },
@@ -131,7 +131,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "new-agent",
       section: "projects",
-      label: "Open project",
+      label: "打开项目",
       keys: ["mod", "shift", "O"],
     },
   },
@@ -145,7 +145,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "new-worktree",
       section: "projects",
-      label: "New worktree",
+      label: "新建工作树",
       keys: ["mod", "O"],
     },
   },
@@ -157,7 +157,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "new-worktree",
       section: "projects",
-      label: "New worktree",
+      label: "新建工作树",
       keys: ["mod", "O"],
     },
   },
@@ -171,7 +171,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "archive-worktree",
       section: "projects",
-      label: "Archive worktree",
+      label: "归档工作树",
       keys: ["mod", "shift", "Backspace"],
     },
   },
@@ -183,7 +183,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "archive-worktree",
       section: "projects",
-      label: "Archive worktree",
+      label: "归档工作树",
       keys: ["mod", "shift", "Backspace"],
     },
   },
@@ -197,7 +197,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-new",
       section: "tabs-panes",
-      label: "New tab",
+      label: "新建标签页",
       keys: ["mod", "T"],
     },
   },
@@ -209,7 +209,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-new",
       section: "tabs-panes",
-      label: "New tab",
+      label: "新建标签页",
       keys: ["mod", "T"],
     },
   },
@@ -221,7 +221,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-close-current",
       section: "tabs-panes",
-      label: "Close current tab",
+      label: "关闭当前标签页",
       keys: ["meta", "W"],
     },
   },
@@ -233,7 +233,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-close-current",
       section: "tabs-panes",
-      label: "Close current tab",
+      label: "关闭当前标签页",
       keys: ["ctrl", "W"],
     },
   },
@@ -245,7 +245,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-close-current",
       section: "tabs-panes",
-      label: "Close current tab",
+      label: "关闭当前标签页",
       keys: ["alt", "shift", "W"],
     },
   },
@@ -260,7 +260,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-jump-index",
       section: "navigation",
-      label: "Jump to workspace",
+      label: "跳转到工作区",
       keys: ["mod", "1-9"],
     },
   },
@@ -273,7 +273,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-jump-index",
       section: "navigation",
-      label: "Jump to workspace",
+      label: "跳转到工作区",
       keys: ["mod", "1-9"],
     },
   },
@@ -286,7 +286,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-jump-index",
       section: "navigation",
-      label: "Jump to workspace",
+      label: "跳转到工作区",
       keys: ["alt", "1-9"],
     },
   },
@@ -301,7 +301,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-jump-index",
       section: "navigation",
-      label: "Jump to tab",
+      label: "跳转到标签页",
       keys: ["mod", "alt", "1-9"],
     },
   },
@@ -314,7 +314,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-jump-index",
       section: "navigation",
-      label: "Jump to tab",
+      label: "跳转到标签页",
       keys: ["alt", "1-9"],
     },
   },
@@ -327,7 +327,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-jump-index",
       section: "navigation",
-      label: "Jump to tab",
+      label: "跳转到标签页",
       keys: ["alt", "shift", "1-9"],
     },
   },
@@ -342,7 +342,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-prev",
       section: "navigation",
-      label: "Previous workspace",
+      label: "上一个工作区",
       keys: ["mod", "["],
     },
   },
@@ -355,7 +355,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-prev",
       section: "navigation",
-      label: "Previous workspace",
+      label: "上一个工作区",
       keys: ["mod", "["],
     },
   },
@@ -368,7 +368,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-next",
       section: "navigation",
-      label: "Next workspace",
+      label: "下一个工作区",
       keys: ["mod", "]"],
     },
   },
@@ -381,7 +381,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-next",
       section: "navigation",
-      label: "Next workspace",
+      label: "下一个工作区",
       keys: ["mod", "]"],
     },
   },
@@ -394,7 +394,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-prev",
       section: "navigation",
-      label: "Previous workspace",
+      label: "上一个工作区",
       keys: ["alt", "["],
     },
   },
@@ -407,7 +407,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-next",
       section: "navigation",
-      label: "Next workspace",
+      label: "下一个工作区",
       keys: ["alt", "]"],
     },
   },
@@ -422,7 +422,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-prev",
       section: "navigation",
-      label: "Previous tab",
+      label: "上一个标签页",
       keys: ["alt", "shift", "["],
     },
   },
@@ -435,7 +435,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-tab-next",
       section: "navigation",
-      label: "Next tab",
+      label: "下一个标签页",
       keys: ["alt", "shift", "]"],
     },
   },
@@ -449,7 +449,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-pane-split-right",
       section: "tabs-panes",
-      label: "Split pane right",
+      label: "向右拆分窗格",
       keys: ["mod", "\\"],
     },
   },
@@ -461,7 +461,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-pane-split-down",
       section: "tabs-panes",
-      label: "Split pane down",
+      label: "向下拆分窗格",
       keys: ["mod", "shift", "\\"],
     },
   },
@@ -473,7 +473,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-pane-focus-left",
       section: "tabs-panes",
-      label: "Focus pane left",
+      label: "聚焦左侧窗格",
       keys: ["mod", "shift", "Left"],
     },
   },
@@ -485,7 +485,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-pane-focus-right",
       section: "tabs-panes",
-      label: "Focus pane right",
+      label: "聚焦右侧窗格",
       keys: ["mod", "shift", "Right"],
     },
   },
@@ -497,7 +497,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-pane-focus-up",
       section: "tabs-panes",
-      label: "Focus pane up",
+      label: "聚焦上方窗格",
       keys: ["mod", "shift", "Up"],
     },
   },
@@ -509,7 +509,7 @@ const SHORTCUT_BINDINGS: readonly ShortcutBinding[] = [
     help: {
       id: "workspace-pane-focus-down",
       section: "tabs-panes",
-      label: "Focus pane down",
+      label: "聚焦下方窗格",
       keys: ["mod", "shift", "Down"],
     },
   },

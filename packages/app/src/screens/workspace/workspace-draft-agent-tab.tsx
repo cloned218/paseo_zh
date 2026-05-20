@@ -137,12 +137,12 @@ async function submitDraftCreateRequest(input: {
   invariant(workspaceDirectory, "Workspace directory is required");
   invariant(workspaceExecutionAuthority, "Workspace authority is required");
   if (!client) {
-    throw new Error("Host is not connected");
+    throw new Error("Host 未连接");
   }
 
   const provider = autoSubmitConfig?.provider ?? composerState.selectedProvider;
   if (!provider) {
-    throw new Error("Select a model");
+    throw new Error("选择模型");
   }
   const modeIdOverride = resolveDraftModeIdOverride({
     autoSubmitConfig,
@@ -204,7 +204,7 @@ function buildDraftAgentSnapshot(input: {
   });
   const provider = autoSubmitConfig?.provider ?? composerState.selectedProvider;
   if (!provider) {
-    throw new Error("Select a model");
+    throw new Error("选择模型");
   }
   return {
     serverId,
@@ -221,7 +221,7 @@ function buildDraftAgentSnapshot(input: {
     pendingPermissions: [],
     persistence: null,
     runtimeInfo: { provider, sessionId: null, model, modeId },
-    title: "Agent",
+    title: "智能体",
     cwd: workspaceDirectory,
     model,
     features: composerState.statusControls.features,

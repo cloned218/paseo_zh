@@ -9,9 +9,9 @@ export function getCompactionMarkerLabel({
   trigger,
   preTokens,
 }: CompactionMarkerLabelInput): string {
-  if (status === "loading") return "Compacting...";
-  if (trigger === "auto") return "Context automatically compacted";
-  if (trigger === "manual") return "Context manually compacted";
-  if (preTokens) return `Context compacted (${Math.round(preTokens / 1000)}K tokens)`;
-  return "Context compacted";
+  if (status === "loading") return "压缩中...";
+  if (trigger === "auto") return "上下文已自动压缩";
+  if (trigger === "manual") return "上下文已手动压缩";
+  if (preTokens) return `上下文已压缩（${Math.round(preTokens / 1000)}K 词元）`;
+  return "上下文已压缩";
 }

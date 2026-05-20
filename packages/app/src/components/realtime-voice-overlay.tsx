@@ -53,7 +53,7 @@ export function RealtimeVoiceOverlay({
           onPress={onToggleMute}
           disabled={isSwitching}
           accessibilityRole="button"
-          accessibilityLabel={isMuted ? "Unmute realtime voice" : "Mute realtime voice"}
+          accessibilityLabel={isMuted ? "取消静音实时语音" : "静音实时语音"}
           style={muteButtonStyle}
         >
           {isMuted ? (
@@ -67,7 +67,7 @@ export function RealtimeVoiceOverlay({
           onPress={onStop}
           disabled={isSwitching}
           accessibilityRole="button"
-          accessibilityLabel="Stop realtime voice and interrupt turn"
+          accessibilityLabel="停止实时语音并中断当前轮次"
           style={stopButtonStyle}
         >
           {isSwitching ? (

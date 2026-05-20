@@ -5,7 +5,7 @@ import { QrCode, Link2, ClipboardPaste } from "lucide-react-native";
 import { AdaptiveModalSheet, type SheetHeader } from "./adaptive-modal-sheet";
 import { isNative } from "@/constants/platform";
 
-const ADD_CONNECTION_HEADER: SheetHeader = { title: "Add connection" };
+const ADD_CONNECTION_HEADER: SheetHeader = { title: "添加连接" };
 
 const styles = StyleSheet.create((theme) => ({
   option: {
@@ -73,13 +73,13 @@ export function AddHostMethodModal({
         style={styles.option}
         onPress={handleDirect}
         accessibilityRole="button"
-        accessibilityLabel="Direct connection"
+        accessibilityLabel="直接连接"
         testID="add-host-method-direct"
       >
         <Link2 size={18} color={theme.colors.foreground} />
         <View style={styles.optionBody}>
-          <Text style={styles.optionText}>Direct connection</Text>
-          <Text style={styles.optionSubtext}>Local network or VPN.</Text>
+          <Text style={styles.optionText}>直接连接</Text>
+          <Text style={styles.optionSubtext}>局域网或 VPN。</Text>
         </View>
       </Pressable>
 
@@ -88,12 +88,12 @@ export function AddHostMethodModal({
           style={styles.option}
           onPress={handleScan}
           accessibilityRole="button"
-          accessibilityLabel="Scan QR code"
+          accessibilityLabel="扫描二维码"
         >
           <QrCode size={18} color={theme.colors.foreground} />
           <View style={styles.optionBody}>
-            <Text style={styles.optionText}>Scan QR code</Text>
-            <Text style={styles.optionSubtext}>Encrypted relay connection.</Text>
+            <Text style={styles.optionText}>扫描二维码</Text>
+            <Text style={styles.optionSubtext}>加密中继连接。</Text>
           </View>
         </Pressable>
       ) : null}
@@ -102,13 +102,13 @@ export function AddHostMethodModal({
         style={styles.option}
         onPress={handlePaste}
         accessibilityRole="button"
-        accessibilityLabel="Paste pairing link"
+        accessibilityLabel="粘贴配对链接"
         testID="add-host-method-pair-link"
       >
         <ClipboardPaste size={18} color={theme.colors.foreground} />
         <View style={styles.optionBody}>
-          <Text style={styles.optionText}>Paste pairing link</Text>
-          <Text style={styles.optionSubtext}>Encrypted relay connection.</Text>
+          <Text style={styles.optionText}>粘贴配对链接</Text>
+          <Text style={styles.optionSubtext}>加密中继连接。</Text>
         </View>
       </Pressable>
     </AdaptiveModalSheet>

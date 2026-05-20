@@ -69,7 +69,7 @@ function getWebviewLoadErrorMessage(event: Event): string | null {
   const description =
     typeof details.errorDescription === "string" && details.errorDescription.trim()
       ? details.errorDescription.trim()
-      : "Failed to load page";
+      : "页面加载失败";
   const url =
     typeof details.validatedURL === "string" && details.validatedURL.trim()
       ? details.validatedURL.trim()
@@ -91,7 +91,7 @@ function getLoadUrlRejectionMessage(error: unknown): string | null {
     }
     return error.trim();
   }
-  return "Failed to load page";
+  return "页面加载失败";
 }
 
 function getUnsafeNavigationMessage(url: string): string | null {
@@ -102,7 +102,7 @@ function getUnsafeNavigationMessage(url: string): string | null {
     }
     return `Blocked unsupported browser URL: ${parsed.protocol}`;
   } catch {
-    return "Invalid browser URL";
+    return "无效的浏览器 URL";
   }
 }
 
@@ -929,7 +929,7 @@ export function BrowserPane({
   if (!isElectronRuntime()) {
     return (
       <View style={styles.unavailableState}>
-        <Text style={titleStyle}>Browser is desktop-only</Text>
+        <Text style={titleStyle}>浏览器仅支持桌面端</Text>
         <Text style={subtitleStyle}>
           Open this workspace in Electron to use the built-in browser.
         </Text>
@@ -943,7 +943,7 @@ export function BrowserPane({
         <View style={styles.chromeLeft}>
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel="Back"
+            accessibilityLabel="后退"
             disabled={!browser?.canGoBack}
             onPress={handleBack}
             style={backIconButtonStyle}
@@ -952,7 +952,7 @@ export function BrowserPane({
           </Pressable>
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel="Forward"
+            accessibilityLabel="前进"
             disabled={!browser?.canGoForward}
             onPress={handleForward}
             style={forwardIconButtonStyle}
@@ -961,7 +961,7 @@ export function BrowserPane({
           </Pressable>
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel={browser?.isLoading ? "Stop loading" : "Refresh"}
+            accessibilityLabel={browser?.isLoading ? "停止加载" : "刷新"}
             onPress={handleRefresh}
             style={baseIconButtonStyle}
           >
@@ -970,13 +970,13 @@ export function BrowserPane({
         </View>
         <View style={styles.urlBarWrap}>
           <TextInput
-            accessibilityLabel="Browser URL"
+            accessibilityLabel="浏览器 URL"
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={setDraftUrl}
             onFocus={handleUrlBarFocus}
             onSubmitEditing={handleNavigateDraftUrl}
-            placeholder="Enter URL"
+            placeholder="输入 URL"
             placeholderTextColor={theme.colors.foregroundMuted}
             ref={urlInputRef}
             style={urlInputStyle}
@@ -988,7 +988,7 @@ export function BrowserPane({
             <>
               <Pressable
                 accessibilityRole="button"
-                accessibilityLabel="Open browser dev tools"
+                accessibilityLabel="打开浏览器开发者工具"
                 onPress={handleOpenDevTools}
                 style={baseIconButtonStyle}
               >
@@ -996,7 +996,7 @@ export function BrowserPane({
               </Pressable>
               <Pressable
                 accessibilityRole="button"
-                accessibilityLabel={selectorActive ? "Cancel element selector" : "Select element"}
+                accessibilityLabel={selectorActive ? "取消元素选择器" : "选择元素"}
                 onPress={handleToggleElementSelector}
                 style={selectorIconButtonStyle}
               >

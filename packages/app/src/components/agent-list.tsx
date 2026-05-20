@@ -114,10 +114,10 @@ function deriveDateSectionLabel(lastActivityAt: Date): string {
   const diffTime = todayStart.getTime() - activityStart.getTime();
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   if (diffDays <= 7) {
-    return "This week";
+    return "本周";
   }
   if (diffDays <= 30) {
-    return "This month";
+    return "本月";
   }
   return "Older";
 }
@@ -231,14 +231,14 @@ function SessionRow({
             <ProviderIcon size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />
           </View>
           <Text style={sessionTitleStyle} numberOfLines={1}>
-            {agent.title || "New session"}
+            {agent.title || "新建会话"}
           </Text>
-          {agent.archivedAt ? <SessionBadge label="Archived" icon={archivedIcon} /> : null}
+          {agent.archivedAt ? <SessionBadge label="已归档" icon={archivedIcon} /> : null}
           {(agent.pendingPermissionCount ?? 0) > 0 ? (
-            <SessionBadge label={`${agent.pendingPermissionCount} pending`} tone="warning" />
+            <SessionBadge label={`${agent.pendingPermissionCount} 项待处理`} tone="warning" />
           ) : null}
           {!isMobile && showAttentionIndicator && agent.requiresAttention ? (
-            <SessionBadge label="Attention" tone="danger" />
+            <SessionBadge label="需注意" tone="danger" />
           ) : null}
         </View>
         {isMobile && (
@@ -354,7 +354,7 @@ export function AgentList({
   }, [actionAgent, actionClient, archiveAgent]);
 
   const flatItems = useMemo((): FlatListItem[] => {
-    const order = ["Today", "Yesterday", "This week", "This month", "Older"] as const;
+    const order = ["Today", "Yesterday", "本周", "本月", "Older"] as const;
     const buckets = new Map<string, AggregatedAgent[]>();
     for (const agent of agents) {
       const label = deriveDateSectionLabel(agent.lastActivityAt);
@@ -454,8 +454,8 @@ export function AgentList({
             <View style={styles.sheetHandle} />
             <Text style={styles.sheetTitle}>
               {isActionDaemonUnavailable
-                ? "Host offline"
-                : "This agent is still running. Archiving it will stop the agent."}
+                ? "Host 离线"
+                : "该 Agent 仍在运行。归档后会停止该 Agent。"}
             </Text>
             <View style={styles.sheetButtonRow}>
               <Pressable
@@ -463,7 +463,7 @@ export function AgentList({
                 onPress={handleCloseActionSheet}
                 testID="agent-action-cancel"
               >
-                <Text style={styles.sheetCancelText}>Cancel</Text>
+                <Text style={styles.sheetCancelText}>取消</Text>
               </Pressable>
               <Pressable
                 disabled={isActionDaemonUnavailable}
@@ -471,7 +471,7 @@ export function AgentList({
                 onPress={handleArchiveAgent}
                 testID="agent-action-archive"
               >
-                <Text style={sheetArchiveTextStyle}>Archive</Text>
+                <Text style={sheetArchiveTextStyle}>归档</Text>
               </Pressable>
             </View>
           </View>

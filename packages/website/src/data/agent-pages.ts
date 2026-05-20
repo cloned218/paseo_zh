@@ -15,368 +15,337 @@ export const AGENT_PAGES = [
   {
     slug: "claude-code",
     name: "Claude Code",
-    title: "Open source app for Claude Code",
-    subtitle:
-      "Run Claude Code on your machine, drive it from your phone or desktop. Launch agents, watch them work, review and merge from anywhere.",
-    metaTitle: "Claude Code mobile and desktop app, open source",
+    title: "在手机上用 Claude Code 持续交付",
+    subtitle: "随时启动 Agent、查看进度、完成合并。你的 Claude Code 配置、你的机器、你的口袋。",
+    metaTitle: "Claude Code 手机应用 – 用手机持续交付 | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Claude Code. Run agents on your machine, monitor progress, review diffs, and merge from anywhere. Self-hosted, your code stays local.",
+      "通过手机运行 Claude Code。启动 Agent、查看进度、审查 diff 并完成合并——一切都能在口袋里完成。自托管，代码保留在你的机器上。",
   },
   {
     slug: "codex",
     name: "Codex",
-    title: "Open source app for Codex",
-    subtitle:
-      "Run OpenAI's Codex on your machine, drive it from your phone or desktop. Same setup, same machine, no laptop required.",
-    metaTitle: "Codex mobile and desktop app, open source",
+    title: "随时随地运行 Codex",
+    subtitle: "直接用手机在你的机器上启动 Codex Agent。通勤路上查看、沙发上评审、公园里合并。",
+    metaTitle: "Codex 手机应用 – 随时随地运行 Codex | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for OpenAI Codex. Launch agents on your machine, monitor progress, and ship code from anywhere. Self-hosted.",
+      "通过手机运行 OpenAI Codex。启动 Agent、监控进度、无需坐在工位前也能持续交付。自托管，代码永不离开你的机器。",
   },
   {
     slug: "opencode",
     name: "OpenCode",
-    title: "Open source app for OpenCode",
-    subtitle:
-      "Run OpenCode on your machine, drive it from your phone or desktop. Open source on both ends, your code stays local.",
-    metaTitle: "OpenCode mobile and desktop app, open source",
+    title: "用手机运行 OpenCode",
+    subtitle: "随时启动 Agent、查看构建状态、持续交付代码。配置不变、机器不变，只是不必坐在桌前。",
+    metaTitle: "OpenCode 手机应用 – 随时随地写代码 | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for OpenCode. Launch agents on your machine, watch them work, ship code from anywhere. Self-hosted.",
+      "通过手机运行 OpenCode。启动 Agent、看它们工作，并在任何地方持续交付代码。自托管、开源、代码保留在本地。",
   },
   {
     slug: "copilot",
     name: "GitHub Copilot",
-    title: "Open source app for GitHub Copilot",
-    subtitle:
-      "Drive GitHub Copilot from your phone or desktop. Same account, same machine, ship without sitting down at your desk.",
-    metaTitle: "GitHub Copilot mobile and desktop app, open source",
+    title: "移动端 GitHub Copilot",
+    subtitle: "用手机驱动 Copilot。发起改动、看它落地，不用坐回工位也能继续交付。",
+    metaTitle: "GitHub Copilot 手机应用 – 随时驱动 Copilot | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for GitHub Copilot. Launch sessions on your machine, monitor progress, merge from anywhere.",
+      "通过手机控制 GitHub Copilot。启动会话、监控进度、随时完成合并。你的机器、你的账号、你的口袋。",
   },
   {
     slug: "pi",
-    name: "Pi Agent",
-    title: "Open source app for the Pi coding agent",
-    subtitle:
-      "Run the Pi coding agent on your machine, drive it from your phone or desktop. Self-hosted and open source.",
-    metaTitle: "Pi agent mobile and desktop app, open source",
+    name: "Pi",
+    title: "用手机运行 Pi",
+    subtitle: "小巧 Agent，完整掌控。随时启动 Pi，在关键时刻回来查看。",
+    metaTitle: "Pi 手机应用 – 随时随地运行 Pi | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for the Pi coding agent. Launch sessions on your machine, monitor progress, merge from anywhere. Self-hosted.",
+      "通过手机运行 Pi 编码 Agent。在你的机器上启动会话、查看进度、从口袋里完成合并。自托管且开源。",
   },
   {
     slug: "cursor",
     name: "Cursor",
-    title: "Open source app for Cursor",
-    subtitle:
-      "Send tasks to Cursor on your machine, drive it from your phone or desktop. Review the diff anywhere.",
-    metaTitle: "Cursor mobile and desktop app, open source",
+    title: "把 Cursor 装进口袋",
+    subtitle: "把任务发给你机器上的 Cursor，看它运行，在通勤路上审查 diff。",
+    metaTitle: "Cursor 手机应用 – 随时驱动 Cursor | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Cursor. Launch tasks on your machine, monitor output, review diffs, and merge from anywhere. Self-hosted.",
+      "通过手机运行 Cursor。发起任务、监控输出、审查 diff 并完成合并——一切都能在口袋里完成。自托管，代码保留在本地。",
   },
   {
     slug: "gemini",
     name: "Gemini CLI",
-    title: "Open source app for Gemini CLI",
-    subtitle:
-      "Run Google's Gemini CLI on your machine, drive it from your phone or desktop. Real coding work, no laptop required.",
-    metaTitle: "Gemini CLI mobile and desktop app, open source",
+    title: "随时随地运行 Gemini",
+    subtitle: "直接用手机启动 Google Gemini CLI。真正的编码工作，不必拿出笔记本。",
+    metaTitle: "Gemini CLI 手机应用 – 随时运行 Gemini | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Google's Gemini CLI. Launch agents on your machine, monitor progress, and ship from anywhere. Self-hosted.",
+      "通过手机驱动 Google Gemini CLI。启动 Agent、监控进度，并在任何地方持续交付。自托管，代码永不离开你的机器。",
   },
   {
     slug: "hermes",
     name: "Hermes Agent",
-    title: "Open source app for the Hermes agent",
-    subtitle:
-      "Run Nous Research's Hermes Agent on your machine, drive it from your phone or desktop.",
-    metaTitle: "Hermes agent mobile and desktop app, open source",
+    title: "手机上的 Hermes Agent",
+    subtitle: "随时驱动 Nous Research 的 Hermes Agent。你的机器负责干活，你的口袋负责指挥。",
+    metaTitle: "Hermes Agent 手机应用 – 随时驱动 Hermes | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Nous Research's Hermes Agent. Launch sessions on your machine, monitor progress, ship code from anywhere.",
+      "通过手机运行 Nous Research 的 Hermes Agent。启动会话、监控进度，并从口袋里持续交付代码。",
   },
   {
     slug: "qwen-code",
     name: "Qwen Code",
-    title: "Open source app for Qwen Code",
-    subtitle: "Run Alibaba's Qwen Code on your machine, drive it from your phone or desktop.",
-    metaTitle: "Qwen Code mobile and desktop app, open source",
+    title: "随时随地运行 Qwen Code",
+    subtitle: "当你不在工位前时，也能把阿里巴巴的 Qwen Agent 派到你的机器上工作。",
+    metaTitle: "Qwen Code 手机应用 – 随时运行 Qwen | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Alibaba's Qwen Code. Launch agents on your machine, monitor progress, and merge from anywhere.",
+      "通过手机驱动阿里巴巴的 Qwen Code。在你的机器上启动 Agent、监控进度，并随时完成合并。",
   },
   {
     slug: "kimi",
     name: "Kimi Code CLI",
-    title: "Open source app for Kimi Code CLI",
+    title: "用手机运行 Kimi Code",
     subtitle:
-      "Run Moonshot AI's Kimi Code CLI on your machine, drive it from your phone or desktop.",
-    metaTitle: "Kimi Code CLI mobile and desktop app, open source",
+      "Moonshot AI 的 Kimi Code CLI 跑在你的机器上，你可以在任何地方控制它。配置不变，无需笔记本。",
+    metaTitle: "Kimi Code 手机应用 – 随时运行 Kimi Code | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Moonshot AI's Kimi Code CLI. Launch sessions on your machine, monitor progress, ship from anywhere.",
+      "通过手机运行 Moonshot AI 的 Kimi Code CLI。启动会话、监控进度、从口袋里持续交付。自托管且私密。",
   },
   {
     slug: "amp",
     name: "Amp",
-    title: "Open source app for the Amp coding agent",
-    subtitle:
-      "Run Sourcegraph's Amp on your machine, drive it from your phone or desktop. Frontier coding, no laptop required.",
-    metaTitle: "Amp agent mobile and desktop app, open source",
+    title: "移动端 Amp",
+    subtitle: "用手机驱动前沿编码 Agent。发起工作、监控进度、随时完成合并。",
+    metaTitle: "Amp 手机应用 – 随时运行 Amp | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Amp, Sourcegraph's frontier coding agent. Launch tasks on your machine, monitor progress, ship from anywhere.",
+      "通过手机运行 Amp 这类前沿编码 Agent。在你的机器上发起任务，看它们从口袋里一路交付。",
   },
   {
     slug: "auggie",
     name: "Auggie CLI",
-    title: "Open source app for Auggie CLI",
-    subtitle: "Run Augment Code's Auggie CLI on your machine, drive it from your phone or desktop.",
-    metaTitle: "Auggie CLI mobile and desktop app, open source",
+    title: "把 Auggie 装进口袋",
+    subtitle: "通过手机运行 Augment Code 的 Agent。行业领先的上下文能力，随时可用。",
+    metaTitle: "Auggie 手机应用 – 随时驱动 Augment Code | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Augment Code's Auggie CLI. Launch sessions on your machine, monitor progress, ship from anywhere.",
+      "通过手机运行 Augment Code 的 Auggie CLI。在你的机器上启动会话、监控进度，并从口袋里持续交付代码。",
   },
   {
     slug: "cline",
     name: "Cline",
-    title: "Open source app for the Cline coding agent",
-    subtitle:
-      "Run the Cline coding agent on your machine, drive it from your phone or desktop. Watch it work, jump in when needed.",
-    metaTitle: "Cline agent mobile and desktop app, open source",
+    title: "随时随地运行 Cline",
+    subtitle: "自主编码 Agent 跑在你的机器上，由你的手机控制。看它工作，需要时再介入。",
+    metaTitle: "Cline 手机应用 – 随时运行 Cline | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Cline, the autonomous coding agent. Launch tasks, monitor output, review diffs from anywhere.",
+      "通过手机驱动自主编码 Agent Cline。启动任务、监控输出，并在任何地方审查 diff。",
   },
   {
     slug: "codebuddy",
     name: "Codebuddy Code",
-    title: "Open source app for Codebuddy Code",
-    subtitle: "Run Tencent Cloud's Codebuddy on your machine, drive it from your phone or desktop.",
-    metaTitle: "Codebuddy Code mobile and desktop app, open source",
+    title: "用手机运行 Codebuddy",
+    subtitle: "随时运行腾讯云的智能编码工具。你的开发机，你的口袋。",
+    metaTitle: "Codebuddy Code 手机应用 – 随时运行 Codebuddy | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Tencent Cloud's Codebuddy Code. Launch sessions on your machine, monitor progress, ship from anywhere.",
+      "通过手机驱动腾讯云的 Codebuddy Code。在你的机器上启动会话、监控进度，并随时持续交付。",
   },
   {
     slug: "cortex-code",
     name: "Cortex Code",
-    title: "Open source app for Cortex Code",
-    subtitle:
-      "Run Snowflake's Cortex Code on your machine, drive it from your phone or desktop. No laptop required.",
-    metaTitle: "Cortex Code mobile and desktop app, open source",
+    title: "移动端 Cortex Code",
+    subtitle: "Snowflake 的编码 Agent 跑在你的机器上，由你的手机驱动。无需笔记本。",
+    metaTitle: "Cortex Code 手机应用 – 随时运行 Cortex Code | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Snowflake's Cortex Code. Launch agents on your machine, monitor progress, ship from anywhere.",
+      "通过手机运行 Snowflake 的 Cortex Code。启动 Agent、监控进度，并在任何地方持续交付。",
   },
   {
     slug: "corust",
     name: "Corust Agent",
-    title: "Open source app for the Corust agent",
-    subtitle:
-      "Build Rust with the Corust agent on your machine, drive it from your phone or desktop.",
-    metaTitle: "Corust agent mobile and desktop app, open source",
+    title: "把 Corust 装进口袋",
+    subtitle: "让一位经验丰富的 Rust 搭档在你的机器上工作，由你的手机来驱动。",
+    metaTitle: "Corust 手机应用 – 随时驱动 Corust Agent | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for the Corust Rust-focused coding agent. Launch tasks on your machine, ship from anywhere.",
+      "通过手机运行面向 Rust 的 Corust 编码 Agent。在你的机器上发起任务，从口袋里持续交付。",
   },
   {
     slug: "crow",
     name: "crow-cli",
-    title: "Open source app for crow-cli",
-    subtitle:
-      "Run crow-cli, the minimal ACP-native coding agent, on your machine. Drive it from your phone or desktop.",
-    metaTitle: "crow-cli mobile and desktop app, open source",
+    title: "用手机运行 crow-cli",
+    subtitle: "极简原生编码 Agent 跑在你的机器上，随时可控。轻量、ACP 原生、适合移动端。",
+    metaTitle: "crow-cli 手机应用 – 随时运行 crow-cli | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for crow-cli, the minimal ACP-native coding agent. Launch tasks on your machine, monitor from anywhere.",
+      "通过手机驱动极简 ACP 原生编码 Agent crow-cli。在你的机器上发起任务，并在任何地方监控。",
   },
   {
     slug: "deepagents",
     name: "DeepAgents",
-    title: "Open source app for DeepAgents",
-    subtitle:
-      "Run LangChain's DeepAgents on your machine, drive it from your phone or desktop. Batteries included.",
-    metaTitle: "DeepAgents mobile and desktop app, open source",
+    title: "用手机运行 DeepAgents",
+    subtitle: "基于 LangChain 的编码 Agent 跑在你的机器上，可在任何地方驱动。开箱即用。",
+    metaTitle: "DeepAgents 手机应用 – 随时运行 DeepAgents | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for the LangChain DeepAgents coding agent. Launch sessions on your machine, monitor progress, ship from anywhere.",
+      "通过手机运行 LangChain DeepAgents 编码 Agent。启动会话、监控进度，并在任何地方持续交付代码。",
   },
   {
     slug: "deepseek-tui",
     name: "DeepSeek TUI",
-    title: "Open source app for DeepSeek TUI",
-    subtitle:
-      "Run DeepSeek V4's terminal coding agent on your machine, drive it from your phone or desktop.",
-    metaTitle: "DeepSeek TUI mobile and desktop app, open source",
+    title: "用手机运行 DeepSeek TUI",
+    subtitle: "在你的机器上运行 DeepSeek V4 终端编码 Agent，然后在任何地方驱动它。",
+    metaTitle: "DeepSeek TUI 手机应用 – 随时运行 DeepSeek TUI | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for DeepSeek TUI. Launch coding sessions on your machine, monitor progress, ship from anywhere.",
+      "通过手机驱动 DeepSeek TUI。在你的机器上启动编码会话、监控进度，并随时持续交付。",
   },
   {
     slug: "dimcode",
     name: "DimCode",
-    title: "Open source app for DimCode",
-    subtitle:
-      "Leading models, one command. Run DimCode on your machine, drive it from your phone or desktop.",
-    metaTitle: "DimCode mobile and desktop app, open source",
+    title: "随时随地运行 DimCode",
+    subtitle: "领先模型，一条命令，由手机驱动。你的机器负责干活。",
+    metaTitle: "DimCode 手机应用 – 随时运行 DimCode | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for DimCode, the multi-model coding agent. Launch tasks on your machine, ship from anywhere.",
+      "通过手机驱动多模型编码 Agent DimCode。在你的机器上发起任务，并从口袋里持续交付。",
   },
   {
     slug: "dirac",
     name: "Dirac",
-    title: "Open source app for the Dirac coding agent",
-    subtitle:
-      "Run Dirac's hash-anchored parallel edits on your machine, drive it from your phone or desktop.",
-    metaTitle: "Dirac agent mobile and desktop app, open source",
-    metaDescription:
-      "Open source mobile and desktop app for the Dirac coding agent. Hash-anchored parallel edits, AST manipulation, ship from anywhere.",
+    title: "移动端 Dirac",
+    subtitle: "哈希锚定的并行编辑跑在你的机器上，由你的口袋来驱动。更快、更便宜、完全开源。",
+    metaTitle: "Dirac 手机应用 – 随时运行 Dirac | Paseo",
+    metaDescription: "通过手机运行 Dirac 编码 Agent。哈希锚定并行编辑、AST 操作，随时持续交付。",
   },
   {
     slug: "factory-droid",
     name: "Factory Droid",
-    title: "Open source app for Factory Droid",
-    subtitle:
-      "Run Factory's Droid coding agent on your machine, drive it from your phone or desktop.",
-    metaTitle: "Factory Droid mobile and desktop app, open source",
+    title: "随时随地运行 Factory Droid",
+    subtitle: "用手机驱动 Factory 的编码 Agent。发起任务、查看进度、从口袋里完成交付。",
+    metaTitle: "Factory Droid 手机应用 – 随时运行 Droid | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Factory AI's Droid coding agent. Launch sessions on your machine, monitor progress, ship from anywhere.",
+      "通过手机运行 Factory AI 的 Droid 编码 Agent。在你的机器上启动会话、监控进度，并随时持续交付。",
   },
   {
     slug: "fast-agent",
     name: "fast-agent",
-    title: "Open source app for fast-agent",
-    subtitle:
-      "Run fast-agent, the multi-provider coding agent, on your machine. Drive it from your phone or desktop.",
-    metaTitle: "fast-agent mobile and desktop app, open source",
+    title: "移动端 fast-agent",
+    subtitle: "多 Provider Agent 跑在你的机器上，可在任何地方控制。发出任务，收回结果。",
+    metaTitle: "fast-agent 手机应用 – 随时运行 fast-agent | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for fast-agent, the multi-provider coding agent. Launch tasks on your machine, monitor from anywhere.",
+      "通过手机驱动多 Provider 编码 Agent fast-agent。在你的机器上发起任务，并从口袋里监控。",
   },
   {
     slug: "glm",
     name: "GLM Agent",
-    title: "Open source app for the GLM agent",
+    title: "用手机运行 GLM Agent",
     subtitle:
-      "Run Zhipu AI's GLM coding agent on your machine, drive it from your phone or desktop. Streaming, mid-session model switching.",
-    metaTitle: "GLM agent mobile and desktop app, open source",
+      "智谱 AI 的 GLM 编码 Agent 跑在你的机器上，可在任何地方驱动。流式输出、中途切换模型、适配移动端。",
+    metaTitle: "GLM Agent 手机应用 – 随时运行 GLM | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Zhipu AI's GLM coding agent. Launch sessions on your machine, monitor progress, ship code from anywhere.",
+      "通过手机运行智谱 AI 的 GLM 编码 Agent。启动会话、监控进度，并在任何地方持续交付代码。",
   },
   {
     slug: "goose",
     name: "goose",
-    title: "Open source app for the goose coding agent",
+    title: "用手机运行 goose",
     subtitle:
-      "Run Block's goose on your machine, drive it from your phone or desktop. Local, extensible, open source.",
-    metaTitle: "goose agent mobile and desktop app, open source",
+      "Block 的开源 Agent 跑在你的笔记本上，可在任何地方驱动。本地优先、可扩展、适配移动端。",
+    metaTitle: "goose 手机应用 – 随时运行 goose | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Block's goose, the local open-source AI agent. Launch tasks on your machine, ship from anywhere.",
+      "通过手机驱动 Block 的 goose——本地优先的开源 AI Agent。在你的机器上发起任务，并从口袋里持续交付。",
   },
   {
     slug: "junie",
     name: "Junie",
-    title: "Open source app for the Junie coding agent",
-    subtitle:
-      "Run JetBrains' Junie on your machine, drive it from your phone or desktop. Real work, no IDE required.",
-    metaTitle: "Junie agent mobile and desktop app, open source",
+    title: "手机上的 Junie",
+    subtitle: "JetBrains 的编码 Agent 跑在你的开发机上，由你的口袋来控制。真正的工作流，无需 IDE。",
+    metaTitle: "Junie 手机应用 – 随时运行 Junie | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for JetBrains' Junie coding agent. Launch sessions on your machine, monitor progress, ship from anywhere.",
+      "通过手机驱动 JetBrains 的 Junie 编码 Agent。在你的机器上启动会话、监控进度，并随时持续交付。",
   },
   {
     slug: "kilo",
     name: "Kilo Code",
-    title: "Open source app for Kilo Code",
-    subtitle:
-      "Run Kilo Code on your machine, drive it from your phone or desktop. Send tasks, watch them ship.",
-    metaTitle: "Kilo Code mobile and desktop app, open source",
+    title: "随时随地运行 Kilo Code",
+    subtitle: "Kilo Code 跑在你的机器上，由手机驱动。发出任务，看它交付。",
+    metaTitle: "Kilo Code 手机应用 – 随时运行 Kilo Code | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Kilo Code. Launch tasks on your machine via Kilo CLI, monitor progress, merge from anywhere.",
+      "通过手机运行开源编码 Agent Kilo Code。借助 Kilo CLI 在你的机器上发起任务、监控进度，并随时完成合并。",
   },
   {
     slug: "minion-code",
     name: "Minion Code",
-    title: "Open source app for Minion Code",
-    subtitle:
-      "Run Minion Code's framework agent on your machine, drive it from your phone or desktop.",
-    metaTitle: "Minion Code mobile and desktop app, open source",
+    title: "移动端 Minion Code",
+    subtitle: "基于 Minion framework 的 Agent 跑在你的机器上，由手机控制。工具丰富，自由度高。",
+    metaTitle: "Minion Code 手机应用 – 随时运行 Minion Code | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Minion Code, the Minion-framework coding agent. Launch sessions on your machine, ship from anywhere.",
+      "通过手机驱动 Minion framework 编码 Agent Minion Code。在你的机器上启动会话，并从口袋里持续交付。",
   },
   {
     slug: "mistral-vibe",
     name: "Mistral Vibe",
-    title: "Open source app for Mistral Vibe",
-    subtitle:
-      "Run Mistral's open-source Vibe assistant on your machine, drive it from your phone or desktop.",
-    metaTitle: "Mistral Vibe mobile and desktop app, open source",
+    title: "用手机运行 Mistral Vibe",
+    subtitle: "Mistral 的开源编码助手，随时可驱动。你的机器，你的口袋。",
+    metaTitle: "Mistral Vibe 手机应用 – 随时运行 Mistral Vibe | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Mistral's Vibe coding assistant. Launch sessions on your machine, monitor progress, ship from anywhere.",
+      "通过手机运行 Mistral 的开源 Vibe 编码助手。在你的机器上启动会话、监控进度，并随时持续交付。",
   },
   {
     slug: "nova",
     name: "Nova",
-    title: "Open source app for the Nova coding agent",
-    subtitle: "Run Compass AI's Nova on your machine, drive it from your phone or desktop.",
-    metaTitle: "Nova agent mobile and desktop app, open source",
+    title: "把 Nova 装进口袋",
+    subtitle: "Compass AI 的软件工程师跑在你的机器上，由手机控制。发出工作，交付代码。",
+    metaTitle: "Nova 手机应用 – 随时运行 Nova | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Compass AI's Nova coding agent. Launch sessions on your machine, monitor progress, merge from anywhere.",
+      "通过手机驱动 Compass AI 的 Nova 编码 Agent。在你的机器上启动会话、监控进度，并从口袋里完成合并。",
   },
   {
     slug: "poolside",
     name: "Poolside",
-    title: "Open source app for the Poolside coding agent",
-    subtitle:
-      "Drive Poolside's coding agent from your phone or desktop. Kick off the work, watch it land.",
-    metaTitle: "Poolside agent mobile and desktop app, open source",
+    title: "移动端 Poolside",
+    subtitle: "随时驱动 Poolside 的编码 Agent。发起任务、看它落地、在路上也能完成合并。",
+    metaTitle: "Poolside 手机应用 – 随时运行 Poolside | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Poolside's coding agent. Launch tasks on your machine, monitor progress, ship from anywhere.",
+      "通过手机运行 Poolside 的编码 Agent。在你的机器上发起任务、监控进度，并随时持续交付。",
   },
   {
     slug: "qoder",
     name: "Qoder CLI",
-    title: "Open source app for Qoder CLI",
-    subtitle:
-      "Run the Qoder agentic coding assistant on your machine, drive it from your phone or desktop.",
-    metaTitle: "Qoder CLI mobile and desktop app, open source",
+    title: "用手机运行 Qoder",
+    subtitle: "Agentic 编码助手跑在你的机器上，随时可控。无需笔记本。",
+    metaTitle: "Qoder 手机应用 – 随时运行 Qoder | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Qoder, the agentic coding assistant. Launch sessions on your machine, ship from anywhere.",
+      "通过手机驱动 Agentic 编码助手 Qoder。在你的机器上启动会话，并从口袋里持续交付。",
   },
   {
     slug: "sigit",
     name: "siGit Code",
-    title: "Open source app for siGit Code",
-    subtitle:
-      "Run siGit's local-first coding agent on your machine, drive it from your phone or desktop. Optional on-device LLM inference.",
-    metaTitle: "siGit Code mobile and desktop app, open source",
+    title: "移动端 siGit Code",
+    subtitle: "本地优先的编码 Agent 跑在你的机器上，由手机驱动。还可选择在设备端进行 LLM 推理。",
+    metaTitle: "siGit Code 手机应用 – 随时运行 siGit | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for siGit Code, the local-first coding agent. Launch sessions on your machine, ship from anywhere.",
+      "通过手机运行本地优先的编码 Agent siGit Code。在你的机器上启动会话，并随时持续交付。",
   },
   {
     slug: "stakpak",
     name: "Stakpak",
-    title: "Open source app for the Stakpak DevOps agent",
-    subtitle:
-      "Run Stakpak's Rust-based DevOps agent on your machine, drive it from your phone or desktop.",
-    metaTitle: "Stakpak DevOps agent mobile and desktop app, open source",
+    title: "随时随地运行 Stakpak DevOps",
+    subtitle: "开源 DevOps Agent 跑在你的机器上，由手机控制。Rust 级速度，企业级安全。",
+    metaTitle: "Stakpak 手机应用 – 随时运行 Stakpak | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Stakpak, the Rust-based DevOps agent. Launch tasks on your machine, monitor from anywhere.",
+      "通过手机驱动基于 Rust 的 DevOps Agent Stakpak。在你的机器上启动任务，并从口袋里监控。",
   },
   {
     slug: "vtcode",
     name: "VT Code",
-    title: "Open source app for VT Code",
-    subtitle:
-      "Run VT Code's multi-provider coding agent on your machine, drive it from your phone or desktop.",
-    metaTitle: "VT Code mobile and desktop app, open source",
+    title: "移动端 VT Code",
+    subtitle: "多 Provider 编码 Agent 跑在你的机器上。随时发出任务，从口袋里完成交付。",
+    metaTitle: "VT Code 手机应用 – 随时运行 VT Code | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for VT Code, the multi-provider coding agent. Launch sessions on your machine, ship from anywhere.",
+      "通过手机运行开源多 Provider 编码 Agent VT Code。启动会话、监控进度，并随时持续交付。",
   },
   {
     slug: "agoragentic",
     name: "Agoragentic",
-    title: "Open source app for Agoragentic",
-    subtitle:
-      "Run Agoragentic's 174+ AI capabilities on your machine, drive it from your phone or desktop.",
-    metaTitle: "Agoragentic mobile and desktop app, open source",
+    title: "用手机运行 Agoragentic",
+    subtitle: "174+ AI 能力跑在你的机器上，可在任何地方驱动。浏览、调用、交付。",
+    metaTitle: "Agoragentic 手机应用 – 随时运行 Agoragentic | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Agoragentic, the AI agent marketplace. Launch sessions on your machine, ship from anywhere.",
+      "通过手机驱动 AI Agent 市场 Agoragentic。在你的机器上启动会话，并从口袋里持续交付。",
   },
   {
     slug: "autohand",
     name: "Autohand Code",
-    title: "Open source app for Autohand Code",
-    subtitle:
-      "Run Autohand AI's coding agent on your machine, drive it from your phone or desktop.",
-    metaTitle: "Autohand Code mobile and desktop app, open source",
+    title: "移动端 Autohand Code",
+    subtitle: "Autohand 的编码 Agent 跑在你的机器上，由手机控制。真正的工作流，无需笔记本。",
+    metaTitle: "Autohand Code 手机应用 – 随时运行 Autohand | Paseo",
     metaDescription:
-      "Open source mobile and desktop app for Autohand AI's coding agent. Launch sessions on your machine, monitor progress, ship from anywhere.",
+      "通过手机运行 Autohand AI 的编码 Agent。在你的机器上启动会话、监控进度，并随时持续交付。",
   },
 ] as const satisfies readonly AgentPage[];
 

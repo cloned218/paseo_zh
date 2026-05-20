@@ -437,7 +437,7 @@ function SidebarContent({
             <ExplorerTabButton
               tab="changes"
               active={resolvedTab === "changes"}
-              label="Changes"
+              label="变更"
               onTabPress={onTabPress}
               testID="explorer-tab-changes"
             />
@@ -445,7 +445,7 @@ function SidebarContent({
           <ExplorerTabButton
             tab="files"
             active={resolvedTab === "files"}
-            label="Files"
+            label="文件"
             onTabPress={onTabPress}
             testID="explorer-tab-files"
           />

@@ -194,7 +194,7 @@ interface CopyButtonProps {
 const COPIED_RESET_MS = 1500;
 
 const CopyButton = React.memo(function CopyButton({ getCode, visible }: CopyButtonProps) {
-  const [copied, setCopied] = useState(false);
+  const [copied, set已复制] = useState(false);
   const resetRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(
@@ -208,10 +208,10 @@ const CopyButton = React.memo(function CopyButton({ getCode, visible }: CopyButt
     const content = getCode();
     if (!content) return;
     await Clipboard.setStringAsync(content);
-    setCopied(true);
+    set已复制(true);
     if (resetRef.current) clearTimeout(resetRef.current);
     resetRef.current = setTimeout(() => {
-      setCopied(false);
+      set已复制(false);
       resetRef.current = null;
     }, COPIED_RESET_MS);
   }, [getCode]);
@@ -230,7 +230,7 @@ const CopyButton = React.memo(function CopyButton({ getCode, visible }: CopyButt
       style={wrapperStyle}
       pointerEvents={visible ? "auto" : "none"}
       accessibilityRole="button"
-      accessibilityLabel={copied ? "Copied" : "Copy code"}
+      accessibilityLabel={copied ? "已复制" : "复制代码"}
       hitSlop={8}
     >
       {({ hovered }) => {

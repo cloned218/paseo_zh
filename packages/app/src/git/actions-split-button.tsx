@@ -162,7 +162,7 @@ export function GitActionsSplitButton({ gitActions, hideLabels }: GitActionsSpli
                 testID="changes-primary-cta-caret"
                 style={caretTriggerStyle}
                 accessibilityRole="button"
-                accessibilityLabel="More options"
+                accessibilityLabel="更多选项"
               >
                 <ChevronDown size={16} color={theme.colors.foregroundMuted} />
               </DropdownMenuTrigger>
@@ -176,7 +176,7 @@ export function GitActionsSplitButton({ gitActions, hideLabels }: GitActionsSpli
                     needsSeparator={action.startsGroup}
                     showSeparator={index > 0}
                     closeOnSelect={
-                      action.status === "idle" && action.id === "pr" && action.label === "View PR"
+                      action.status === "idle" && action.id === "pr" && action.label === "查看 PR"
                     }
                   />
                 ))}
@@ -192,7 +192,7 @@ export function GitActionsSplitButton({ gitActions, hideLabels }: GitActionsSpli
             hitSlop={8}
             style={overflowMenuButtonStyle}
             accessibilityRole="button"
-            accessibilityLabel="More actions"
+            accessibilityLabel="更多操作"
           >
             <MoreVertical size={16} color={theme.colors.foregroundMuted} />
           </DropdownMenuTrigger>

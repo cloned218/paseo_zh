@@ -6,10 +6,7 @@ import { pageMeta } from "~/meta";
 
 export const Route = createFileRoute("/changelog")({
   head: () => ({
-    meta: pageMeta(
-      "Changelog - Paseo",
-      "Product updates, fixes, and improvements shipped in each Paseo release.",
-    ),
+    meta: pageMeta("更新日志 - Paseo", "每个 Paseo 版本发布的产品更新、修复与改进。"),
   }),
   component: Changelog,
 });

@@ -33,7 +33,7 @@ export function WorktreeSetupCalloutSource() {
     queryKey: ["project-config", activeProject?.serverId ?? "", activeProject?.repoRoot ?? ""],
     queryFn: () => {
       if (!client || !activeProject) {
-        throw new Error("Project config query requires an active git workspace");
+        throw new Error("项目配置查询需要一个处于激活状态的 Git 工作区");
       }
       return client.readProjectConfig(activeProject.repoRoot);
     },

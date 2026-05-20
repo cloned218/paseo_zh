@@ -33,7 +33,7 @@ export function useDaemonStatus() {
   });
   useDesktopIpcQueryErrorToast({
     error: query.error,
-    message: "Unable to load desktop daemon status.",
+    message: "无法加载桌面守护进程状态。",
     logLabel: "[DesktopDaemon] Failed to load daemon status",
   });
 

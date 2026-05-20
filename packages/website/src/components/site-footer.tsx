@@ -11,25 +11,25 @@ export function SiteFooter({ width = "default" }: SiteFooterProps) {
     <footer className={`${widthClasses} mx-auto`}>
       <div className="border-t border-white/10 pt-8 pb-4 grid grid-cols-2 sm:grid-cols-4 gap-8 text-sm">
         <div className="space-y-3">
-          <p className="text-white/60 font-medium">Product</p>
+          <p className="text-white/60 font-medium">产品</p>
           <div className="space-y-2">
             <a
               href="/blog"
               className="block text-muted-foreground hover:text-foreground transition-colors"
             >
-              Blog
+              博客
             </a>
             <a
               href="/docs"
               className="block text-muted-foreground hover:text-foreground transition-colors"
             >
-              Docs
+              文档
             </a>
             <a
               href="/changelog"
               className="block text-muted-foreground hover:text-foreground transition-colors"
             >
-              Changelog
+              更新日志
             </a>
             <a
               href="/cloud"
@@ -47,12 +47,12 @@ export function SiteFooter({ width = "default" }: SiteFooterProps) {
               href="/privacy"
               className="block text-muted-foreground hover:text-foreground transition-colors"
             >
-              Privacy
+              隐私
             </a>
           </div>
         </div>
         <div className="space-y-3">
-          <p className="text-white/60 font-medium">Agents</p>
+          <p className="text-white/60 font-medium">Agent</p>
           <div className="space-y-2">
             <a
               href="/claude-code"
@@ -76,12 +76,12 @@ export function SiteFooter({ width = "default" }: SiteFooterProps) {
               href="/agents"
               className="block text-muted-foreground hover:text-foreground transition-colors"
             >
-              All providers
+              所有 Provider
             </a>
           </div>
         </div>
         <div className="space-y-3">
-          <p className="text-white/60 font-medium">Community</p>
+          <p className="text-white/60 font-medium">社区</p>
           <div className="space-y-2">
             <a
               href="https://discord.gg/jz8T2uahpH"
@@ -102,7 +102,7 @@ export function SiteFooter({ width = "default" }: SiteFooterProps) {
           </div>
         </div>
         <div className="space-y-3">
-          <p className="text-white/60 font-medium">Download</p>
+          <p className="text-white/60 font-medium">下载</p>
           <div className="space-y-2">
             <a
               href={appStoreUrl}
@@ -126,7 +126,7 @@ export function SiteFooter({ width = "default" }: SiteFooterProps) {
               rel="noopener noreferrer"
               className="block text-muted-foreground hover:text-foreground transition-colors"
             >
-              Desktop
+              桌面端
             </a>
             <a
               href={webAppUrl}
@@ -134,7 +134,7 @@ export function SiteFooter({ width = "default" }: SiteFooterProps) {
               rel="noopener noreferrer"
               className="block text-muted-foreground hover:text-foreground transition-colors"
             >
-              Web App
+              Web 应用
             </a>
           </div>
         </div>

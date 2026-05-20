@@ -56,7 +56,7 @@ function SessionsScreenContent({ serverId }: { serverId: string }) {
       hasMore ? (
         <View style={styles.footer}>
           <Button variant="ghost" onPress={loadMore} disabled={isLoadingMore}>
-            {isLoadingMore ? "Loading..." : "Load more"}
+            {isLoadingMore ? "Loading..." : "加载更多"}
           </Button>
         </View>
       ) : null,

@@ -244,11 +244,11 @@ export function buildStandardContextMenuItems(
         });
       }
     } else {
-      items.push({ label: "No suggestions", enabled: false });
+      items.push({ label: "没有建议", enabled: false });
     }
     items.push({ type: "separator" });
     items.push({
-      label: "Add to Dictionary",
+      label: "添加到词典",
       click: () => contents.session.addWordToSpellCheckerDictionary(params.misspelledWord),
     });
     items.push({ type: "separator" });
@@ -256,13 +256,13 @@ export function buildStandardContextMenuItems(
 
   if (params.linkURL && /^https?:/i.test(params.linkURL)) {
     items.push({
-      label: "Open Link in Browser",
+      label: "在浏览器中打开链接",
       click: () => {
         void shell.openExternal(params.linkURL);
       },
     });
     items.push({
-      label: "Copy Link Address",
+      label: "复制链接地址",
       click: () => clipboard.writeText(params.linkURL),
     });
     items.push({ type: "separator" });
@@ -270,11 +270,11 @@ export function buildStandardContextMenuItems(
 
   if (params.hasImageContents && params.srcURL) {
     items.push({
-      label: "Copy Image",
+      label: "复制图片",
       click: () => contents.copyImageAt(params.x, params.y),
     });
     items.push({
-      label: "Save Image As…",
+      label: "图片另存为…",
       click: () => contents.downloadURL(params.srcURL),
     });
     items.push({ type: "separator" });

@@ -67,7 +67,7 @@ export async function submitAgentInput<TAttachment>(
       input.setUserInput(trimmedMessage);
       input.setAttachments(attachments);
     }
-    input.setSendError(error instanceof Error ? error.message : "Failed to send message");
+    input.setSendError(error instanceof Error ? error.message : "发送消息失败");
     input.setIsProcessing(false);
     return "failed";
   }

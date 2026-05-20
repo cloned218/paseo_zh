@@ -1245,7 +1245,7 @@ export function Combobox({
   searchable = true,
   placeholder = "Search...",
   searchPlaceholder,
-  emptyText = "No options match your search.",
+  emptyText = "没有匹配你搜索的选项。",
   allowCustomValue = false,
   customValuePrefix = "Use",
   customValueDescription,

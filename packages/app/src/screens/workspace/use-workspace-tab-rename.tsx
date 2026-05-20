@@ -57,7 +57,7 @@ export function useWorkspaceTabRename(
     async (nextTitle: string) => {
       if (!renamingTab) return;
       if (!client) {
-        throw new Error("Host is not connected");
+        throw new Error("Host 未连接");
       }
       const trimmed = nextTitle.trim();
       if (renamingTab.kind === "terminal") {
@@ -66,7 +66,7 @@ export function useWorkspaceTabRename(
           title: trimmed,
         });
         if (!result.success) {
-          throw new Error(result.error ?? "Failed to rename terminal");
+          throw new Error(result.error ?? "重命名终端失败");
         }
         void queryClient.invalidateQueries({ queryKey: terminalsQueryKey });
         return;
@@ -105,7 +105,7 @@ export function WorkspaceTabRenameModal({
   onClose,
   onSubmit,
 }: WorkspaceTabRenameModalProps) {
-  const title = renamingTab?.kind === "terminal" ? "Rename terminal" : "Rename agent";
+  const title = renamingTab?.kind === "terminal" ? "重命名终端" : "重命名 Agent";
   const initialValue = renamingTab?.currentTitle ?? "";
   const testID = renamingTab
     ? `workspace-tab-rename-modal-${renamingTab.kind}-${renamingTab.id}`
@@ -115,7 +115,7 @@ export function WorkspaceTabRenameModal({
       visible={renamingTab !== null}
       title={title}
       initialValue={initialValue}
-      submitLabel="Rename"
+      submitLabel="重命名"
       maxLength={200}
       onClose={onClose}
       onSubmit={onSubmit}

@@ -17,7 +17,7 @@ interface SidebarHeaderRowProps {
 /**
  * Top-of-sidebar header row: a sidebar-height pressable with an icon + label
  * and a full-width border separator beneath. Used as the first element of a
- * sidebar (workspace "Sessions", settings "Back to workspace"). Owns its own
+ * sidebar (workspace "Sessions", settings "返回工作区"). Owns its own
  * separator line so both sidebars converge on the same edge and padding.
  */
 export function SidebarHeaderRow({

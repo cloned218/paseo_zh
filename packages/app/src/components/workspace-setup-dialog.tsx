@@ -89,7 +89,7 @@ async function callWorkspaceCreation({
 }
 
 function failureMessageForCreationMethod(method: "create_worktree" | "open_project") {
-  return method === "create_worktree" ? "Failed to create worktree" : "Failed to open project";
+  return method === "create_worktree" ? "创建 worktree 失败" : "打开项目失败";
 }
 
 function buildCreateAgentOptions({
@@ -162,7 +162,7 @@ export function WorkspaceSetupDialog() {
   });
   const composerState = chatDraft.composerState;
   if (!composerState && pendingWorkspaceSetup) {
-    throw new Error("Workspace setup composer state is required");
+    throw new Error("工作区设置需要有效的输入状态");
   }
 
   const { icon: projectIcon } = useProjectIconQuery({
@@ -210,7 +210,7 @@ export function WorkspaceSetupDialog() {
 
   const withConnectedClient = useCallback(() => {
     if (!client || !isConnected) {
-      throw new Error("Host is not connected");
+      throw new Error("Host 未连接");
     }
     return client;
   }, [client, isConnected]);
@@ -218,7 +218,7 @@ export function WorkspaceSetupDialog() {
   const ensureWorkspace = useCallback(
     async (input: { cwd: string; attachments: MessagePayload["attachments"] }) => {
       if (!pendingWorkspaceSetup) {
-        throw new Error("No workspace setup is pending");
+        throw new Error("当前没有待处理的工作区设置");
       }
 
       if (createdWorkspace) {
@@ -276,10 +276,10 @@ export function WorkspaceSetupDialog() {
         const ensuredWorkspace = await ensureWorkspace({ cwd, attachments });
         const connectedClient = withConnectedClient();
         if (!composerState) {
-          throw new Error("Workspace setup composer state is required");
+          throw new Error("工作区设置需要有效的输入状态");
         }
         if (!composerState.selectedProvider) {
-          throw new Error("Select a model");
+          throw new Error("请选择模型");
         }
 
         const wirePayload = splitComposerAttachmentsForSubmit(attachments);
@@ -375,7 +375,7 @@ export function WorkspaceSetupDialog() {
   );
 
   const sheetHeader = useMemo<SheetHeader>(
-    () => ({ title: "Create workspace", subtitle: subtitleContent }),
+    () => ({ title: "创建工作区", subtitle: subtitleContent }),
     [subtitleContent],
   );
 

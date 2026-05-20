@@ -179,7 +179,7 @@ function QuestionOtherInput({
     <TextInput
       // @ts-expect-error - outlineStyle is web-only
       style={otherInputStyle}
-      placeholder="Other..."
+      placeholder="其他..."
       placeholderTextColor={theme.colors.foregroundMuted}
       value={value}
       onChangeText={handleChange}
@@ -279,7 +279,7 @@ export function QuestionFormCard({ permission, onRespond, isResponding }: Questi
     setRespondingAction("dismiss");
     onRespond({
       behavior: "deny",
-      message: "Dismissed by user",
+      message: "已被用户忽略",
     });
   }, [onRespond]);
 
@@ -393,7 +393,7 @@ export function QuestionFormCard({ permission, onRespond, isResponding }: Questi
           ) : (
             <View style={styles.actionContent}>
               <X size={14} color={theme.colors.foregroundMuted} />
-              <Text style={dismissActionTextStyle}>Dismiss</Text>
+              <Text style={dismissActionTextStyle}>忽略</Text>
             </View>
           )}
         </Pressable>
@@ -404,7 +404,7 @@ export function QuestionFormCard({ permission, onRespond, isResponding }: Questi
           ) : (
             <View style={styles.actionContent}>
               <Check size={14} color={submitActionTextColor} />
-              <Text style={submitActionTextStyle}>Submit</Text>
+              <Text style={submitActionTextStyle}>提交</Text>
             </View>
           )}
         </Pressable>

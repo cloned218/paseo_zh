@@ -255,38 +255,38 @@ function useSyncWorkspaceActiveBrowser(input: {
 
 function getFallbackTabOptionLabel(tab: WorkspaceTabDescriptor): string {
   if (tab.target.kind === "draft") {
-    return "New Agent";
+    return "新建智能体";
   }
   if (tab.target.kind === "setup") {
-    return "Setup";
+    return "设置";
   }
   if (tab.target.kind === "terminal") {
-    return "Terminal";
+    return "终端";
   }
   if (tab.target.kind === "browser") {
-    return "Browser";
+    return "浏览器";
   }
   if (tab.target.kind === "file") {
     return tab.target.path.split("/").findLast(Boolean) ?? tab.target.path;
   }
-  return "Agent";
+  return "智能体";
 }
 
 function getFallbackTabOptionDescription(tab: WorkspaceTabDescriptor): string {
   if (tab.target.kind === "draft") {
-    return "New Agent";
+    return "新建智能体";
   }
   if (tab.target.kind === "setup") {
-    return "Workspace setup";
+    return "工作区设置";
   }
   if (tab.target.kind === "agent") {
-    return "Agent";
+    return "智能体";
   }
   if (tab.target.kind === "terminal") {
-    return "Terminal";
+    return "终端";
   }
   if (tab.target.kind === "browser") {
-    return "Browser";
+    return "浏览器";
   }
   return tab.target.path;
 }
@@ -354,7 +354,7 @@ function ResolvedMobileActiveTabTrigger({
           </View>
 
           <Text style={styles.switcherTriggerText} numberOfLines={1}>
-            {presentation.titleState === "loading" ? "Loading..." : presentation.label}
+            {presentation.titleState === "loading" ? "加载中..." : presentation.label}
           </Text>
         </>
       )}
@@ -374,7 +374,7 @@ function WorkspaceDocumentTitleEffect({
       return;
     }
     const resolvedLabel = label.trim();
-    document.title = titleState === "loading" ? "Loading..." : resolvedLabel || "Workspace";
+    document.title = titleState === "loading" ? "加载中..." : resolvedLabel || "工作区";
   }, [label, titleState]);
 
   return null;
@@ -407,7 +407,7 @@ function MobileTabTrailingAccessory({
       <DropdownMenuTrigger
         testID={`${menuTestIDBase}-trigger`}
         accessibilityRole="button"
-        accessibilityLabel={`Open menu for ${presentationLabel}`}
+        accessibilityLabel={`打开 ${presentationLabel} 的菜单`}
         hitSlop={8}
         style={mobileTabMenuTriggerStyle}
       >
@@ -655,7 +655,7 @@ const MobileWorkspaceTabSwitcher = memo(function MobileWorkspaceTabSwitcher({
         ref={anchorRef}
         testID="workspace-tab-switcher-trigger"
         accessibilityRole="button"
-        accessibilityLabel={`Switch tabs (${tabs.length} open)`}
+        accessibilityLabel={`切换标签页（共 ${tabs.length} 个已打开）`}
         style={switcherTriggerStyle}
         onPress={handleOpenSwitcher}
       >
@@ -674,8 +674,8 @@ const MobileWorkspaceTabSwitcher = memo(function MobileWorkspaceTabSwitcher({
         value={activeTabKey}
         onSelect={onSelectSwitcherTab}
         searchable={false}
-        title="Switch tab"
-        searchPlaceholder="Search tabs"
+        title="切换标签页"
+        searchPlaceholder="搜索标签页"
         open={isOpen}
         onOpenChange={setIsOpen}
         anchorRef={anchorRef}
@@ -870,7 +870,7 @@ function WorkspaceHeaderMenu({
         testID="workspace-header-menu-trigger"
         style={styles.headerActionButton}
         accessibilityRole="button"
-        accessibilityLabel="Workspace actions"
+        accessibilityLabel="工作区操作"
       >
         {renderTriggerIcon}
       </DropdownMenuTrigger>
@@ -880,7 +880,7 @@ function WorkspaceHeaderMenu({
           leading={menuNewAgentIcon}
           onSelect={onCreateDraftTab}
         >
-          New agent
+          新建智能体
         </DropdownMenuItem>
         <DropdownMenuItem
           testID="workspace-header-new-terminal"
@@ -888,7 +888,7 @@ function WorkspaceHeaderMenu({
           disabled={createTerminalDisabled}
           onSelect={onCreateTerminal}
         >
-          New terminal
+          新建终端
         </DropdownMenuItem>
         {showCreateBrowserTab ? (
           <DropdownMenuItem
@@ -896,7 +896,7 @@ function WorkspaceHeaderMenu({
             leading={menuNewBrowserIcon}
             onSelect={onCreateBrowser}
           >
-            New browser tab
+            新建浏览器标签页
           </DropdownMenuItem>
         ) : null}
         <DropdownMenuItem
@@ -905,7 +905,7 @@ function WorkspaceHeaderMenu({
           disabled={importAgentDisabled}
           onSelect={onOpenImportSheet}
         >
-          Import session
+          导入会话
         </DropdownMenuItem>
         <DropdownMenuItem
           testID="workspace-header-copy-path"
@@ -913,7 +913,7 @@ function WorkspaceHeaderMenu({
           disabled={!isAbsolutePath(normalizedWorkspaceId)}
           onSelect={onCopyWorkspacePath}
         >
-          Copy workspace path
+          复制工作区路径
         </DropdownMenuItem>
         {currentBranchName ? (
           <DropdownMenuItem
@@ -921,7 +921,7 @@ function WorkspaceHeaderMenu({
             leading={menuCopyIcon}
             onSelect={onCopyBranchName}
           >
-            Copy branch name
+            复制分支名称
           </DropdownMenuItem>
         ) : null}
         {showWorkspaceSetup ? (
@@ -1398,10 +1398,10 @@ function useWorkspaceTerminalTabActions({
     [openWorkspaceTabFocused, persistenceKey],
   );
   const handleWorkspacePathUnavailable = useCallback(() => {
-    toast.error("Workspace path is not available yet");
+    toast.error("工作区路径暂时不可用");
   }, [toast]);
   const handleTerminalCreateQueued = useCallback(() => {
-    toast.show("Preparing workspace, opening terminal when ready...");
+    toast.show("正在准备工作区，完成后将自动打开终端...");
   }, [toast]);
 
   return {
@@ -1438,7 +1438,7 @@ function useWorkspaceCheckoutStatus(input: {
     enabled: isCheckoutQueryEnabled,
     queryFn: async () => {
       if (!input.client || !input.workspaceDirectory) {
-        throw new Error("Host is not connected");
+        throw new Error("主机未连接");
       }
       return await input.client.getCheckoutStatus(input.workspaceDirectory);
     },
@@ -2251,10 +2251,10 @@ function WorkspaceScreenContent({
       const { tabId, terminalId } = input;
       await closeTab(tabId, async () => {
         const confirmed = await confirmDialog({
-          title: "Close terminal?",
-          message: "Any running process in this terminal will be stopped immediately.",
-          confirmLabel: "Close",
-          cancelLabel: "Cancel",
+          title: "关闭终端？",
+          message: "此终端中的所有运行中进程都会立即停止。",
+          confirmLabel: "关闭",
+          cancelLabel: "取消",
           destructive: true,
         });
         if (!confirmed) {
@@ -2299,11 +2299,10 @@ function WorkspaceScreenContent({
 
         if (isRunning && closePolicy.kind === "archive-on-close") {
           const confirmed = await confirmDialog({
-            title: "Archive running agent?",
-            message:
-              "This agent is still running. Archiving it will stop the agent and close the tab.",
-            confirmLabel: "Archive",
-            cancelLabel: "Cancel",
+            title: "归档正在运行的智能体？",
+            message: "该智能体仍在运行。归档后会停止该智能体并关闭标签页。",
+            confirmLabel: "归档",
+            cancelLabel: "取消",
             destructive: true,
           });
           if (!confirmed) {
@@ -2369,9 +2368,9 @@ function WorkspaceScreenContent({
       if (!agentId) return;
       try {
         await Clipboard.setStringAsync(agentId);
-        toast.copied("Agent ID");
+        toast.copied("智能体 ID");
       } catch {
-        toast.error("Copy failed");
+        toast.error("复制失败");
       }
     },
     [toast],
@@ -2385,7 +2384,7 @@ function WorkspaceScreenContent({
       const providerSessionId =
         agent?.runtimeInfo?.sessionId ?? agent?.persistence?.sessionId ?? null;
       if (!agent || !providerSessionId) {
-        toast.error("Resume ID not available");
+        toast.error("恢复 ID 不可用");
         return;
       }
 
@@ -2396,14 +2395,14 @@ function WorkspaceScreenContent({
           sessionId: providerSessionId,
         }) ?? null;
       if (!command) {
-        toast.error("Resume command not available");
+        toast.error("恢复命令不可用");
         return;
       }
       try {
         await Clipboard.setStringAsync(command);
-        toast.copied("resume command");
+        toast.copied("恢复命令");
       } catch {
-        toast.error("Copy failed");
+        toast.error("复制失败");
       }
     },
     [normalizedServerId, toast],
@@ -2412,11 +2411,11 @@ function WorkspaceScreenContent({
   const handleReloadAgent = useCallback(
     async (agentId: string) => {
       if (!client || !isConnected) {
-        toast.error("Host is not connected");
+        toast.error("主机未连接");
         return;
       }
 
-      toast.show("Reloading agent…", { durationMs: null });
+      toast.show("正在重新加载智能体…", { durationMs: null });
       try {
         await client.refreshAgent(agentId);
         // Send the existing cursor so the server detects the new epoch and
@@ -2432,9 +2431,9 @@ function WorkspaceScreenContent({
             ? { cursor: { epoch: currentCursor.epoch, seq: currentCursor.endSeq } }
             : {}),
         });
-        toast.show("Reloaded agent", { variant: "success" });
+        toast.show("智能体已重新加载", { variant: "success" });
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Failed to reload agent");
+        toast.error(error instanceof Error ? error.message : "重新加载智能体失败");
       }
     },
     [client, isConnected, normalizedServerId, toast],
@@ -2442,29 +2441,29 @@ function WorkspaceScreenContent({
 
   const handleCopyWorkspacePath = useCallback(async () => {
     if (!workspaceDirectory) {
-      toast.error("Workspace path not available");
+      toast.error("工作区路径不可用");
       return;
     }
 
     try {
       await Clipboard.setStringAsync(workspaceDirectory);
-      toast.copied("Workspace path");
+      toast.copied("工作区路径");
     } catch {
-      toast.error("Copy failed");
+      toast.error("复制失败");
     }
   }, [toast, workspaceDirectory]);
 
   const handleCopyBranchName = useCallback(async () => {
     if (!currentBranchName) {
-      toast.error("Branch name not available");
+      toast.error("分支名称不可用");
       return;
     }
 
     try {
       await Clipboard.setStringAsync(currentBranchName);
-      toast.copied("Branch name");
+      toast.copied("分支名称");
     } catch {
-      toast.error("Copy failed");
+      toast.error("复制失败");
     }
   }, [currentBranchName, toast]);
 
@@ -2493,8 +2492,8 @@ function WorkspaceScreenContent({
       const confirmed = await confirmDialog({
         title,
         message: buildBulkCloseConfirmationMessage(groups),
-        confirmLabel: "Close",
-        cancelLabel: "Cancel",
+        confirmLabel: "关闭",
+        cancelLabel: "取消",
         destructive: true,
       });
       if (!confirmed) {
@@ -2532,8 +2531,8 @@ function WorkspaceScreenContent({
       }
       await handleBulkCloseTabs({
         tabsToClose: paneTabs.slice(0, index),
-        title: "Close tabs to the left?",
-        logLabel: "to the left",
+        title: "关闭左侧标签页？",
+        logLabel: "左侧",
       });
     },
     [handleBulkCloseTabs],
@@ -2554,8 +2553,8 @@ function WorkspaceScreenContent({
       }
       await handleBulkCloseTabs({
         tabsToClose: paneTabs.slice(index + 1),
-        title: "Close tabs to the right?",
-        logLabel: "to the right",
+        title: "关闭右侧标签页？",
+        logLabel: "右侧",
       });
     },
     [handleBulkCloseTabs],
@@ -2573,8 +2572,8 @@ function WorkspaceScreenContent({
       const tabsToClose = paneTabs.filter((tab) => tab.tabId !== tabId);
       await handleBulkCloseTabs({
         tabsToClose,
-        title: "Close other tabs?",
-        logLabel: "from close other tabs",
+        title: "关闭其他标签页？",
+        logLabel: "关闭其他标签页",
       });
     },
     [handleBulkCloseTabs],
@@ -2779,7 +2778,7 @@ function WorkspaceScreenContent({
     if (!isRouteFocused || isNative || typeof document === "undefined" || activeTabDescriptor) {
       return;
     }
-    document.title = "Workspace";
+    document.title = "工作区";
   }, [activeTabDescriptor, isRouteFocused]);
   const buildPaneContentModel = useCallback(
     (input: {
@@ -3034,7 +3033,7 @@ function WorkspaceScreenContent({
                   testID="workspace-explorer-toggle"
                   onPress={handleToggleExplorer}
                   accessibilityRole="button"
-                  accessibilityLabel={isExplorerOpen ? "Close explorer" : "Open explorer"}
+                  accessibilityLabel={isExplorerOpen ? "关闭资源管理器" : "打开资源管理器"}
                   accessibilityState={explorerToggleAccessibilityState}
                   style={explorerToggleStyle}
                 >
@@ -3062,7 +3061,7 @@ function WorkspaceScreenContent({
                 offset={8}
               >
                 <View style={styles.explorerTooltipRow}>
-                  <Text style={styles.explorerTooltipText}>Toggle explorer</Text>
+                  <Text style={styles.explorerTooltipText}>切换资源管理器</Text>
                   <Shortcut keys={EXPLORER_TOGGLE_KEYS} style={styles.explorerTooltipShortcut} />
                 </View>
               </TooltipContent>
@@ -3073,13 +3072,13 @@ function WorkspaceScreenContent({
           <HeaderToggleButton
             testID="workspace-explorer-toggle"
             onPress={handleToggleExplorer}
-            tooltipLabel="Toggle explorer"
+            tooltipLabel="切换资源管理器"
             tooltipKeys={EXPLORER_TOGGLE_KEYS}
             tooltipSide="left"
             style={styles.headerActionButton}
             accessible
             accessibilityRole="button"
-            accessibilityLabel={isExplorerOpen ? "Close explorer" : "Open explorer"}
+            accessibilityLabel={isExplorerOpen ? "关闭资源管理器" : "打开资源管理器"}
             accessibilityState={explorerToggleAccessibilityState}
           >
             {({ hovered }) => {
@@ -3093,13 +3092,13 @@ function WorkspaceScreenContent({
           <HeaderToggleButton
             testID="workspace-explorer-toggle"
             onPress={handleToggleExplorer}
-            tooltipLabel="Toggle explorer"
+            tooltipLabel="切换资源管理器"
             tooltipKeys={EXPLORER_TOGGLE_KEYS}
             tooltipSide="left"
             style={styles.headerActionButton}
             accessible
             accessibilityRole="button"
-            accessibilityLabel={isExplorerOpen ? "Close explorer" : "Open explorer"}
+            accessibilityLabel={isExplorerOpen ? "关闭资源管理器" : "打开资源管理器"}
             accessibilityState={explorerToggleAccessibilityState}
           >
             {({ hovered }) => {

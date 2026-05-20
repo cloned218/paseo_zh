@@ -12,10 +12,10 @@ function getDownloadStatusText(download: Download): string {
     if (download.progress) {
       return `${Math.round(download.progress.percent * 100)}% · ${formatSpeed(download.progress.speed)} · ${formatEta(download.progress.eta)}`;
     }
-    return "Starting...";
+    return "开始下载...";
   }
-  if (download.status === "complete") return "Download complete";
-  return download.message ?? "Download failed";
+  if (download.status === "complete") return "下载完成";
+  return download.message ?? "下载失败";
 }
 
 export function DownloadToast() {

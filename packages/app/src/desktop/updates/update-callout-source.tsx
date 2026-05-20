@@ -14,9 +14,9 @@ const CHECK_INTERVAL_MS = 30 * 60 * 1000;
 const CHANGELOG_URL = "https://paseo.sh/changelog";
 
 function resolveUpdateCalloutTitle(args: { isInstalling: boolean; isError: boolean }): string {
-  if (args.isInstalling) return "Installing update";
-  if (args.isError) return "Update failed";
-  return "Update available";
+  if (args.isInstalling) return "正在安装更新";
+  if (args.isError) return "更新失败";
+  return "发现可用更新";
 }
 
 function resolveUpdateCalloutDescription(args: {
@@ -25,8 +25,8 @@ function resolveUpdateCalloutDescription(args: {
   errorMessage: string | null;
   latestVersion: string | undefined;
 }): ReactNode {
-  if (args.isInstalling) return "Installing and restarting...";
-  if (args.isError) return args.errorMessage ?? "Something went wrong.";
+  if (args.isInstalling) return "正在安装并重启...";
+  if (args.isError) return args.errorMessage ?? "出了点问题。";
   if (args.latestVersion) {
     return (
       <UpdateAvailableDescription versionLabel={`v${args.latestVersion.replace(/^v/i, "")}`} />
@@ -42,12 +42,12 @@ function buildUpdateCalloutActions(args: {
   retry: () => void;
   install: () => void;
 }): SidebarCalloutAction[] {
-  const actions: SidebarCalloutAction[] = [{ label: "What's new", onPress: args.openChangelog }];
+  const actions: SidebarCalloutAction[] = [{ label: "查看更新内容", onPress: args.openChangelog }];
   if (args.isError) {
-    actions.push({ label: "Retry", onPress: args.retry, variant: "primary" });
+    actions.push({ label: "重试", onPress: args.retry, variant: "primary" });
   } else {
     actions.push({
-      label: args.isInstalling ? "Installing..." : "Install & restart",
+      label: args.isInstalling ? "安装中..." : "安装并重启",
       onPress: args.install,
       variant: "primary",
       disabled: args.isInstalling,
@@ -155,12 +155,10 @@ function UpdateAvailableDescription({ versionLabel }: { versionLabel?: string })
   return (
     <>
       <SidebarCalloutDescriptionText>
-        {versionLabel
-          ? `${versionLabel} is ready to install.`
-          : "A new version is ready to install."}
+        {versionLabel ? `${versionLabel} 已可安装。` : "新版本已可安装。"}
       </SidebarCalloutDescriptionText>
       <SidebarCalloutDescriptionText>
-        Upgrading the app will stop running agents and close terminal sessions.
+        升级应用会停止正在运行的智能体并关闭终端会话。
       </SidebarCalloutDescriptionText>
     </>
   );

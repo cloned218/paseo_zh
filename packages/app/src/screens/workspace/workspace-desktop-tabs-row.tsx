@@ -175,7 +175,7 @@ interface WorkspaceDesktopTabsRowProps {
 
 function getFallbackTabLabel(tab: WorkspaceTabDescriptor): string {
   if (tab.target.kind === "draft") {
-    return "New Agent";
+    return "新建 Agent";
   }
   if (tab.target.kind === "setup") {
     return "Setup";
@@ -687,14 +687,14 @@ export function WorkspaceDesktopTabsRow({
             testID="workspace-new-agent-tab"
             onPress={handleCreateAgentTab}
             accessibilityRole="button"
-            accessibilityLabel="New agent tab"
+            accessibilityLabel="新建 Agent 标签页"
             style={newTabActionButtonStyle}
           >
             <ThemedSquarePen size={14} uniProps={mutedColorMapping} />
           </TooltipTrigger>
           <TooltipContent side="bottom" align="center" offset={8}>
             <View style={styles.newTabTooltipRow}>
-              <Text style={styles.newTabTooltipText}>New agent tab</Text>
+              <Text style={styles.newTabTooltipText}>新建 Agent 标签页</Text>
               {newTabKeys ? (
                 <Shortcut chord={newTabKeys} style={styles.newTabTooltipShortcut} />
               ) : null}
@@ -708,7 +708,7 @@ export function WorkspaceDesktopTabsRow({
             disabled={terminalDisabled}
             accessibilityRole="button"
             accessibilityLabel={
-              isWaitingOnTerminalReadiness ? "Preparing terminal tab" : "New terminal tab"
+              isWaitingOnTerminalReadiness ? "正在准备终端标签页" : "新建终端标签页"
             }
             style={newTerminalActionButtonStyle}
           >
@@ -717,7 +717,7 @@ export function WorkspaceDesktopTabsRow({
           <TooltipContent side="bottom" align="center" offset={8}>
             <View style={styles.newTabTooltipRow}>
               <Text style={styles.newTabTooltipText}>
-                {isWaitingOnTerminalReadiness ? "Preparing terminal..." : "New terminal tab"}
+                {isWaitingOnTerminalReadiness ? "正在准备终端..." : "新建终端标签页"}
               </Text>
               {newTerminalKeys ? (
                 <Shortcut chord={newTerminalKeys} style={styles.newTabTooltipShortcut} />
@@ -731,14 +731,14 @@ export function WorkspaceDesktopTabsRow({
               testID="workspace-new-browser"
               onPress={handleCreateBrowser}
               accessibilityRole="button"
-              accessibilityLabel="New browser tab"
+              accessibilityLabel="新建浏览器标签页"
               style={newTabActionButtonStyle}
             >
               <ThemedGlobe size={14} uniProps={mutedColorMapping} />
             </TooltipTrigger>
             <TooltipContent side="bottom" align="center" offset={8}>
               <View style={styles.newTabTooltipRow}>
-                <Text style={styles.newTabTooltipText}>New browser tab</Text>
+                <Text style={styles.newTabTooltipText}>新建浏览器标签页</Text>
               </View>
             </TooltipContent>
           </Tooltip>
@@ -749,14 +749,14 @@ export function WorkspaceDesktopTabsRow({
               <TooltipTrigger
                 onPress={onSplitRight}
                 accessibilityRole="button"
-                accessibilityLabel="Split pane right"
+                accessibilityLabel="向右拆分面板"
                 style={newTabActionButtonStyle}
               >
                 <ThemedColumns2 size={14} uniProps={mutedColorMapping} />
               </TooltipTrigger>
               <TooltipContent side="bottom" align="center" offset={8}>
                 <View style={styles.newTabTooltipRow}>
-                  <Text style={styles.newTabTooltipText}>Split pane right</Text>
+                  <Text style={styles.newTabTooltipText}>向右拆分面板</Text>
                   {splitRightKeys ? (
                     <Shortcut chord={splitRightKeys} style={styles.newTabTooltipShortcut} />
                   ) : null}
@@ -767,14 +767,14 @@ export function WorkspaceDesktopTabsRow({
               <TooltipTrigger
                 onPress={onSplitDown}
                 accessibilityRole="button"
-                accessibilityLabel="Split pane down"
+                accessibilityLabel="向下拆分面板"
                 style={newTabActionButtonStyle}
               >
                 <ThemedRows2 size={14} uniProps={mutedColorMapping} />
               </TooltipTrigger>
               <TooltipContent side="bottom" align="center" offset={8}>
                 <View style={styles.newTabTooltipRow}>
-                  <Text style={styles.newTabTooltipText}>Split pane down</Text>
+                  <Text style={styles.newTabTooltipText}>向下拆分面板</Text>
                   {splitDownKeys ? (
                     <Shortcut chord={splitDownKeys} style={styles.newTabTooltipShortcut} />
                   ) : null}
@@ -877,7 +877,7 @@ function ResolvedDesktopTabChip({
     >
       {(presentation) => {
         const tooltipLabel =
-          presentation.titleState === "loading" ? "Loading agent title" : presentation.label;
+          presentation.titleState === "loading" ? "正在加载 Agent 标题" : presentation.label;
 
         return (
           <View style={styles.tabSlot}>

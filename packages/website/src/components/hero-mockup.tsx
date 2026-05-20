@@ -57,21 +57,21 @@ type ChatItem =
   | { type: "tool"; label: string; summary?: string; status: "running" | "done" };
 
 const CHAT: ChatItem[] = [
-  { type: "user", text: "Build me an internal dashboard for tracking customer returns" },
-  { type: "text", text: "I'll break this down into planning and implementation.", bold: true },
-  { type: "tool", label: "Run plan-technical", summary: "codex · plan-technical", status: "done" },
-  { type: "tool", label: "Run plan-design", summary: "claude · plan-design", status: "done" },
+  { type: "user", text: "帮我做一个用于跟踪客户退货的内部仪表盘" },
+  { type: "text", text: "我会先把这件事拆成规划和实现两个部分。", bold: true },
+  { type: "tool", label: "运行技术规划", summary: "codex · 技术规划", status: "done" },
+  { type: "tool", label: "运行设计规划", summary: "claude · 设计规划", status: "done" },
   {
     type: "tool",
-    label: "Wait for agents",
+    label: "等待 Agent 完成",
     summary: "plan-technical  plan-design",
     status: "done",
   },
-  { type: "text", text: "Got the plans. Spinning up Codex for implementation.", bold: true },
-  { type: "tool", label: "Run implement", summary: "codex · 12 files changed", status: "done" },
-  { type: "text", text: "Implementation done. Requesting review from Claude." },
-  { type: "tool", label: "Run review", summary: "claude · no issues found", status: "running" },
-  { type: "text", text: "All tasks complete. Dashboard is ready.", bold: true },
+  { type: "text", text: "我已经拿到方案，正在启动 Codex 开始实现。", bold: true },
+  { type: "tool", label: "运行实现", summary: "codex · 修改了 12 个文件", status: "done" },
+  { type: "text", text: "实现已完成，正在请求 Claude 进行评审。" },
+  { type: "tool", label: "运行评审", summary: "claude · 未发现问题", status: "running" },
+  { type: "text", text: "所有任务已完成，仪表盘已经准备好。", bold: true },
 ];
 
 // ── Sidebar data ────────────────────────────────────────
@@ -430,7 +430,7 @@ function Composer({
             <span className="inline-block w-[1px] h-[13px] bg-mock-fg animate-pulse mr-[1px] flex-shrink-0" />
           )}
           <span className="text-[11px] text-mock-zinc500 leading-[1.4] select-none whitespace-nowrap overflow-hidden text-ellipsis">
-            Message the agent, tag @files, or use /commands and /skills
+            给智能体发消息、@文件，或使用 /commands 和 /skills
           </span>
         </div>
         <div className="flex items-end justify-between">
@@ -459,9 +459,9 @@ function Composer({
 }
 
 function prStateLabel(state: "open" | "merged" | "closed"): string {
-  if (state === "open") return "Open";
-  if (state === "merged") return "Merged";
-  return "Closed";
+  if (state === "open") return "进行中";
+  if (state === "merged") return "已合并";
+  return "已关闭";
 }
 
 function WorkspaceIcon({ workspace }: { workspace: SidebarWorkspace }) {
@@ -644,10 +644,10 @@ function ExplorerSidebar() {
       <div className="flex items-center h-10 px-2 border-b border-mock-border flex-shrink-0">
         <div className="flex items-center gap-1">
           <div className="flex items-center px-3 py-1.5 rounded-md bg-mock-surface1">
-            <span className="text-[11px] text-mock-fg font-medium">Changes</span>
+            <span className="text-[11px] text-mock-fg font-medium">更改</span>
           </div>
           <div className="flex items-center px-3 py-1.5 rounded-md">
-            <span className="text-[11px] text-mock-fg-muted">Files</span>
+            <span className="text-[11px] text-mock-fg-muted">文件</span>
           </div>
         </div>
       </div>
@@ -655,7 +655,7 @@ function ExplorerSidebar() {
       {/* Secondary header — h-9, Uncommitted dropdown + filter icons */}
       <div className="flex items-center justify-between h-9 border-b border-mock-border flex-shrink-0">
         <div className="flex items-center gap-1 ml-2 px-1 h-6 rounded">
-          <span className="text-[11px] text-mock-fg-muted">Uncommitted</span>
+          <span className="text-[11px] text-mock-fg-muted">未提交</span>
           <ChevronDown size={11} className="text-mock-fg-muted" />
         </div>
         <div className="flex items-center pr-2">
@@ -675,7 +675,7 @@ function ExplorerSidebar() {
             className="text-[10px] text-mock-green-400 px-2 py-[2px] rounded-md flex-shrink-0"
             style={NEW_BADGE_STYLE}
           >
-            New
+            新增
           </span>
         </div>
         <div className="flex items-center gap-1 flex-shrink-0 ml-1">
@@ -712,7 +712,7 @@ function ExplorerSidebar() {
                 className="text-[10px] text-mock-green-400 px-2 py-[2px] rounded-md flex-shrink-0"
                 style={NEW_BADGE_STYLE}
               >
-                New
+                新增
               </span>
             )}
           </div>

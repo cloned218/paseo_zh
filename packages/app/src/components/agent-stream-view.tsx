@@ -868,7 +868,7 @@ const AgentStreamViewComponent = forwardRef<AgentStreamViewHandle, AgentStreamVi
                   style={stylesheet.scrollToBottomButton}
                   onPress={scrollToBottom}
                   accessibilityRole="button"
-                  accessibilityLabel="Scroll to bottom"
+                  accessibilityLabel="滚动到底部"
                   testID="scroll-to-bottom-button"
                 >
                   <ChevronDown size={24} color={stylesheet.scrollToBottomIcon.color} />
@@ -972,7 +972,7 @@ function PermissionRequestCard({
 
   const { request } = permission;
   const isPlanRequest = request.kind === "plan";
-  const title = isPlanRequest ? "Plan" : (request.title ?? request.name ?? "Permission Required");
+  const title = isPlanRequest ? "Plan" : (request.title ?? request.name ?? "需要权限");
   const description = request.description ?? "";
   const resolvedToolCallDetail = useMemo(
     () =>
@@ -1030,7 +1030,7 @@ function PermissionRequestCard({
       response: AgentPermissionResponse;
     }) => {
       if (!client) {
-        throw new Error("Daemon client unavailable");
+        throw new Error("守护进程客户端不可用");
       }
       return client.respondToPermissionAndWait(
         input.agentId,
@@ -1077,7 +1077,7 @@ function PermissionRequestCard({
       handleResponse({
         behavior: "deny",
         selectedActionId: action.id,
-        message: "Denied by user",
+        message: "用户已拒绝",
       });
     },
     [handleResponse],
@@ -1156,7 +1156,7 @@ function PermissionRequestCard({
 
       {planMarkdown ? (
         <PlanCard
-          title="Proposed plan"
+          title="建议计划"
           text={planMarkdown}
           testID="permission-plan-card"
           disableOuterSpacing

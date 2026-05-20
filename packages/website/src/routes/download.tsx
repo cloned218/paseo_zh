@@ -20,8 +20,8 @@ import "~/styles.css";
 export const Route = createFileRoute("/download")({
   head: () => ({
     meta: pageMeta(
-      "Download - Paseo",
-      "Download Paseo for macOS, Windows, Linux, iOS, and Android. Your dev environment, in your pocket.",
+      "下载 - Paseo",
+      "下载适用于 macOS、Windows、Linux、iOS 和 Android 的 Paseo。把你的开发环境装进口袋。",
     ),
   }),
   component: Download,
@@ -34,17 +34,15 @@ function Download() {
 
   return (
     <SiteShell>
-      <h1 className="text-3xl md:text-4xl font-semibold tracking-tight mb-2">Download</h1>
+      <h1 className="text-3xl md:text-4xl font-semibold tracking-tight mb-2">下载</h1>
       <p className="text-muted-foreground mb-10">v{version}</p>
 
-      {/* Desktop */}
+      {/* 桌面端 */}
       <section className="rounded-xl border border-border bg-card/40 p-6 md:p-8 mb-6">
         <div className="flex items-start justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-semibold">Desktop</h2>
-            <p className="text-sm text-muted-foreground mt-1">
-              Recommended, bundles everything you need
-            </p>
+            <h2 className="text-2xl font-semibold">桌面端</h2>
+            <p className="text-sm text-muted-foreground mt-1">推荐，已打包好所需的一切</p>
           </div>
           <MonitorIcon className="h-5 w-5 text-muted-foreground mt-1.5" />
         </div>
@@ -57,8 +55,8 @@ function Download() {
               <span className="font-medium">macOS</span>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <DownloadPill href={urls.macAppleSilicon} label="Apple Silicon" />
-              <DownloadPill href={urls.macIntel} label="Intel" />
+              <DownloadPill href={urls.macAppleSilicon} label="Apple 芯片" />
+              <DownloadPill href={urls.macIntel} label="Intel 芯片" />
             </div>
           </div>
 
@@ -80,7 +78,7 @@ function Download() {
             <div className="flex flex-wrap gap-2">
               <DownloadPill
                 href={urls.windowsExeX64}
-                label={urls.windowsExeArm64 ? "Intel / x64" : "Download"}
+                label={urls.windowsExeArm64 ? "Intel / x64" : "立即下载"}
               />
               {urls.windowsExeArm64 && <DownloadPill href={urls.windowsExeArm64} label="ARM64" />}
             </div>
@@ -93,7 +91,7 @@ function Download() {
               <span className="font-medium">Linux</span>
             </div>
             <div className="flex flex-wrap gap-2">
-              <DownloadPill href={urls.linuxAppImage} label="AppImage" />
+              <DownloadPill href={urls.linuxAppImage} label="AppImage 包" />
               <DownloadPill href={urls.linuxDeb} label="DEB" />
               <DownloadPill href={urls.linuxRpm} label="RPM" />
             </div>
@@ -101,10 +99,10 @@ function Download() {
         </div>
       </section>
 
-      {/* Mobile */}
+      {/* 移动端 */}
       <section className="rounded-xl border border-border bg-card/40 p-6 md:p-8 mb-6">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-semibold">Mobile</h2>
+          <h2 className="text-2xl font-semibold">移动端</h2>
           <PhoneIcon className="h-5 w-5 text-muted-foreground" />
         </div>
 
@@ -116,7 +114,7 @@ function Download() {
               <span className="font-medium">Android</span>
             </div>
             <div className="flex flex-wrap gap-2">
-              <DownloadPill href={playStoreUrl} label="Play Store" external />
+              <DownloadPill href={playStoreUrl} label="Play 商店" external />
               <DownloadPill href={urls.androidApk} label="APK" />
             </div>
           </div>
@@ -138,10 +136,8 @@ function Download() {
       <section className="rounded-xl border border-border bg-card/40 p-6 md:p-8 mb-6">
         <div className="flex items-start justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-semibold">Web</h2>
-            <p className="text-sm text-muted-foreground mt-1">
-              Connect to a server from any browser
-            </p>
+            <h2 className="text-2xl font-semibold">网页端</h2>
+            <p className="text-sm text-muted-foreground mt-1">可从任意浏览器连接到服务器</p>
           </div>
           <GlobeIcon className="h-5 w-5 text-muted-foreground mt-1.5" />
         </div>
@@ -150,22 +146,22 @@ function Download() {
           <div className="flex flex-col gap-3 py-5 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
               <GlobeIcon className="h-5 w-5 text-foreground" />
-              <span className="font-medium">Web App</span>
+              <span className="font-medium">网页应用</span>
             </div>
             <div className="flex flex-wrap gap-2">
-              <DownloadPill href={webAppUrl} label="Open" external />
+              <DownloadPill href={webAppUrl} label="打开" external />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Server */}
+      {/* 服务端 */}
       <section className="rounded-xl border border-border bg-card/40 p-6 md:p-8">
         <div className="flex items-start justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-semibold">Server</h2>
+            <h2 className="text-2xl font-semibold">服务端</h2>
             <p className="text-sm text-muted-foreground mt-1">
-              Run the Paseo server anywhere, connect from any client
+              可在任意位置运行 Paseo 服务端，并从任意客户端连接
             </p>
           </div>
           <TerminalIcon className="h-5 w-5 text-muted-foreground mt-1.5" />
@@ -191,14 +187,14 @@ function Download() {
       </section>
 
       <p className="text-center text-xs text-muted-foreground mt-8">
-        All releases are available on{" "}
+        所有版本均可在{" "}
         <a
           href="https://github.com/getpaseo/paseo/releases"
           target="_blank"
           rel="noopener noreferrer"
           className="underline hover:text-foreground transition-colors"
         >
-          GitHub
+          GitHub 发布页
         </a>
         .
       </p>

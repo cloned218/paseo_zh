@@ -54,7 +54,7 @@ export function DesktopPermissionRow({
           <View style={styles.permissionGrantedActions}>
             <View style={styles.permissionStatusPill}>
               <Check size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />
-              <Text style={styles.permissionStatusText}>Granted</Text>
+              <Text style={styles.permissionStatusText}>已授权</Text>
             </View>
             {extraActionLabel && onExtraAction ? (
               <Button
@@ -63,13 +63,13 @@ export function DesktopPermissionRow({
                 onPress={onExtraAction}
                 disabled={isExtraActionDisabled || isExtraActionBusy}
               >
-                {isExtraActionBusy ? `${extraActionLabel}...` : extraActionLabel}
+                {isExtraActionBusy ? `${extraActionLabel}中...` : extraActionLabel}
               </Button>
             ) : null}
           </View>
         ) : (
           <Button variant="outline" size="sm" onPress={onRequest} disabled={isRequesting}>
-            {isRequesting ? "Requesting..." : "Request"}
+            {isRequesting ? "请求中..." : "请求授权"}
           </Button>
         )}
         {shouldShowDetail ? (

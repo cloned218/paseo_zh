@@ -107,12 +107,12 @@ interface SidebarSectionItem {
 }
 
 const SIDEBAR_SECTION_ITEMS: SidebarSectionItem[] = [
-  { id: "general", label: "General", icon: Settings },
-  { id: "shortcuts", label: "Shortcuts", icon: Keyboard, desktopOnly: true },
-  { id: "integrations", label: "Integrations", icon: Puzzle, desktopOnly: true },
-  { id: "permissions", label: "Permissions", icon: Shield, desktopOnly: true },
-  { id: "diagnostics", label: "Diagnostics", icon: Stethoscope },
-  { id: "about", label: "About", icon: Info },
+  { id: "general", label: "通用", icon: Settings },
+  { id: "shortcuts", label: "快捷键", icon: Keyboard, desktopOnly: true },
+  { id: "integrations", label: "集成", icon: Puzzle, desktopOnly: true },
+  { id: "permissions", label: "权限", icon: Shield, desktopOnly: true },
+  { id: "diagnostics", label: "诊断", icon: Stethoscope },
+  { id: "about", label: "关于", icon: Info },
 ];
 
 // ---------------------------------------------------------------------------
@@ -172,31 +172,31 @@ function selectedSidebarItemStyle({ hovered }: PressableStateCallbackType & { ho
 }
 
 const THEME_LABELS: Record<AppSettings["theme"], string> = {
-  light: "Light",
-  dark: "Dark",
+  light: "浅色",
+  dark: "深色",
   zinc: "Zinc",
   midnight: "Midnight",
   claude: "Claude",
   ghostty: "Ghostty",
-  auto: "System",
+  auto: "跟随系统",
 };
 
 const ROW_WITH_BORDER_STYLE = [settingsStyles.row, settingsStyles.rowBorder];
 
 const SEND_BEHAVIOR_OPTIONS = [
-  { value: "interrupt" as const, label: "Interrupt" },
-  { value: "queue" as const, label: "Queue" },
+  { value: "interrupt" as const, label: "中断" },
+  { value: "queue" as const, label: "排队" },
 ];
 
 const RELEASE_CHANNEL_OPTIONS = [
-  { value: "stable" as const, label: "Stable" },
-  { value: "beta" as const, label: "Beta" },
+  { value: "stable" as const, label: "稳定版" },
+  { value: "beta" as const, label: "测试版" },
 ];
 
 const SERVICE_URL_BEHAVIOR_LABELS: Record<ServiceUrlBehavior, string> = {
-  ask: "Ask",
-  "in-app": "In Paseo",
-  external: "External browser",
+  ask: "询问",
+  "in-app": "在 Paseo 内",
+  external: "外部浏览器",
 };
 
 const SERVICE_URL_BEHAVIOR_VALUES: ServiceUrlBehavior[] = ["ask", "in-app", "external"];
@@ -301,11 +301,11 @@ function GeneralSection({
   }, [settings.terminalScrollbackLines]);
 
   return (
-    <SettingsSection title="General">
+    <SettingsSection title="通用">
       <View style={settingsStyles.card}>
         <View style={settingsStyles.row}>
           <View style={settingsStyles.rowContent}>
-            <Text style={settingsStyles.rowTitle}>Theme</Text>
+            <Text style={settingsStyles.rowTitle}>主题</Text>
           </View>
           <DropdownMenu>
             <DropdownMenuTrigger style={themeTriggerStyle}>
@@ -340,9 +340,9 @@ function GeneralSection({
         </View>
         <View style={ROW_WITH_BORDER_STYLE}>
           <View style={settingsStyles.rowContent}>
-            <Text style={settingsStyles.rowTitle}>Default send</Text>
+            <Text style={settingsStyles.rowTitle}>默认发送行为</Text>
             <Text style={settingsStyles.rowHint}>
-              What happens when you press Enter while the agent is running
+              当智能体正在运行时，按下 Enter 会执行什么操作
             </Text>
           </View>
           <SegmentedControl
@@ -355,8 +355,8 @@ function GeneralSection({
         {isDesktopApp ? (
           <View style={ROW_WITH_BORDER_STYLE}>
             <View style={settingsStyles.rowContent}>
-              <Text style={settingsStyles.rowTitle}>Service URLs</Text>
-              <Text style={settingsStyles.rowHint}>Where to open URLs from running scripts</Text>
+              <Text style={settingsStyles.rowTitle}>服务链接</Text>
+              <Text style={settingsStyles.rowHint}>运行中脚本产生的 URL 在哪里打开</Text>
             </View>
             <DropdownMenu>
               <DropdownMenuTrigger style={themeTriggerStyle}>
@@ -380,8 +380,8 @@ function GeneralSection({
         ) : null}
         <View style={ROW_WITH_BORDER_STYLE}>
           <View style={settingsStyles.rowContent}>
-            <Text style={settingsStyles.rowTitle}>Terminal scrollback</Text>
-            <Text style={settingsStyles.rowHint}>Lines kept in the built-in terminal buffer</Text>
+            <Text style={settingsStyles.rowTitle}>终端回滚缓冲</Text>
+            <Text style={settingsStyles.rowHint}>内置终端缓冲区保留的行数</Text>
           </View>
           <TextInput
             value={terminalScrollbackValue}
@@ -392,7 +392,7 @@ function GeneralSection({
             inputMode="numeric"
             selectTextOnFocus
             style={styles.terminalScrollbackInput}
-            accessibilityLabel="Terminal scrollback lines"
+            accessibilityLabel="终端回滚行数"
           />
         </View>
       </View>
@@ -417,11 +417,11 @@ function DiagnosticsSection({
     void handlePlaybackTest();
   }, [handlePlaybackTest]);
   return (
-    <SettingsSection title="Diagnostics">
+    <SettingsSection title="诊断">
       <View style={settingsStyles.card}>
         <View style={settingsStyles.row}>
           <View style={settingsStyles.rowContent}>
-            <Text style={settingsStyles.rowTitle}>Test audio</Text>
+            <Text style={settingsStyles.rowTitle}>测试音频</Text>
             {playbackTestResult ? (
               <Text style={settingsStyles.rowHint}>{playbackTestResult}</Text>
             ) : null}
@@ -432,7 +432,7 @@ function DiagnosticsSection({
             onPress={handlePlayPress}
             disabled={!voiceAudioEngine || isPlaybackTestRunning}
           >
-            {isPlaybackTestRunning ? "Playing..." : "Play test"}
+            {isPlaybackTestRunning ? "播放中..." : "播放测试"}
           </Button>
         </View>
       </View>
@@ -447,11 +447,11 @@ interface AboutSectionProps {
 
 function AboutSection({ appVersionText, isDesktopApp }: AboutSectionProps) {
   return (
-    <SettingsSection title="About">
+    <SettingsSection title="关于">
       <View style={settingsStyles.card}>
         <View style={settingsStyles.row}>
           <View style={settingsStyles.rowContent}>
-            <Text style={settingsStyles.rowTitle}>Version</Text>
+            <Text style={settingsStyles.rowTitle}>版本</Text>
           </View>
           <Text style={styles.aboutValue}>{appVersionText}</Text>
         </View>
@@ -465,9 +465,9 @@ function getUpdateButtonLabel(
   isInstalling: boolean,
   latestVersion: string | null | undefined,
 ): string {
-  if (isInstalling) return "Installing...";
-  if (latestVersion) return `Update to ${formatVersionWithPrefix(latestVersion)}`;
-  return "Update";
+  if (isInstalling) return "安装中...";
+  if (latestVersion) return `更新至 ${formatVersionWithPrefix(latestVersion)}`;
+  return "更新";
 }
 
 function DesktopAppUpdateRow() {
@@ -513,10 +513,10 @@ function DesktopAppUpdateRow() {
     }
 
     void confirmDialog({
-      title: "Install desktop update",
-      message: "This updates Paseo on this computer",
-      confirmLabel: "Install update",
-      cancelLabel: "Cancel",
+      title: "安装桌面更新",
+      message: "这会更新这台电脑上的 Paseo",
+      confirmLabel: "安装更新",
+      cancelLabel: "取消",
     })
       .then((confirmed) => {
         if (!confirmed) {
@@ -527,7 +527,7 @@ function DesktopAppUpdateRow() {
       })
       .catch((error) => {
         console.error("[Settings] Failed to open app update confirmation", error);
-        Alert.alert("Error", "Unable to open the update confirmation dialog.");
+        Alert.alert("错误", "无法打开更新确认对话框。");
       });
   }, [installUpdate, isDesktopApp]);
 
@@ -539,10 +539,8 @@ function DesktopAppUpdateRow() {
     <>
       <View style={ROW_WITH_BORDER_STYLE}>
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>Release channel</Text>
-          <Text style={settingsStyles.rowHint}>
-            Switch to Beta to get updates sooner and help shape them
-          </Text>
+          <Text style={settingsStyles.rowTitle}>更新通道</Text>
+          <Text style={settingsStyles.rowHint}>切换到测试版可更早获得更新，并帮助完善它</Text>
         </View>
         <SegmentedControl
           size="sm"
@@ -553,11 +551,11 @@ function DesktopAppUpdateRow() {
       </View>
       <View style={ROW_WITH_BORDER_STYLE}>
         <View style={settingsStyles.rowContent}>
-          <Text style={settingsStyles.rowTitle}>App updates</Text>
+          <Text style={settingsStyles.rowTitle}>应用更新</Text>
           <Text style={settingsStyles.rowHint}>{statusText}</Text>
           {availableUpdate?.latestVersion ? (
             <Text style={settingsStyles.rowHint}>
-              Ready to install: {formatVersionWithPrefix(availableUpdate.latestVersion)}
+              可安装：{formatVersionWithPrefix(availableUpdate.latestVersion)}
             </Text>
           ) : null}
           {errorMessage ? <Text style={styles.aboutErrorText}>{errorMessage}</Text> : null}
@@ -569,7 +567,7 @@ function DesktopAppUpdateRow() {
             onPress={handleCheckForUpdates}
             disabled={isChecking || isInstalling}
           >
-            {isChecking ? "Checking..." : "Check"}
+            {isChecking ? "检查中..." : "检查"}
           </Button>
           <Button
             variant="default"
@@ -680,7 +678,7 @@ function SidebarProjectsButton({ isSelected, onSelect }: SidebarProjectsButtonPr
         color={isSelected ? theme.colors.foreground : theme.colors.foregroundMuted}
       />
       <Text style={labelStyle} numberOfLines={1}>
-        Projects
+        项目
       </Text>
     </Pressable>
   );
@@ -721,7 +719,7 @@ function SidebarHostItem({ serverId, label, isSelected, isLocal, onSelect }: Sid
       </Text>
       {isLocal ? (
         <Text style={sidebarStyles.localMarker} testID="settings-host-local-marker">
-          Local
+          本地
         </Text>
       ) : null}
     </Pressable>
@@ -791,7 +789,7 @@ function SettingsSidebar({
       {isDesktop ? (
         <SidebarHeaderRow
           icon={ArrowLeft}
-          label="Back"
+          label="返回"
           onPress={onBackToWorkspace}
           testID="settings-back-to-workspace"
         />
@@ -826,14 +824,14 @@ function SettingsSidebar({
         ))}
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Add host"
+          accessibilityLabel="添加主机"
           onPress={onAddHost}
           testID="settings-add-host"
           style={sidebarItemStyle}
         >
           <Plus size={theme.iconSize.md} color={theme.colors.foregroundMuted} />
           <Text style={sidebarStyles.label} numberOfLines={1}>
-            Add host
+            添加主机
           </Text>
         </Pressable>
       </View>
@@ -925,7 +923,7 @@ export default function SettingsScreen({ view }: SettingsScreenProps) {
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       console.error("[Settings] Playback test failed", error);
-      setPlaybackTestResult(`Playback failed: ${message}`);
+      setPlaybackTestResult(`播放失败：${message}`);
     } finally {
       setIsPlaybackTestRunning(false);
     }
@@ -1058,7 +1056,7 @@ export default function SettingsScreen({ view }: SettingsScreenProps) {
       return { title: item.label, Icon: item.icon };
     }
     if (view.kind === "project" || view.kind === "projects") {
-      return { title: "Projects", Icon: FolderGit2 };
+      return { title: "项目", Icon: FolderGit2 };
     }
     return null;
   })();
@@ -1111,7 +1109,7 @@ export default function SettingsScreen({ view }: SettingsScreenProps) {
   if (settingsLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Loading settings...</Text>
+        <Text style={styles.loadingText}>正在加载设置...</Text>
       </View>
     );
   }
@@ -1144,7 +1142,7 @@ export default function SettingsScreen({ view }: SettingsScreenProps) {
   if (isCompactLayout && view.kind === "root") {
     return (
       <View style={styles.container}>
-        <BackHeader title="Settings" onBack={handleBackToWorkspace} />
+        <BackHeader title="设置" onBack={handleBackToWorkspace} />
         <ScrollView style={scrollViewStyle} contentContainerStyle={insetBottomStyle}>
           <SettingsSidebar
             view={view}

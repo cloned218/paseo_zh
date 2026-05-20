@@ -8,7 +8,7 @@ export interface PairDeviceModalProps {
 }
 
 const SNAP_POINTS: string[] = ["82%", "94%"];
-const PAIR_DEVICE_HEADER: SheetHeader = { title: "Pair a device" };
+const PAIR_DEVICE_HEADER: SheetHeader = { title: "配对设备" };
 
 export function PairDeviceModal({ visible, onClose, testID }: PairDeviceModalProps) {
   return (

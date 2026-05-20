@@ -31,9 +31,9 @@ function resolveBranchLabel(input: {
     return input.currentBranch;
   }
   if (input.notGit) {
-    return "Not a git repository";
+    return "不是 Git 仓库";
   }
-  return "Unknown";
+  return "未知";
 }
 
 function formatBaseRefLabel(baseRef: string | undefined): string {
@@ -304,44 +304,44 @@ export function useGitActions({ serverId, cwd, icons }: UseGitActionsInput): Use
   const handleCommit = useCallback(() => {
     void runCommit({ serverId, cwd })
       .then(() => {
-        toastActionSuccess("Committed");
+        toastActionSuccess("已提交");
         return;
       })
       .catch((err) => {
-        toastActionError(err, "Failed to commit");
+        toastActionError(err, "提交失败");
       });
   }, [cwd, runCommit, serverId, toastActionError, toastActionSuccess]);
 
   const handlePull = useCallback(() => {
     void runPull({ serverId, cwd })
       .then(() => {
-        toastActionSuccess("Pulled");
+        toastActionSuccess("已拉取");
         return;
       })
       .catch((err) => {
-        toastActionError(err, "Failed to pull");
+        toastActionError(err, "拉取失败");
       });
   }, [cwd, runPull, serverId, toastActionError, toastActionSuccess]);
 
   const handlePush = useCallback(() => {
     void runPush({ serverId, cwd })
       .then(() => {
-        toastActionSuccess("Pushed");
+        toastActionSuccess("已推送");
         return;
       })
       .catch((err) => {
-        toastActionError(err, "Failed to push");
+        toastActionError(err, "推送失败");
       });
   }, [cwd, runPush, serverId, toastActionError, toastActionSuccess]);
 
   const handlePullAndPush = useCallback(() => {
     void runPullAndPush({ serverId, cwd })
       .then(() => {
-        toastActionSuccess("Pulled and pushed");
+        toastActionSuccess("已拉取并推送");
         return;
       })
       .catch((err) => {
-        toastActionError(err, "Failed to pull and push");
+        toastActionError(err, "拉取并推送失败");
       });
   }, [cwd, runPullAndPush, serverId, toastActionError, toastActionSuccess]);
 
@@ -349,11 +349,11 @@ export function useGitActions({ serverId, cwd, icons }: UseGitActionsInput): Use
     void persistShipDefault("pr");
     void runCreatePr({ serverId, cwd })
       .then(() => {
-        toastActionSuccess("PR created");
+        toastActionSuccess("PR 已创建");
         return;
       })
       .catch((err) => {
-        toastActionError(err, "Failed to create PR");
+        toastActionError(err, "创建 PR 失败");
       });
   }, [cwd, persistShipDefault, runCreatePr, serverId, toastActionError, toastActionSuccess]);
 
@@ -363,11 +363,11 @@ export function useGitActions({ serverId, cwd, icons }: UseGitActionsInput): Use
       void runMergePr({ serverId, cwd, method })
         .then(() => {
           setPostShipArchiveSuggested(true);
-          toastActionSuccess("PR merged");
+          toastActionSuccess("PR 已合并");
           return;
         })
         .catch((err) => {
-          toastActionError(err, "Failed to merge PR");
+          toastActionError(err, "合并 PR 失败");
         });
     },
     [cwd, persistShipDefault, runMergePr, serverId, toastActionError, toastActionSuccess],
@@ -378,11 +378,11 @@ export function useGitActions({ serverId, cwd, icons }: UseGitActionsInput): Use
       void persistShipDefault("pr");
       void runEnablePrAutoMerge({ serverId, cwd, method })
         .then(() => {
-          toastActionSuccess("Auto-merge enabled");
+          toastActionSuccess("已启用自动合并");
           return;
         })
         .catch((err) => {
-          toastActionError(err, "Failed to enable auto-merge");
+          toastActionError(err, "启用自动合并失败");
         });
     },
     [cwd, persistShipDefault, runEnablePrAutoMerge, serverId, toastActionError, toastActionSuccess],
@@ -391,28 +391,28 @@ export function useGitActions({ serverId, cwd, icons }: UseGitActionsInput): Use
   const handleDisablePrAutoMerge = useCallback(() => {
     void runDisablePrAutoMerge({ serverId, cwd })
       .then(() => {
-        toastActionSuccess("Auto-merge disabled");
+        toastActionSuccess("已关闭自动合并");
         return;
       })
       .catch((err) => {
-        toastActionError(err, "Failed to disable auto-merge");
+        toastActionError(err, "关闭自动合并失败");
       });
   }, [cwd, runDisablePrAutoMerge, serverId, toastActionError, toastActionSuccess]);
 
   const handleMergeBranch = useCallback(() => {
     if (!baseRef) {
-      toast.error("Base ref unavailable");
+      toast.error("基准分支不可用");
       return;
     }
     void persistShipDefault("merge");
     void runMergeBranch({ serverId, cwd, baseRef })
       .then(() => {
         setPostShipArchiveSuggested(true);
-        toastActionSuccess("Merged");
+        toastActionSuccess("已合并");
         return;
       })
       .catch((err) => {
-        toastActionError(err, "Failed to merge");
+        toastActionError(err, "合并失败");
       });
   }, [
     baseRef,
@@ -427,23 +427,23 @@ export function useGitActions({ serverId, cwd, icons }: UseGitActionsInput): Use
 
   const handleMergeFromBase = useCallback(() => {
     if (!baseRef) {
-      toast.error("Base ref unavailable");
+      toast.error("基准分支不可用");
       return;
     }
     void runMergeFromBase({ serverId, cwd, baseRef })
       .then(() => {
-        toastActionSuccess("Updated");
+        toastActionSuccess("已更新");
         return;
       })
       .catch((err) => {
-        toastActionError(err, "Failed to merge from base");
+        toastActionError(err, "从基准分支更新失败");
       });
   }, [baseRef, cwd, runMergeFromBase, serverId, toast, toastActionError, toastActionSuccess]);
 
   const archiveWorktreeAfterConfirmation = useCallback(async () => {
     const worktreePath = status?.cwd;
     if (!worktreePath) {
-      toast.error("Worktree path unavailable");
+      toast.error("工作树路径不可用");
       return;
     }
 
@@ -475,7 +475,7 @@ export function useGitActions({ serverId, cwd, icons }: UseGitActionsInput): Use
       }) as Href,
     );
     void runArchiveWorktree({ serverId, cwd, worktreePath }).catch((err) => {
-      toastActionError(err, "Failed to archive worktree");
+      toastActionError(err, "归档工作树失败");
     });
   }, [
     branchLabel,

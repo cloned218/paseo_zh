@@ -71,7 +71,7 @@ export function DictationControls({
         onPress={onStart}
         disabled={disabled}
         accessibilityRole="button"
-        accessibilityLabel="Start voice dictation"
+        accessibilityLabel="开始语音听写"
         style={micButtonStyle}
       >
         <Mic size={theme.iconSize.md} color={theme.colors.foreground} />
@@ -89,7 +89,7 @@ export function DictationControls({
         <Pressable
           onPress={handleCancel}
           disabled={actionsDisabled && !isFailed}
-          accessibilityLabel="Cancel dictation"
+          accessibilityLabel="取消听写"
           style={cancelButtonStyle}
         >
           <X size={theme.iconSize.sm} color={theme.colors.foreground} />
@@ -100,11 +100,7 @@ export function DictationControls({
           </View>
         ) : null}
         {!actionsDisabled && isFailed ? (
-          <Pressable
-            onPress={onRetry}
-            accessibilityLabel="Retry dictation"
-            style={ACTION_CONFIRM_STYLE}
-          >
+          <Pressable onPress={onRetry} accessibilityLabel="重试听写" style={ACTION_CONFIRM_STYLE}>
             <RefreshCcw size={theme.iconSize.sm} color={theme.colors.surface0} />
           </Pressable>
         ) : null}
@@ -112,14 +108,14 @@ export function DictationControls({
           <>
             <Pressable
               onPress={onAccept}
-              accessibilityLabel="Insert transcription"
+              accessibilityLabel="插入转写文本"
               style={ACTION_SECONDARY_STYLE}
             >
               <Check size={theme.iconSize.sm} color={theme.colors.foreground} />
             </Pressable>
             <Pressable
               onPress={onAcceptAndSend}
-              accessibilityLabel="Insert transcription and send"
+              accessibilityLabel="插入转写并发送"
               style={ACTION_CONFIRM_STYLE}
             >
               <ArrowUp size={theme.iconSize.sm} color={theme.colors.surface0} />
@@ -189,7 +185,7 @@ export function DictationOverlay({
         onPress={handleCancel}
         disabled={actionsDisabled && !isFailed}
         accessibilityRole="button"
-        accessibilityLabel="Cancel dictation"
+        accessibilityLabel="取消听写"
         style={overlayCancelButtonStyle}
       >
         <X size={theme.iconSize.lg} color={theme.colors.accentForeground} strokeWidth={2.5} />
@@ -208,7 +204,7 @@ export function DictationOverlay({
         </View>
         {isFailed ? (
           <Text numberOfLines={2} style={overlayTranscriptTextStyle}>
-            {errorText ? `Dictation failed: ${errorText}` : "Dictation failed. Tap retry."}
+            {errorText ? `Dictation failed: ${errorText}` : "听写失败。点击重试。"}
           </Text>
         ) : null}
       </View>
@@ -223,7 +219,7 @@ export function DictationOverlay({
           <Pressable
             onPress={onRetry}
             accessibilityRole="button"
-            accessibilityLabel="Retry dictation"
+            accessibilityLabel="重试听写"
             style={overlayRetryButtonStyle}
           >
             <RefreshCcw size={theme.iconSize.lg} color={theme.colors.accent} strokeWidth={2.5} />
@@ -234,7 +230,7 @@ export function DictationOverlay({
             <Pressable
               onPress={onAccept}
               accessibilityRole="button"
-              accessibilityLabel="Insert transcription"
+              accessibilityLabel="插入转写文本"
               style={OVERLAY_ACCEPT_BUTTON_STYLE}
             >
               <Pencil
@@ -246,7 +242,7 @@ export function DictationOverlay({
             <Pressable
               onPress={onAcceptAndSend}
               accessibilityRole="button"
-              accessibilityLabel="Insert transcription and send"
+              accessibilityLabel="插入转写并发送"
               style={overlayConfirmButtonStyle}
             >
               <ArrowUp size={theme.iconSize.lg} color={theme.colors.accent} strokeWidth={2.5} />

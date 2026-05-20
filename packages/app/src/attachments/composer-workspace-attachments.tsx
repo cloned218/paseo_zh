@@ -233,12 +233,12 @@ function WorkspaceAttachmentPill({
 }: WorkspaceAttachmentPillProps) {
   let label: string;
   if (attachment.kind === "browser_element") {
-    label = `Element · ${attachment.attachment.tag}`;
+    label = `元素 · ${attachment.attachment.tag}`;
   } else {
     label =
       attachment.commentCount === 1
-        ? "Review · 1 comment"
-        : `Review · ${attachment.commentCount} comments`;
+        ? "评审 · 1 条评论"
+        : `评审 · ${attachment.commentCount} 条评论`;
   }
   const handleOpen = useCallback(() => {
     onOpen(attachment);
@@ -252,14 +252,10 @@ function WorkspaceAttachmentPill({
       onOpen={handleOpen}
       onRemove={handleRemove}
       openAccessibilityLabel={
-        attachment.kind === "browser_element"
-          ? "Open browser element attachment"
-          : "Open review attachment"
+        attachment.kind === "browser_element" ? "打开浏览器元素附件" : "打开评审附件"
       }
       removeAccessibilityLabel={
-        attachment.kind === "browser_element"
-          ? "Remove browser element attachment"
-          : "Remove review attachment"
+        attachment.kind === "browser_element" ? "移除浏览器元素附件" : "移除评审附件"
       }
       disabled={disabled}
     >

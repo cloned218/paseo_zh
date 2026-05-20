@@ -26,17 +26,17 @@ interface ProviderStatus {
 }
 
 function getProviderStatus(status: string, enabled: boolean, modelCount: number): ProviderStatus {
-  if (!enabled) return { tone: "muted", label: "Disabled", modelCount: null };
-  if (status === "loading") return { tone: "loading", label: "Loading", modelCount: null };
-  if (status === "error") return { tone: "danger", label: "Error", modelCount: null };
+  if (!enabled) return { tone: "muted", label: "已禁用", modelCount: null };
+  if (status === "loading") return { tone: "loading", label: "加载中", modelCount: null };
+  if (status === "error") return { tone: "danger", label: "错误", modelCount: null };
   if (status === "ready") {
     return {
       tone: "success",
-      label: "Available",
+      label: "可用",
       modelCount: modelCount > 0 ? modelCount : null,
     };
   }
-  return { tone: "warning", label: "Not installed", modelCount: null };
+  return { tone: "warning", label: "未安装", modelCount: null };
 }
 
 interface ProviderRowProps {
@@ -95,7 +95,7 @@ function ProviderRow({
       style={rowStyle}
       onPress={handlePress}
       accessibilityRole="button"
-      accessibilityLabel={`${def.label} provider details`}
+      accessibilityLabel={`${def.label} 提供方详情`}
     >
       {({ hovered }: PressableStateCallbackType & { hovered?: boolean }) => (
         <>
@@ -124,7 +124,7 @@ function ProviderRow({
             value={enabled}
             onValueChange={handleToggleValueChange}
             disabled={isToggling}
-            accessibilityLabel={`Enable ${def.label}`}
+            accessibilityLabel={`启用 ${def.label}`}
           />
         </>
       )}
@@ -163,9 +163,7 @@ function StatusIndicator({ status }: { status: ProviderStatus }) {
       {status.modelCount !== null ? (
         <>
           <Text style={styles.separator}>·</Text>
-          <Text style={styles.statusLabel}>
-            {status.modelCount === 1 ? "1 model" : `${status.modelCount} models`}
-          </Text>
+          <Text style={styles.statusLabel}>{`${status.modelCount} 个模型`}</Text>
         </>
       ) : null}
     </View>
@@ -203,10 +201,7 @@ export function ProvidersSection({ serverId }: ProvidersSectionProps) {
       try {
         await patchConfig({ providers: { [providerId]: { enabled } } });
       } catch (error) {
-        Alert.alert(
-          "Unable to update provider",
-          error instanceof Error ? error.message : String(error),
-        );
+        Alert.alert("无法更新提供方", error instanceof Error ? error.message : String(error));
       } finally {
         setPendingProviderId((current) => (current === providerId ? null : current));
       }
@@ -223,11 +218,11 @@ export function ProvidersSection({ serverId }: ProvidersSectionProps) {
             hitSlop={8}
             style={settingsStyles.sectionHeaderLink}
             accessibilityRole="button"
-            accessibilityLabel="Add provider"
+            accessibilityLabel="添加提供方"
             testID="add-provider-button"
           >
             <Plus size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />
-            <Text style={settingsStyles.sectionHeaderLinkText}>Add provider</Text>
+            <Text style={settingsStyles.sectionHeaderLinkText}>添加提供方</Text>
           </Pressable>
           <Pressable
             onPress={handleRefresh}
@@ -235,9 +230,7 @@ export function ProvidersSection({ serverId }: ProvidersSectionProps) {
             hitSlop={8}
             style={settingsStyles.sectionHeaderLink}
             accessibilityRole="button"
-            accessibilityLabel={
-              providerRefreshInFlight ? "Refreshing providers" : "Refresh providers"
-            }
+            accessibilityLabel={providerRefreshInFlight ? "提供方刷新中" : "刷新提供方"}
           >
             {providerRefreshInFlight ? (
               <LoadingSpinner size={theme.iconSize.sm} color={theme.colors.foregroundMuted} />
@@ -261,19 +254,19 @@ export function ProvidersSection({ serverId }: ProvidersSectionProps) {
   return (
     <>
       <SettingsSection
-        title="Providers"
+        title="提供方"
         trailing={headerActions}
         testID="host-page-providers-card"
         style={styles.sectionSpacing}
       >
         {!hasServer || !isConnected ? (
           <View style={EMPTY_CARD_STYLE}>
-            <Text style={styles.emptyText}>Connect to this host to see providers</Text>
+            <Text style={styles.emptyText}>连接到这台主机后即可查看提供方</Text>
           </View>
         ) : null}
         {hasServer && isConnected && isLoading ? (
           <View style={EMPTY_CARD_STYLE}>
-            <Text style={styles.emptyText}>Loading...</Text>
+            <Text style={styles.emptyText}>加载中...</Text>
           </View>
         ) : null}
         {hasServer && isConnected && !isLoading && providerDefinitions.length > 0 ? (

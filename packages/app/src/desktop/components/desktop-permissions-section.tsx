@@ -59,9 +59,9 @@ export function DesktopPermissionsSection() {
         leftIcon={refreshIcon}
         onPress={handleRefreshPress}
         disabled={isBusy}
-        accessibilityLabel="Refresh desktop permissions"
+        accessibilityLabel="刷新桌面权限"
       >
-        {isRefreshing ? "Refreshing..." : "Refresh"}
+        {isRefreshing ? "刷新中..." : "刷新"}
       </Button>
     ),
     [refreshIcon, handleRefreshPress, isBusy, isRefreshing],
@@ -72,21 +72,21 @@ export function DesktopPermissionsSection() {
   }
 
   return (
-    <SettingsSection title="Permissions" trailing={refreshButton}>
+    <SettingsSection title="权限" trailing={refreshButton}>
       <View style={settingsStyles.card}>
         <DesktopPermissionRow
-          title="Notifications"
+          title="通知"
           status={snapshot?.notifications ?? null}
           isRequesting={requestingPermission === "notifications"}
           onRequest={handleRequestNotifications}
-          extraActionLabel="Test"
+          extraActionLabel="测试"
           isExtraActionBusy={isSendingTestNotification}
           isExtraActionDisabled={!notificationsGranted || isBusy}
           onExtraAction={handleSendTestNotification}
         />
         {testNotificationError ? <Text style={errorTextStyle}>{testNotificationError}</Text> : null}
         <DesktopPermissionRow
-          title="Microphone"
+          title="麦克风"
           showBorder
           status={snapshot?.microphone ?? null}
           isRequesting={requestingPermission === "microphone"}

@@ -125,21 +125,21 @@ const PULL_REQUEST_DIRECT_MERGE_ACTION_MODELS = [
   {
     id: "merge-pr-squash",
     role: "direct",
-    label: "Squash and merge",
+    label: "压缩并合并",
     method: "squash",
     startsGroup: true,
   },
   {
     id: "merge-pr-merge",
     role: "direct",
-    label: "Create a merge commit",
+    label: "创建合并提交",
     method: "merge",
     startsGroup: false,
   },
   {
     id: "merge-pr-rebase",
     role: "direct",
-    label: "Rebase and merge",
+    label: "变基并合并",
     method: "rebase",
     startsGroup: false,
   },
@@ -149,21 +149,21 @@ const PULL_REQUEST_AUTO_MERGE_ENABLE_ACTION_MODELS = [
   {
     id: "enable-pr-auto-merge-squash",
     role: "auto",
-    label: "Enable auto-merge with squash",
+    label: "启用压缩自动合并",
     method: "squash",
     startsGroup: true,
   },
   {
     id: "enable-pr-auto-merge-merge",
     role: "auto",
-    label: "Enable auto-merge with merge commit",
+    label: "启用合并提交自动合并",
     method: "merge",
     startsGroup: false,
   },
   {
     id: "enable-pr-auto-merge-rebase",
     role: "auto",
-    label: "Enable auto-merge with rebase",
+    label: "启用变基自动合并",
     method: "rebase",
     startsGroup: false,
   },
@@ -204,9 +204,9 @@ export function buildGitActions(input: BuildGitActionsInput): GitActions {
 
   allActions.set("commit", {
     id: "commit",
-    label: "Commit",
-    pendingLabel: "Committing...",
-    successLabel: "Committed",
+    label: "提交",
+    pendingLabel: "提交中...",
+    successLabel: "已提交",
     disabled: input.runtime.commit.disabled,
     status: input.runtime.commit.status,
     icon: input.runtime.commit.icon,
@@ -216,9 +216,9 @@ export function buildGitActions(input: BuildGitActionsInput): GitActions {
 
   allActions.set("pull", {
     id: "pull",
-    label: "Pull",
-    pendingLabel: "Pulling...",
-    successLabel: "Pulled",
+    label: "拉取",
+    pendingLabel: "拉取中...",
+    successLabel: "已拉取",
     disabled: input.runtime.pull.disabled,
     status: input.runtime.pull.status,
     unavailableMessage: input.runtime.pull.disabled ? undefined : getPullUnavailableMessage(input),
@@ -229,9 +229,9 @@ export function buildGitActions(input: BuildGitActionsInput): GitActions {
 
   allActions.set("push", {
     id: "push",
-    label: "Push",
-    pendingLabel: "Pushing...",
-    successLabel: "Pushed",
+    label: "推送",
+    pendingLabel: "推送中...",
+    successLabel: "已推送",
     disabled: input.runtime.push.disabled,
     status: input.runtime.push.status,
     unavailableMessage: input.runtime.push.disabled ? undefined : getPushUnavailableMessage(input),
@@ -242,9 +242,9 @@ export function buildGitActions(input: BuildGitActionsInput): GitActions {
 
   allActions.set("pull-and-push", {
     id: "pull-and-push",
-    label: "Pull and push",
-    pendingLabel: "Pulling and pushing...",
-    successLabel: "Pulled and pushed",
+    label: "拉取并推送",
+    pendingLabel: "拉取并推送中...",
+    successLabel: "已拉取并推送",
     disabled: input.runtime["pull-and-push"].disabled,
     status: input.runtime["pull-and-push"].status,
     unavailableMessage: input.runtime["pull-and-push"].disabled
@@ -261,9 +261,9 @@ export function buildGitActions(input: BuildGitActionsInput): GitActions {
 
   allActions.set("merge-branch", {
     id: "merge-branch",
-    label: "Merge locally",
-    pendingLabel: "Merging...",
-    successLabel: "Merged",
+    label: "本地合并",
+    pendingLabel: "合并中...",
+    successLabel: "已合并",
     disabled: input.runtime["merge-branch"].disabled,
     status: input.runtime["merge-branch"].status,
     unavailableMessage: input.runtime["merge-branch"].disabled
@@ -276,9 +276,9 @@ export function buildGitActions(input: BuildGitActionsInput): GitActions {
 
   allActions.set("merge-from-base", {
     id: "merge-from-base",
-    label: `Update from ${input.baseRefLabel}`,
-    pendingLabel: "Updating...",
-    successLabel: "Updated",
+    label: `从 ${input.baseRefLabel} 更新`,
+    pendingLabel: "更新中...",
+    successLabel: "已更新",
     disabled: input.runtime["merge-from-base"].disabled,
     status: input.runtime["merge-from-base"].status,
     unavailableMessage: input.runtime["merge-from-base"].disabled
@@ -291,15 +291,15 @@ export function buildGitActions(input: BuildGitActionsInput): GitActions {
 
   allActions.set("archive-worktree", {
     id: "archive-worktree",
-    label: "Archive worktree",
-    pendingLabel: "Archiving...",
-    successLabel: "Archived",
+    label: "归档工作树",
+    pendingLabel: "归档中...",
+    successLabel: "已归档",
     disabled: input.runtime["archive-worktree"].disabled,
     status: input.runtime["archive-worktree"].status,
     unavailableMessage:
       input.runtime["archive-worktree"].disabled || input.isPaseoOwnedWorktree
         ? undefined
-        : "Archive isn't available here because this workspace was not created as a Paseo worktree",
+        : "此处无法归档，因为该工作区不是作为 Paseo 工作树创建的",
     icon: input.runtime["archive-worktree"].icon,
     startsGroup: true,
     handler: input.runtime["archive-worktree"].handler,
@@ -396,15 +396,15 @@ function buildPrAction(input: BuildGitActionsInput): GitAction {
   if (input.hasPullRequest && input.pullRequestUrl) {
     return {
       id: "pr",
-      label: "View PR",
-      pendingLabel: "View PR",
-      successLabel: "View PR",
+      label: "查看 PR",
+      pendingLabel: "查看 PR",
+      successLabel: "查看 PR",
       disabled: input.runtime.pr.disabled,
       status: input.runtime.pr.status,
       unavailableMessage:
         input.runtime.pr.disabled || input.githubFeaturesEnabled
           ? undefined
-          : "View PR isn't available right now because GitHub isn't connected",
+          : "当前无法查看 PR，因为 GitHub 尚未连接",
       icon: input.runtime.pr.icon,
       startsGroup: false,
       handler: input.runtime.pr.handler,
@@ -413,9 +413,9 @@ function buildPrAction(input: BuildGitActionsInput): GitAction {
 
   return {
     id: "pr",
-    label: "Create PR",
-    pendingLabel: "Creating PR...",
-    successLabel: "PR Created",
+    label: "创建 PR",
+    pendingLabel: "创建 PR 中...",
+    successLabel: "PR 已创建",
     disabled: input.runtime.pr.disabled,
     status: input.runtime.pr.status,
     unavailableMessage: input.runtime.pr.disabled
@@ -436,8 +436,8 @@ function buildDirectPullRequestMergeAction(
   return {
     id: model.id,
     label: model.label,
-    pendingLabel: "Merging PR...",
-    successLabel: "PR merged",
+    pendingLabel: "合并 PR 中...",
+    successLabel: "PR 已合并",
     disabled: runtime.disabled || shouldDisableMergePrAction(input),
     status: runtime.status,
     unavailableMessage: runtime.disabled ? undefined : unavailableMessage,
@@ -455,8 +455,8 @@ function buildEnablePullRequestAutoMergeAction(
   return {
     id: model.id,
     label: model.label,
-    pendingLabel: "Enabling auto-merge...",
-    successLabel: "Auto-merge enabled",
+    pendingLabel: "启用自动合并中...",
+    successLabel: "已启用自动合并",
     disabled: runtime.disabled,
     status: runtime.status,
     icon: runtime.icon,
@@ -470,12 +470,12 @@ function buildDisablePullRequestAutoMergeAction(input: BuildGitActionsInput): Gi
   const unavailableMessage =
     input.pullRequestGithub?.viewerCanDisableAutoMerge === true
       ? undefined
-      : "Auto-merge is enabled, but this account can't disable it";
+      : "已启用自动合并，但当前账号无权关闭";
   return {
     id: "disable-pr-auto-merge",
-    label: "Auto-merge enabled",
-    pendingLabel: "Disabling auto-merge...",
-    successLabel: "Auto-merge disabled",
+    label: "已启用自动合并",
+    pendingLabel: "关闭自动合并中...",
+    successLabel: "已关闭自动合并",
     disabled: runtime.disabled || input.pullRequestGithub?.viewerCanDisableAutoMerge !== true,
     status: runtime.status,
     unavailableMessage: runtime.disabled ? undefined : unavailableMessage,
@@ -557,106 +557,106 @@ function canEnablePrAutoMerge(input: BuildGitActionsInput): boolean {
 
 function getPullUnavailableMessage(input: BuildGitActionsInput): string | undefined {
   if (!input.hasRemote) {
-    return "Pull isn't available here because this branch is not connected to a remote yet";
+    return "此处分支尚未连接远程仓库，因此无法拉取";
   }
   if (input.hasUncommittedChanges) {
-    return "Pull isn't available while you have local changes so commit or stash them first";
+    return "存在本地更改时无法拉取，请先提交或暂存";
   }
   if (input.behindOfOrigin === 0) {
-    return "Pull isn't available because this branch is already up to date";
+    return "当前分支已经是最新状态，无需拉取";
   }
   return undefined;
 }
 
 function getPushUnavailableMessage(input: BuildGitActionsInput): string | undefined {
   if (!input.hasRemote) {
-    return "Push isn't available here because this branch is not connected to a remote yet";
+    return "此处分支尚未连接远程仓库，因此无法推送";
   }
   if (input.behindOfOrigin > 0) {
-    return "Push isn't available yet because there are newer changes to bring in first";
+    return "存在更晚的远程更改，请先拉取后再推送";
   }
   if (input.aheadOfOrigin === 0) {
-    return "Push isn't available because there is nothing new to send";
+    return "没有新的提交可推送";
   }
   return undefined;
 }
 
 function getPullAndPushUnavailableMessage(input: BuildGitActionsInput): string | undefined {
   if (!input.hasRemote) {
-    return "Pull and push isn't available here because this branch is not connected to a remote yet";
+    return "此处分支尚未连接远程仓库，因此无法拉取并推送";
   }
   if (input.hasUncommittedChanges) {
-    return "Pull and push isn't available while you have local changes so commit or stash them first";
+    return "存在本地更改时无法拉取并推送，请先提交或暂存";
   }
   if (input.behindOfOrigin === 0 && input.aheadOfOrigin === 0) {
-    return "Pull and push isn't available because this branch is already in sync";
+    return "当前分支已同步，无需拉取并推送";
   }
   return undefined;
 }
 
 function getCreatePrUnavailableMessage(input: BuildGitActionsInput): string | undefined {
   if (!input.githubFeaturesEnabled) {
-    return "Create PR isn't available right now because GitHub isn't connected";
+    return "当前无法创建 PR，因为 GitHub 尚未连接";
   }
   if (input.aheadCount === 0) {
-    return "Create PR isn't available because this branch doesn't have any new commits yet";
+    return "当前分支还没有新的提交，无法创建 PR";
   }
   return undefined;
 }
 
 function getMergeBranchUnavailableMessage(input: BuildGitActionsInput): string | undefined {
   if (!input.baseRefAvailable) {
-    return "Merge isn't available because we couldn't determine the base branch";
+    return "无法确定基准分支，因此无法合并";
   }
   if (input.hasUncommittedChanges) {
-    return "Merge isn't available while you have local changes so commit or stash them first";
+    return "存在本地更改时无法合并，请先提交或暂存";
   }
   if (input.aheadCount === 0) {
-    return "Merge isn't available because this branch doesn't have anything new to merge yet";
+    return "当前分支没有可合并的新内容";
   }
   return undefined;
 }
 
 function getMergeFromBaseUnavailableMessage(input: BuildGitActionsInput): string | undefined {
   if (!input.baseRefAvailable) {
-    return "Update isn't available because we couldn't determine the base branch";
+    return "无法确定基准分支，因此无法更新";
   }
   if (input.hasUncommittedChanges) {
-    return "Update isn't available while you have local changes so commit or stash them first";
+    return "存在本地更改时无法更新，请先提交或暂存";
   }
   if (input.behindBaseCount === 0) {
-    return `Update isn't available because this branch is already up to date with ${input.baseRefLabel}`;
+    return `当前分支已与 ${input.baseRefLabel} 保持同步，无需更新`;
   }
   return undefined;
 }
 
 function getMergePrUnavailableMessage(input: BuildGitActionsInput): string | undefined {
   if (!input.githubFeaturesEnabled) {
-    return "Merge PR isn't available right now because GitHub isn't connected";
+    return "当前无法合并 PR，因为 GitHub 尚未连接";
   }
   if (!input.hasPullRequest) {
-    return "Merge PR isn't available because there isn't a pull request yet";
+    return "还没有拉取请求，因此无法合并 PR";
   }
   if (input.pullRequestIsDraft) {
-    return "Merge PR isn't available because the pull request is still a draft";
+    return "该拉取请求仍是草稿，无法合并 PR";
   }
   if (input.pullRequestIsMerged) {
-    return "Merge PR isn't available because the pull request is already merged";
+    return "该拉取请求已被合并，无法再次合并 PR";
   }
   if (input.pullRequestState === "closed") {
-    return "Merge PR isn't available because the pull request is closed";
+    return "该拉取请求已关闭，无法合并 PR";
   }
   if (input.pullRequestMergeable === "CONFLICTING") {
-    return "Merge PR isn't available because the pull request has conflicts";
+    return "该拉取请求存在冲突，无法合并 PR";
   }
   if (!hasPullRequestGithubFacts(input.pullRequestGithub)) {
     return undefined;
   }
   if (input.pullRequestGithub?.isMergeQueueEnabled || input.pullRequestGithub?.isInMergeQueue) {
-    return "Merge PR isn't available here because this repository uses a merge queue";
+    return "该仓库使用合并队列，因此此处无法直接合并 PR";
   }
   if (!GITHUB_DIRECT_MERGE_STATE_ALLOWLIST.has(input.pullRequestGithub?.mergeStateStatus ?? "")) {
-    return "Merge PR isn't available until GitHub reports the pull request is ready to merge";
+    return "要等 GitHub 报告该拉取请求可合并后，才能合并 PR";
   }
   return undefined;
 }

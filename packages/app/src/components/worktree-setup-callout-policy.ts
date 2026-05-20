@@ -64,10 +64,9 @@ export function buildWorktreeSetupCalloutPolicy(
     id: calloutKey,
     dismissalKey: calloutKey,
     priority: 100,
-    title: "Set up worktree scripts",
-    description:
-      "Add setup commands so new worktrees can install dependencies and prepare themselves automatically.",
-    actionLabel: "Open project settings",
+    title: "配置 worktree 脚本",
+    description: "添加 setup 命令，让新 worktree 能自动安装依赖并自动完成准备。",
+    actionLabel: "打开项目设置",
     projectSettingsRoute: buildProjectSettingsRoute(project.projectKey),
     testID: `worktree-setup-callout-${project.projectKey}`,
   };
